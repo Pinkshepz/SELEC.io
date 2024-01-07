@@ -1,113 +1,108 @@
-import Image from 'next/image'
+import Page from "./[cardsets]/page"
+import Link from "next/link"
+import Cardset from "./cardset"
+import { google } from 'googleapis';
+ 
+export async function getData() {
+  // Function for fetch server-side data from GG Sheet api
 
-export default function Home() {
+  // Auth
+  const auth = await google.auth.getClient(
+    { scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly']}
+  );
+  const sheets = google.sheets({ version: 'v4', auth });
+
+  // Query
+  const range = 'CARDSET!A2:F10';
+
+  const response = await sheets.spreadsheets.values.get({
+    spreadsheetId: process.env.SHEET_ID,
+    range,
+  });
+
+  // Result: array of data of each cardset
+  const cardsets = response.data.values;
+
+  return cardsets
+}
+
+export default async function Collection() {
+  // Get data from GG Sheet api
+  const cardsets = await getData()!;
+
+  // Group cardset by topics
+  const cardsetsSorted: {[key: string]: Array<Array<string>>} = {};
+
+  for (let index = 0; index < cardsets!.length; index++) {
+    const element = cardsets![index];
+    const topic: string = element[1];
+
+    if (cardsetsSorted[topic] == undefined) {
+      cardsetsSorted[topic] = [element];
+    } else {
+      cardsetsSorted[topic].push(element);
+    }
+  }
+
+  // Map cardset data into objects
+  // Store html elements
+  let cardsetObjects: Array<React.ReactNode> = [];
+
+  // Start from topic
+  for (let index = 0; index < Object.keys(cardsetsSorted).length; index++) {
+    const topic = Object.keys(cardsetsSorted)[index];
+    // Topic header
+    cardsetObjects.push(
+      <h1 className="pixellet text-2xl mt-2 mb-6">{topic}</h1>
+    );
+
+    // Cardsets interface
+    let cardsetSubObjects: Array<React.ReactNode> = [];
+
+    cardsetsSorted[topic]?.map((cardset) => {
+      cardsetSubObjects.push(
+        <Cardset 
+          cardsetId={cardset[0]}
+          cardsetType={cardset[2]}
+          cardsetImageUrl={cardset[3]}
+          cardsetTitle={cardset[4]}
+          cardsetDescription={cardset[5]}
+          key={cardset[0]}/>
+        );
+    });
+
+    
+    cardsetObjects.push(
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {cardsetSubObjects}
+      </div>
+    );
+  }
+  
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <main className="flex min-h-screen flex-col">
+      <p className="pixelify text-2xl my-1">SIID256</p>
+      <h1 className="pixellet text-3xl mt-2 mb-6">
+        Microbiology and Parasitology
+      </h1>
+      <div className="mb-4 flex flex-wrap">
+        <a href="https://selecx-new.si.mahidol.ac.th/course/view.php?id=4305" className="mb-4">
+          <span className="px-2 py-1 mr-2 group rounded-xl border transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600">SELECx</span></a>
+        <a href="https://sites.google.com/view/siriraj132/archives/year-2/siid256?authuser=0" className="mb-4">
+          <span className="px-2 py-1 mr-2 group rounded-xl border transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600">SI132</span></a>
+        <a href="https://drive.google.com/file/d/1suY1t_DTf--MHo7tPrz9rqhO-D3U91As/view?usp=drivesdk" className="mb-4">
+          <span className="px-2 py-1 mr-2 group rounded-xl border transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600">SMSU</span></a>
+        <a href="https://drive.google.com/drive/folders/1-3bbIHutFfk8lAakRBHi8bNefI57MU5p" className="mb-4">
+          <span className="px-2 py-1 mr-2 group rounded-xl border transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600">SK Shared Materials</span></a>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="w-[100%] h-[1px] bg-black dark:bg-white"></div>
+      <div className="mt-4">
+        {cardsetObjects}
       </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <footer className='mt-8 flex flex-col w-auto items-center justify-center'>
+        <div className="w-[100%] h-[1px] my-2 bg-black dark:bg-white"></div>
+        <div className='mb-3 pixellet'>@SELECard 2024 by Pinkshepz</div>
+      </footer>
     </main>
   )
 }

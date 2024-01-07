@@ -25,3 +25,11 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.pixellet {
+  font-family: 'Pixellet';
+}
+
+.pixelify {
+  font-family: 'Pixelify Sans';
+}
