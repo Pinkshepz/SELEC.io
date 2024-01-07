@@ -33,3 +33,19 @@ body {
 .pixelify {
   font-family: 'Pixelify Sans';
 }
+
+.Up-and-down {
+  animation: float-up-and-down 5s ease-in-out infinite;
+}
+
+@keyframes float-up-and-down {
+  0% {
+    transform: translateY(5px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
+}

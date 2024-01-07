@@ -1,5 +1,3 @@
-import Page from "./[cardsets]/page"
-import Link from "next/link"
 import Cardset from "./cardset"
 import { google } from 'googleapis';
  
@@ -13,7 +11,7 @@ export async function getData() {
   const sheets = google.sheets({ version: 'v4', auth });
 
   // Query
-  const range = 'CARDSET!A2:F10';
+  const range = 'CARDSET!A2:F';
 
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SHEET_ID,
@@ -23,43 +21,88 @@ export async function getData() {
   // Result: array of data of each cardset
   const cardsets = response.data.values;
 
-  return cardsets
+  return cardsets;
 }
 
-export default async function Collection() {
+export default async function Course() {
   // Get data from GG Sheet api
   const cardsets = await getData()!;
 
-  // Group cardset by topics
-  const cardsetsSorted: {[key: string]: Array<Array<string>>} = {};
+  // Data structure for this page
+  const courseStructure: {
+    header: Array<Array<string>>;
+    link: Array<Array<string>>;
+    card: {[key: string]: Array<Array<string>>};
+  } = {
+    header: [],
+    link: [],
+    card: {},
+  }
 
+  // Sort header & link, and sort cardsets by its topics
   for (let index = 0; index < cardsets!.length; index++) {
     const element = cardsets![index];
-    const topic: string = element[1];
-
-    if (cardsetsSorted[topic] == undefined) {
-      cardsetsSorted[topic] = [element];
-    } else {
-      cardsetsSorted[topic].push(element);
+    
+    switch (element[0]) {
+      // Filter header
+      case 'HEADER':
+        courseStructure['header'].push(element);
+        break;
+      // Filter link
+      case 'LINK':
+        courseStructure['link'].push(element);
+        break;
+      // Sort cardsets by its topics
+      default:
+        if (courseStructure['card'][element[1]] == undefined) {
+          courseStructure['card'][element[1]] = [element];
+        } else {
+          courseStructure['card'][element[1]].push(element);
+        }
+        break;
+      }
     }
-  }
+
+  // Map header link into objects
+  // Store html elements
+  let linkObjects: Array<React.ReactNode> = [];
+  
+    courseStructure['link']?.map((linkset) => {
+      if (linkset[4] == 'SK Materials') {
+        linkObjects.push(
+          <a href={linkset[3]} className="mb-4" key={linkset[4]}>
+            <span className="px-2 py-1 mr-2 group rounded-xl border bg-gradient-to-r from-pink-500/50 to-blue-500/75 transition-colors ease-in-out duration-300 hover:border-gray-300 hover:bg-blue-500/75" key={linkset[4]}>
+            {linkset[4]}
+            </span>
+          </a>
+          );
+      } else {
+        linkObjects.push(
+          <a href={linkset[3]} className="mb-4" key={linkset[4]}>
+            <span className="px-2 py-1 mr-2 group rounded-xl border transition-colors transition-colors ease-in-out duration-300 hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600" key={linkset[4]}>
+            {linkset[4]}
+            </span>
+          </a>
+          );
+      }
+    });
 
   // Map cardset data into objects
   // Store html elements
   let cardsetObjects: Array<React.ReactNode> = [];
 
   // Start from topic
-  for (let index = 0; index < Object.keys(cardsetsSorted).length; index++) {
-    const topic = Object.keys(cardsetsSorted)[index];
+  for (let index = 0; index < Object.keys(courseStructure['card']).length; index++) {
+    const topic = Object.keys(courseStructure['card'])[index];
     // Topic header
     cardsetObjects.push(
-      <h1 className="pixellet text-2xl mt-2 mb-6">{topic}</h1>
+      <h1 className="pixellet text-2xl mt-2 mb-6" key={`heading${topic}`}>{topic}</h1>
     );
 
     // Cardsets interface
     let cardsetSubObjects: Array<React.ReactNode> = [];
 
-    cardsetsSorted[topic]?.map((cardset) => {
+    courseStructure['card'][topic]?.map((cardset) => {
       cardsetSubObjects.push(
         <Cardset 
           cardsetId={cardset[0]}
@@ -71,9 +114,8 @@ export default async function Collection() {
         );
     });
 
-    
     cardsetObjects.push(
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4" key={`group${topic}`}>
         {cardsetSubObjects}
       </div>
     );
@@ -81,27 +123,25 @@ export default async function Collection() {
   
   return (
     <main className="flex min-h-screen flex-col">
-      <p className="pixelify text-2xl my-1">SIID256</p>
+      <p className="pixelify text-2xl mt-8 mb-1">
+        {courseStructure['header'][0][5]}
+      </p>
       <h1 className="pixellet text-3xl mt-2 mb-6">
-        Microbiology and Parasitology
+        {courseStructure['header'][0][4]}
       </h1>
       <div className="mb-4 flex flex-wrap">
-        <a href="https://selecx-new.si.mahidol.ac.th/course/view.php?id=4305" className="mb-4">
-          <span className="px-2 py-1 mr-2 group rounded-xl border transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600">SELECx</span></a>
-        <a href="https://sites.google.com/view/siriraj132/archives/year-2/siid256?authuser=0" className="mb-4">
-          <span className="px-2 py-1 mr-2 group rounded-xl border transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600">SI132</span></a>
-        <a href="https://drive.google.com/file/d/1suY1t_DTf--MHo7tPrz9rqhO-D3U91As/view?usp=drivesdk" className="mb-4">
-          <span className="px-2 py-1 mr-2 group rounded-xl border transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600">SMSU</span></a>
-        <a href="https://drive.google.com/drive/folders/1-3bbIHutFfk8lAakRBHi8bNefI57MU5p" className="mb-4">
-          <span className="px-2 py-1 mr-2 group rounded-xl border transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600">SK Shared Materials</span></a>
+       {linkObjects}
       </div>
       <div className="w-[100%] h-[1px] bg-black dark:bg-white"></div>
       <div className="mt-4">
         {cardsetObjects}
       </div>
       <footer className='mt-8 flex flex-col w-auto items-center justify-center'>
-        <div className="w-[100%] h-[1px] my-2 bg-black dark:bg-white"></div>
-        <div className='mb-3 pixellet'>@SELECard 2024 by Pinkshepz</div>
+        <div className="w-[100%] h-[1px] bg-black dark:bg-white"></div>
+        <div className="flex flex-row w-full justify-between my-3 pixelify">
+          <div>Version Beta 1.0 by Pinkshepz</div>
+          <div><a href="https://www.flaticon.com">Icons by Flaticon</a></div>
+        </div>
       </footer>
     </main>
   )

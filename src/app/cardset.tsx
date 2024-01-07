@@ -16,8 +16,8 @@ export default function Cardset ({
 }) {
     return (
         <Link href={`./[cardset]/${cardsetId}`} as={cardsetId}>
-            <div className="flex flex-col p-2 mb-2 group rounded-xl border border-transparent transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-                <img src={cardsetImageUrl} alt="image" className="rounded-lg h-[50vw] sm:h-[25vw] md:h-[15vw] lg:h-[12vw]"></img>
+            <div className="flex flex-col p-2 mb-2 group rounded-xl border border-transparent transition-colors transition-colors ease-in-out duration-300 hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
+                <img src={cardsetImageUrl} alt="image" className="rounded-lg h-[50vw] sm:h-[25vw] md:h-[15vw] lg:h-[12vw] xl:h-[10vw]"></img>
                 <p className="mt-2 text-md font-medium">{cardsetTitle}</p>
                 <p className="mt-1 mb-3 text-xs font-light">{cardsetDescription}</p>
                 <div className="flex flex-row text-xs">
