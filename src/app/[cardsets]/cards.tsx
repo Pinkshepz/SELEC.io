@@ -52,7 +52,7 @@ function Card ({
     )
 }
 
-export default function cards ({ dataForThisCardset }: { dataForThisCardset: Array<Array<string>> }) {
+export default function Cards ({ dataForThisCardset }: { dataForThisCardset: Array<Array<string>> }) {
 
     // Tract card number
     const [cardNumber, setCardNumber] = useState(1);
