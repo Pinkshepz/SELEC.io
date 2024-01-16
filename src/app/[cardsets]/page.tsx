@@ -3,7 +3,7 @@ import { google } from 'googleapis';
 import NotFound from './not_found';
 import Cards from './cards';
 
-export async function getDataForThisCardset({ query }: { query: string }) {
+async function getDataForThisCardset({ query }: { query: string }) {
     // Function for fetch server-side data from GG Sheet api
   
     // Auth
@@ -13,7 +13,7 @@ export async function getDataForThisCardset({ query }: { query: string }) {
     const sheets = google.sheets({ version: 'v4', auth });
   
     // Query
-    const range = `${query}!A2:H`;
+    const range = `${query}!A2:I`;
   
     try {
         // Fetch data from GG Sheet
@@ -31,10 +31,29 @@ export async function getDataForThisCardset({ query }: { query: string }) {
     }
   }
 
+  function shuffle(array: Array<any>) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex > 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+
 export default async function Page ({ params }: { params: {cardsets: string} }) {
 
     // Fetch data for this dynamic route
     const dataForThisCardset: Array<Array<string>> | null | undefined = await getDataForThisCardset({ query: params.cardsets }!)
+    console.log(dataForThisCardset)
 
     // Get header of this cardset and delete it from dataForThisCardset
     if (dataForThisCardset == undefined) {
