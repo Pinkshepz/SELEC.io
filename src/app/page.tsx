@@ -1,7 +1,7 @@
 import Cardset from "./cardset"
 import { google } from 'googleapis';
  
-export async function getData() {
+async function getPageData() {
   // Function for fetch server-side data from GG Sheet api
 
   // Auth
@@ -26,7 +26,7 @@ export async function getData() {
 
 export default async function Course() {
   // Get data from GG Sheet api
-  const cardsets = await getData()!;
+  const cardsets = await getPageData()!;
 
   // Data structure for this page
   const courseStructure: {
