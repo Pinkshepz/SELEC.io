@@ -7,6 +7,7 @@ export default async function Page ({ params }: { params: {cardsets: string} }) 
 
     // Fetch data for this dynamic route
     const dataForThisCardset: Array<Array<string>> | null | undefined = await getGoogleSheetProps({ 
+        ref: "cardsets",
         sheetName: params.cardsets,
         rangeName: 'A1:I'
     }!)
