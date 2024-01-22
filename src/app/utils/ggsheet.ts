@@ -17,7 +17,7 @@ async function getServerSideProps({
     const auth = await google.auth.getClient({
         scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
         credentials: {
-            private_key: process.env.GOOGLE_PRIVATE_KEY,
+            private_key: process.env.GOOGLE_PRIVATE_KEY!.replace(/\n/g, '\n'),
             client_email: process.env.GOOGLE_CLIENT_EMAIL
         }
     });
@@ -34,8 +34,8 @@ async function getServerSideProps({
         // Fetch data from GG Sheet
         const response = await sheets.spreadsheets.values.get({
             spreadsheetId: process.env.SHEET_ID,
-            range,
-            });
+            range
+        });
         console.log(response);
         console.log("1");
 
