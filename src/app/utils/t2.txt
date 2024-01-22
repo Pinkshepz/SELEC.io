@@ -1,0 +1,59 @@
+JWT {
+  _events: [Object: null prototype] {},
+  _eventsCount: 0,
+  _maxListeners: undefined,
+  credentials: { refresh_token: 'jwt-placeholder', expiry_date: 1 },
+  eagerRefreshThresholdMillis: 300000,
+  forceRefreshOnFailure: false,
+  universeDomain: 'googleapis.com',
+  projectId: undefined,
+  quotaProjectId: undefined,
+  transporter: DefaultTransporter {
+    instance: Gaxios { agentCache: Map(0) {}, defaults: {} } },
+  certificateCache: {},
+  certificateExpiry: null,
+  certificateCacheFormat: 'PEM',
+  refreshTokenPromises: Map(0) {},
+  _clientId: undefined,
+  _clientSecret: undefined,
+  redirectUri: undefined,
+  email: 'purpleshepz@enterprise-c-vision.iam.gserviceaccount.com',
+  keyFile: undefined,
+  key: '-----BEGIN PRIVATE KEY-----\n' +
+    'MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC4bBEgZa3dZcHe\n' +
+    'mpqVIiwQVgHX42B8P5tfZuXzBC0QVYSk1h4QbjsqtL780pqQmO5QtWDHiIgDs5it\n' +
+    'FH/RRqDquHalI6L7WGrfPkVsHRIGHY8EXAwr3hMlKvrF8LywUeECZR6NSzUqf/zz\n' +
+    'hSM4JrzLV/C7DDUe+n8cNNUf7u1wCVmRI0U2z0lvu6u3fWb04eSADYP139DXvzMQ\n' +
+    'MTMzKdKAtDB4chAZOELrMbRFH0PSyzuMpnGvq6uHtBdw6DwEeaQMMH53e8lpPWzd\n' +
+    'EvV0fYn+T1s2ofIDkX4OpQ1ATojPfaM7L/kHYpuUvVkO+mpIL+6EQzCKa9t7jZBE\n' +
+    '+NbdzD+nAgMBAAECggEAUcvgpsFiZZWp8L0avfWbnJ1BEQtw8nrVw3EkoW4jPKDp\n' +
+    'haDQUdJKXM0w/nq8glDKNrLT23wjc5zXJUE31c7hNWoeeW0+bwOO1zhL20FjiqHW\n' +
+    'moTnAxfq3uvasStuzTdruL+31sxaJuEAhNPyxIdt6jS1eYjXEMfi09RdCN5UooFI\n' +
+    'LLo6W+9qdcd/RLS5NUKhrPQAJGCMxNbHUNZXhaTV17h/VmlnnaAa9vyTqU4XXAkE\n' +
+    'aLTqSQL74Jns7xjAKNCAySyXzZSX1tn1iJXBP5GZC4e12YYGFMj/m8e/Ue1j/b6D\n' +
+    'TIqMdE8zXRkGuzF2Brw+Dl6/wVAeSibs9QEd51eyIQKBgQD8uwkvA3mZd8nxglSX\n' +
+    'WEYMFWIgAUPKSFo4IsVlc+ibluccJrjJJk+Gf1H7Ab1lcGtDaeQAt8TkA1o/aqO3\n' +
+    'u/uPJ5Rlyt6QL4pp0RQq5fQlzmQHxah79jSAWitX2/uwf2Ure9quTuaxi7gpOCCJ\n' +
+    'VCGnEdr1uGTIgFUvSVchgJffoQKBgQC6ztCc4shdiXEtwB0BfsfUGthMBNf5Y96R\n' +
+    'yHKT3NWod4szrFr3WaMvh3mXS5n7SbvWJJIpMPXRhWaWXzIRaooN0KCmXHUWAH6e\n' +
+    'myXEumE1QMqXT6HG4GOfq1Sd25m9A51jam8nZ80LJtMMtLMtrvCWfDBrDCfQR0of\n' +
+    'yOFTxwr6RwKBgF0hNxMh/q802y+pzS4wEy/kuVH95VMnMke5WHA4NCERjHxtMG6/\n' +
+    'NVLkm/sY+wfkU0J2RNSW43D6Y0k3LLlKBjsMZLzV8wnC2wh/SSU9s6gy092hUqLL\n' +
+    'aTFbCNnJcIfrigZqD31oCc6nI+fcjPDOFdCQ3dTqbAkOcVWJexgXYN/BAoGBAJP0\n' +
+    'LWG0dEExFETJ/a8rfJVPVbSPuYa6RJNuEOFvbIFrfQLGJZ32jrqcL/9WT3SpJ24p\n' +
+    'tOGO94Kkh2Xdq8gDe6gJbtOUMt/kMGTqOHWhsE//KvXAij77hav2hKQqQ49ih4sv\n' +
+    'xy2MlueYLlvH2on6Hm7xmV+PVxEtBVY7Qcuav+UNAoGANEGSqqebjHD819xy22s/\n' +
+    'NQqKEYJrBm3jeckytrXE/eq5+6ZHZSVD6w8DALpui2Xn8CdeycCvT5bWfmciz/si\n' +
+    'JEbZkpGIZ2jZ5jRdIrOau9q6Hl2ACFhQ3n0LNosgyjIogpGt4LhHTl/38KOLOT0q\n' +
+    'IcM0bJ9e/W3lRzZ2c88V4UM=\n' +
+    '-----END PRIVATE KEY-----\n',
+  keyId: undefined,
+  scopes: [ 'https://www.googleapis.com/auth/spreadsheets.readonly' ],
+  subject: undefined,
+  additionalClaims: undefined,
+  defaultServicePath: undefined,
+  useJWTAccessWithScope: undefined,
+  defaultScopes: undefined,
+  [Symbol(shapeMode)]: false,
+  [Symbol(kCapture)]: false
+}
