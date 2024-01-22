@@ -40,15 +40,13 @@ async function getServerSideProps({
         // Result: array of each sheet's row data
         const data = response.data.values;
         
-        // Show data status & preview
-        console.log(`/START-----GGSHEETAPI at ${ref}-----`);
-        console.log(data);
-        console.log(`/END-----GGSHEETAPI at ${ref}-----`);
-        
+        // Show data status
+        console.log(`-----GGSHEETAPI 200 - OK AT ${ref}-----`);
         return data;
+
     } catch (error) {
-        // If sheet doesn't exist
-        console.log(`googleapi sheet error - not found at ${ref}`);
+        // If sheet doesn't exist, show status
+        console.log(`-----GGSHEETAPI 404 - NOT FOUND AT ${ref}-----`);
         return undefined;
     }
 }
