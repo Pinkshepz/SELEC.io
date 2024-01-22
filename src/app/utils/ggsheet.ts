@@ -10,7 +10,7 @@ async function getServerSideProps({
     rangeName: string
 }) {
     // Function for fetching server-side data from GG Sheet api
-
+    console.log("-6");
     // Client auth:
         // Local: stores env. variables in .env.local
         // Vercel: stores env. variables in project own env variables
@@ -21,8 +21,10 @@ async function getServerSideProps({
             client_email: process.env.GOOGLE_CLIENT_EMAIL
         }
     });
+    console.log("-5");
 
     const sheets = google.sheets({ version: 'v4', auth });
+    console.log("-4");
   
     // Query
     const range = `${sheetName}!${rangeName}`;
