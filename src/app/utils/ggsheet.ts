@@ -34,9 +34,13 @@ async function getServerSideProps({
             spreadsheetId: process.env.SHEET_ID,
             range,
             });
+        console.log(response);
+        console.log("1");
 
         // Result: array of each sheet's row data
         const data = response.data.values;
+        console.log(data);
+        console.log("2");
         
         // Show data status & preview
         console.log(`/START-----GGSHEETAPI at ${ref}-----`);
