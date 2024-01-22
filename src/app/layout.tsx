@@ -16,6 +16,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  console.log("-----INITIATE APP-----")
   return (
     <html lang="en">
       <body className={`${inter.className}`}>

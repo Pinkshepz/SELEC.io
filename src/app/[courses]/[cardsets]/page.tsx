@@ -11,7 +11,6 @@ export default async function Page ({ params }: { params: {cardsets: string} }) 
         sheetName: params.cardsets,
         rangeName: 'A1:I'
     }!)
-    console.log(dataForThisCardset)
 
     // Get header of this cardset and delete it from dataForThisCardset
     if (dataForThisCardset == undefined) {

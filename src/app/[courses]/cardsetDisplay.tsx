@@ -25,7 +25,14 @@ export default async function CardsetDisplay({
     // Map cardsetData into each card
     cardsetData[topic]?.map((cardsetData) => {
         cardsetObjectsH2.push(
-            <Link href={`./${cardsetData[0]}/[cardsets]`} as={cardsetData[1]} >
+            <Link 
+                href={{
+                    pathname: "./[courses]/[cardsets]",
+                    query: { courses: cardsetData[0],
+                             cardsets: cardsetData[1] }
+                }}
+                as={`${cardsetData[0]}/${cardsetData[1]}`}
+            >
                 <DisplayCard 
                     cardId={cardsetData[1]}
                     cardGroup={cardsetData[2]}

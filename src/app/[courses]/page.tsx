@@ -12,11 +12,6 @@ export default async function Course({ params }: { params: {courses: string} }) 
     rangeName: "A2:F"
   });
 
-  // Show data
-  console.log("/START-----cardsetDisplayData-----")
-  console.log(cardsetDisplayData)
-  console.log("/END-----cardsetDisplayData-----")
-
   // Data structure for this page
   const courseStructure: {
     header: Array<Array<string>>;

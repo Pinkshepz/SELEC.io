@@ -12,6 +12,7 @@
     "google-auth-library": "^9.4.2",
     "googleapis": "^130.0.0",
     "next": "14.0.4",
+    "punycode": "^2.3.1",
     "react": "^18",
     "react-dom": "^18",
     "vercel": "^33.2.0"

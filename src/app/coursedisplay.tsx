@@ -46,7 +46,14 @@ export default async function CourseDisplay() {
     // Map courseData into each card
     courseDisplayStructure['card'][topic]?.map((courseData) => {
         cardsetObjectsH2.push(
-            <Link href={"./[courses]"} as={courseData[0]} >
+            <Link 
+                href={{
+                    pathname: "./[courses]",
+                    query: { courses: courseData[0] }
+                }}
+                as={courseData[0]}
+                key={courseData[0]}
+            >
                 <DisplayCard 
                     cardId={courseData[0]}
                     cardGroup={courseData[1]}
