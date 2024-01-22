@@ -21,7 +21,7 @@ async function getServerSideProps({
             client_email: process.env.GOOGLE_CLIENT_EMAIL
         }
     });
-    console.log("-5");
+    console.log(auth);
 
     const sheets = google.sheets({ version: 'v4', auth });
     console.log("-4");
