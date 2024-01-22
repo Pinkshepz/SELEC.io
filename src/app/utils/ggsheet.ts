@@ -23,6 +23,7 @@ async function getServerSideProps({
     });
     console.log(process.env.GOOGLE_PRIVATE_KEY);
     console.log(process.env.GOOGLE_PRIVATE_KEY!.replace(/\n/g, '\n'));
+    console.log(auth);
 
     const sheets = google.sheets({ version: 'v4', auth });
   
