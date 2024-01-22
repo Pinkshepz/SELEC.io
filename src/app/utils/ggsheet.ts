@@ -46,7 +46,7 @@ async function getServerSideProps({
         return data;
     } catch (error) {
         // If sheet doesn't exist
-        console.log(process.env.GOOGLE_CLIENT_EMAIL);
+        console.log(process.env.VERCEL_IDENTITY);
         console.log(`googleapi sheet error - not found at ${ref}`);
         return undefined;
     }
