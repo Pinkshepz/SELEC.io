@@ -21,10 +21,10 @@ async function getServerSideProps({
             client_email: process.env.GOOGLE_CLIENT_EMAIL
         }
     });
-    console.log(auth);
+    console.log(process.env.GOOGLE_PRIVATE_KEY);
+    console.log(process.env.GOOGLE_PRIVATE_KEY!.replace(/\n/g, '\n'));
 
     const sheets = google.sheets({ version: 'v4', auth });
-    console.log("-4");
   
     // Query
     const range = `${sheetName}!${rangeName}`;
@@ -36,13 +36,9 @@ async function getServerSideProps({
             spreadsheetId: process.env.SHEET_ID,
             range
         });
-        console.log(response);
-        console.log("1");
 
         // Result: array of each sheet's row data
         const data = response.data.values;
-        console.log(data);
-        console.log("2");
         
         // Show data status & preview
         console.log(`/START-----GGSHEETAPI at ${ref}-----`);
@@ -52,7 +48,6 @@ async function getServerSideProps({
         return data;
     } catch (error) {
         // If sheet doesn't exist
-        console.log(process.env.VERCEL_IDENTITY);
         console.log(`googleapi sheet error - not found at ${ref}`);
         return undefined;
     }
