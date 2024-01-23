@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
         <GlobalNavigator />
-        <div className='flex flex-col w-full h-screen pt-12'>
+        <div className='flex flex-col pt-12'>
           {children}
         </div>
       </body>

@@ -19,4 +19,5 @@
     font-style: normal;
     font-weight: 400;
     src: local('pixellet'), url('./public/fonts/pixellet.ttf') format('truetype');
+    src: local('pixellet'), url('./public/fonts/pixellet.svg#pixellet-Regular') format('svg');
 }
