@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 
-export function getNavPathName (): React.ReactNode {
+export default function NavPathName (): React.ReactNode {
     // Provide interactive path displaying on nav. like we use in folder UI
 
     // Get pathname e.g. ./SIID256/256-X1
@@ -27,13 +27,17 @@ export function getNavPathName (): React.ReactNode {
         pathNav += pathnameSplitted[index];
         pathCollection.push(
             <>
-                <span className='mx-2 pt-1'>{">"}</span>
-                <span className="px-2 py-1 group rounded-xl border transition-colors transition-colors ease-in-out duration-300 hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600">
+                <span className='mx-2'>{">"}</span>
+                <span className="px-2 group rounded-xl border transition-colors transition-colors ease-in-out duration-300 hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600">
                     <Link href={pathNav}>{pathnameSplitted[index]}</Link>
                 </span>
             </>
         );
     }
 
-    return pathCollection;
+    return (
+        <div className="text-md mt-1 flex flex-row justify-center item-center">
+            {pathCollection}
+        </div>
+    );
 }
