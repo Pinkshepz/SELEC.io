@@ -1,7 +1,7 @@
-import { getGoogleSheetProps } from '../../utils/ggsheet';
-import NotFound from '../../not_found';
+import { getGoogleSheetProps } from '../../../utils/ggsheet';
+import NotFound from '../../../components/not_found';
 import Cards from './cards';
-import { shuffle } from '../../utils/gadgetfx';
+import { shuffle } from '../../../utils/gadgetfx';
 
 export default async function Page ({ params }: { params: {cardsets: string} }) {
 

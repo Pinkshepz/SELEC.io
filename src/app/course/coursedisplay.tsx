@@ -1,8 +1,12 @@
 import Link from 'next/link';
-import DisplayCard from './components/displaycard';
-import { getGoogleSheetProps } from './utils/ggsheet';
+import DisplayCard from '../components/displaycard';
+import { getGoogleSheetProps } from '../utils/ggsheet';
 
-export default async function CourseDisplay() {
+export default async function CourseDisplay({
+    searchKey
+}: {
+    searchKey: string
+}) {
   // Get data from GG Sheet api
   const courseDisplayData: any = await getGoogleSheetProps({
     ref: 'homepage',
@@ -37,7 +41,7 @@ export default async function CourseDisplay() {
     const topic = Object.keys(courseDisplayStructure['card'])[index];
     // Topic header
     cardsetObjectsH1.push(
-      <h1 className="pixellet text-2xl mt-2 mb-6" key={`heading${topic}`}>{topic}</h1>
+      <h2 className="text-2xl mt-2 mb-6" key={`heading ${topic}`}>{topic}</h2>
     );
 
     // Store elements level 2
@@ -48,10 +52,10 @@ export default async function CourseDisplay() {
         cardsetObjectsH2.push(
             <Link 
                 href={{
-                    pathname: "./[courses]",
+                    pathname: "./course/[courses]",
                     query: { courses: courseData[0] }
                 }}
-                as={courseData[0]}
+                as={`course/${courseData[0]}`}
                 key={courseData[0]}
             >
                 <DisplayCard 

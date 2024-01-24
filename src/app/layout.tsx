@@ -1,10 +1,10 @@
+import React from 'react'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import GlobalNavigator from './navigator'
+
+import GlobalNavigator from './components/navigator'
 
 import './styles/globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import './styles/fontface.css'
 
 export const metadata: Metadata = {
   title: 'SELECard',
@@ -18,13 +18,15 @@ export default function RootLayout({
 }) {
   console.log("-----INITIATE APP-----")
   return (
-    <html lang="en">
-      <body className={`${inter.className}`}>
-        <GlobalNavigator />
-        <div className='flex flex-col pt-12'>
-          {children}
-        </div>
-      </body>
-    </html>
+    <React.StrictMode>
+      <html lang="en">
+        <body>
+          <GlobalNavigator />
+          <main className='pt-16'>
+            {children}
+          </main>
+        </body>
+      </html>
+    </React.StrictMode>
   )
 }

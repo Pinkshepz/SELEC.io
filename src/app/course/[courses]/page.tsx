@@ -1,15 +1,15 @@
 import LinksetDisplay from './linksetDisplay';
 import CardsetDisplay from './cardsetDisplay';
-import NotFound from '../not_found';
-import Footer from '../footer';
-import { getGoogleSheetProps } from '../utils/ggsheet';
+import NotFound from '../../components/not_found';
+import Footer from '../../components/footer';
+import { getGoogleSheetProps } from '../../utils/ggsheet';
 
 export default async function Course({ params }: { params: {courses: string} }) {
   // Get data from GG Sheet api
   const cardsetDisplayData: any = await getGoogleSheetProps({
     ref: '[courses]',
     sheetName: "CARDSET",
-    rangeName: "A2:F"
+    rangeName: "A2:G"
   });
 
   // Data structure for this page
@@ -63,18 +63,18 @@ export default async function Course({ params }: { params: {courses: string} }) 
     });
   
     return (
-      <main className="flex min-h-screen flex-col">
+      <div className="flex min-h-screen flex-col">
         <img className='fixed z-[-100] w-full' src={courseStructure['header'][0][4]} alt=''></img>
-        <div className='mt-[25vh] bg-white/95 dark:bg-black/90'>
-          <div className="px-4 z-0">
-            <p className="pixellet text-3xl mt-12 mb-1">
+        <div className='mt-[25vh] bg-white dark:bg-black'>
+          <div className="px-4 mb-8 z-0">
+            <h1 className='text-3xl mt-8 mb-3'>
               {courseStructure['header'][0][5]}
-            </p>
-            <h1 className="pixellet text-3xl mt-2 mb-6">
-              {courseStructure['header'][0][6]}
             </h1>
-            <div className="mb-4 flex flex-wrap">
-            {elementLinksetDisplay}
+            <p className="mb-8">
+              {courseStructure['header'][0][6]}
+            </p>
+            <div className="flex flex-wrap">
+              {elementLinksetDisplay}
             </div>
           </div>
           <div className="px-4">
@@ -84,13 +84,13 @@ export default async function Course({ params }: { params: {courses: string} }) 
               </svg>
               <input className='mx-2 w-full bg-white/0 border border-white/0' type="text" placeholder='Search...' />
             </div> */}
-            <div className="mt-4">
+            <div className="mt-2">
               {elementCardsetDisplay}
             </div>
             <Footer />
           </div>
         </div>
-      </main>
+      </div>
     )
   } catch (error) {
     return <NotFound />;

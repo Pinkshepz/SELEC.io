@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import DisplayCard from '../components/displaycard';
+import DisplayCard from '../../components/displaycard';
 
 export default async function CardsetDisplay({
     cardsetData
@@ -16,7 +16,7 @@ export default async function CardsetDisplay({
     const topic = Object.keys(cardsetData)[index];
     // Topic header
     cardsetObjectsH1.push(
-      <h1 className="pixellet text-2xl mt-8 mb-6" key={`heading${topic}`}>{topic}</h1>
+      <h2 key={`heading${topic}`}>{topic}</h2>
     );
 
     // Store elements level 2
@@ -27,11 +27,12 @@ export default async function CardsetDisplay({
         cardsetObjectsH2.push(
             <Link 
                 href={{
-                    pathname: "./[courses]/[cardsets]",
+                    pathname: "/course/[courses]/[cardsets]",
                     query: { courses: cardsetData[0],
                              cardsets: cardsetData[1] }
                 }}
-                as={`${cardsetData[0]}/${cardsetData[1]}`}
+                as={`/course/${cardsetData[0]}/${cardsetData[1]}`}
+                key={cardsetData[1]}
             >
                 <DisplayCard 
                     cardId={cardsetData[1]}
