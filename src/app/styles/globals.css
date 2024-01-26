@@ -27,11 +27,12 @@ body {
   background-color: var(--bg);
 }
   
-input:focus,
+input:focus, input,
 select:focus,
 textarea:focus,
 button:focus {
-      outline: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .pixellet {
@@ -54,6 +55,11 @@ h2 {
   font-size: 1.5rem;
 }
 
+h3 {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
 hr {
   position: absolute;
   width: calc(100vw - 48px);
@@ -69,14 +75,15 @@ hr {
 
 .-bg-fixed {
   position: fixed;
+  object-fit: cover;
   width: 100%;
   height: calc(100% - 64px);
-  border-image-repeat: stretch;
   z-index: -100;
 }
 
 .-button-line {
   font-weight: 600;
+  width: max-content;
 }
 
 .-button-line:hover {
@@ -114,6 +121,7 @@ hr {
 
 .-text-line {
   position: relative;
+  width: max-content;
   font-weight: 600;
 }
 
@@ -189,4 +197,12 @@ hr {
   background: #007CCF;
   background: linear-gradient(to right, #007CCF 0%, #7640CF 100%);
   -webkit-text-fill-color: transparent;
+}
+
+.-X {
+  position: absolute;
+  top: -10%;
+  font-weight: 700;
+  font-size: 5rem;
+  transform: rotateZ(90deg);
 }

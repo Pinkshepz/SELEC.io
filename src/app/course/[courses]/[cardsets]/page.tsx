@@ -1,7 +1,7 @@
 import { getGoogleSheetProps } from '../../../utils/ggsheet';
 import NotFound from '../../../components/not_found';
 
-import StartPage from './start_page copy';
+import StartPage from './start_page';
 import Cards from './cards';
 
 interface HeaderDataStructure {
@@ -85,7 +85,10 @@ export default async function Page ({ params }: { params: {cardsets: string} }) 
 
     return (
         <div>
-            <StartPage headerData={headerData} />
+            <div className="flex flex-col overflow-hidden">
+                <img className='-bg-fixed' src={headerData.CardSetUrl} alt=''></img>
+                <StartPage  headerData={headerData} />
+            </div>
         </div>
     );
   }
