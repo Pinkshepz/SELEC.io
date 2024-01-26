@@ -41,7 +41,7 @@ export default async function CourseDisplay({
     const topic = Object.keys(courseDisplayStructure['card'])[index];
     // Topic header
     cardsetObjectsH1.push(
-      <h2 className="text-2xl mt-2 mb-6" key={`heading ${topic}`}>{topic}</h2>
+      <h2 className="text-2xl my-8" key={`heading ${topic}`}>{topic}</h2>
     );
 
     // Store elements level 2

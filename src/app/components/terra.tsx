@@ -12,15 +12,20 @@ export default function Terra () {
     const setCoordinate = (e: MouseEvent) => {
         setCursorPos({ x: e.clientX, y: e.clientY });
     };
-
+    
     useEffect(() => {
         window.addEventListener("mousemove", setCoordinate);
     }, [setCoordinate]);
 
+    const setScreenSize = (e: MouseEvent) => {
+        setScreenWidth(window.innerWidth);
+        setScreenHeight(window.innerHeight);
+    };
+
     useEffect(() => {
         setScreenHeight(window.innerHeight * 0.75);
         setScreenWidth(window.innerWidth);
-    }, [screenHeight, screenWidth]);
+    }, [setScreenSize]);
 
     const x = cursorPos.x;
     const y = cursorPos.y;

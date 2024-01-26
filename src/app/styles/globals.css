@@ -104,6 +104,10 @@ hr {
   transform: translateX(-50%);
 }
 
+.-section-1 {
+  height: calc(100vh - 64px);
+}
+
 .-terra {
   position: relative;
   height: 100%;

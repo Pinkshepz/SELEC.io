@@ -10,7 +10,7 @@ export default async function HomePage() {
         {/* Section 1: Hero */}
 
         <section className="flex flex-col mx-4 items-center justify-center">
-            <div className="flex flex-row items-center justify-center relative bg-white dark:bg-black z-[-10]">
+            <div className="flex flex-row items-center justify-center relative bg-white dark:bg-black z-[-10] py-16 w-full border-b border-slate-800/10 dark:border-slate-50/40">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12 mr-2 mt-1">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 9.75 16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z" />
                 </svg>
@@ -21,7 +21,7 @@ export default async function HomePage() {
             </div>
         </section>
 
-        {/* Section 3: Footer */}
+        {/* Section 2: Footer */}
 
         <section className="flex flex-col mx-4">
             <Footer />
