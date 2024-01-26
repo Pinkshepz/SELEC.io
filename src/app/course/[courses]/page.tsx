@@ -4,6 +4,7 @@ import NotFound from '../../components/not_found';
 import Footer from '../../components/footer';
 import { getGoogleSheetProps } from '../../utils/ggsheet';
 
+// Dynamic routing <courses>
 export default async function Course({ params }: { params: {courses: string} }) {
   // Get data from GG Sheet api
   const cardsetDisplayData: any = await getGoogleSheetProps({
@@ -64,8 +65,8 @@ export default async function Course({ params }: { params: {courses: string} }) 
   
     return (
       <div className="flex min-h-screen flex-col">
-        <img className='fixed z-[-100] w-full' src={courseStructure['header'][0][4]} alt=''></img>
-        <div className='mt-[25vh] bg-white dark:bg-black'>
+        <img className='-bg-fixed' src={courseStructure['header'][0][4]} alt=''></img>
+        <div className='mt-[25vh] bg-white/90 dark:bg-black/85 backdrop-blur-md z-[0]'>
           <div className="px-4 mb-8 z-0">
             <h1 className='text-3xl mt-8 mb-3'>
               {courseStructure['header'][0][5]}
@@ -78,12 +79,6 @@ export default async function Course({ params }: { params: {courses: string} }) 
             </div>
           </div>
           <div className="px-4">
-            {/* <div className="flex flex-row px-2 py-2 mr-2 group rounded-xl transition-colors transition-colors ease-in-out duration-300 hover:border-gray-300 hover:bg-gray-100/75 hover:dark:bg-neutral-800/75">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-              </svg>
-              <input className='mx-2 w-full bg-white/0 border border-white/0' type="text" placeholder='Search...' />
-            </div> */}
             <div className="mt-2">
               {elementCardsetDisplay}
             </div>

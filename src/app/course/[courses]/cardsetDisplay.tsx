@@ -16,7 +16,7 @@ export default async function CardsetDisplay({
     const topic = Object.keys(cardsetData)[index];
     // Topic header
     cardsetObjectsH1.push(
-      <h2 key={`heading${topic}`}>{topic}</h2>
+      <h2 className='my-4' key={`heading${topic}`}>{topic}</h2>
     );
 
     // Store elements level 2

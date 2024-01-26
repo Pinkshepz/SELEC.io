@@ -26,17 +26,33 @@ export default function NavPathName (): React.ReactNode {
         pathNav += '/';
         pathNav += pathnameSplitted[index];
         pathCollection.push(
-            <>
-                <span className='mx-2'>{">"}</span>
-                <span className="px-2 group rounded-xl border transition-colors transition-colors ease-in-out duration-300 hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600">
-                    <Link href={pathNav}>{pathnameSplitted[index]}</Link>
-                </span>
-            </>
+            <span className='flex items-center justify-center mx-1'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                    <path fillRule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clipRule="evenodd" />
+                </svg>
+            </span>
         );
+        // Set current page pathname as bold
+        if (index == pathnameSplitted.length - 1) {
+            pathCollection.push(
+                <span className="relative text-md font-bold text-black dark:text-white"
+                        key={pathnameSplitted[index]}>
+                    {pathnameSplitted[index].toUpperCase()}
+                </span>
+            );
+        } else {
+            // Set others as interactive link
+            pathCollection.push(
+                <span className="-button-line relative text-md after:bg-slate-700 dark:after:bg-slate-200 hover:text-black dark:hover:text-white"
+                        key={pathnameSplitted[index]}>
+                    <Link href={pathNav} key={`link ${pathnameSplitted[index]}`}>{pathnameSplitted[index].toUpperCase()}</Link>
+                </span>
+            );
+        }
     }
 
     return (
-        <div className="text-md mt-1 flex flex-row justify-center item-center">
+        <div className="text-md mt-1 hidden sm:flex flex-row justify-center item-center text-slate-700/80 dark:text-slate-50/80" key="navpath">
             {pathCollection}
         </div>
     );

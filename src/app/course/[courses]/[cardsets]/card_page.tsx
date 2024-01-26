@@ -1,4 +1,4 @@
-export default function StartPage() {
+export default function CardPage() {
     return (
         <div></div>
     );

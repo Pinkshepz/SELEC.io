@@ -14,7 +14,7 @@ export default function GlobalNavigator () {
           SELEC.io</Link>
         <NavPathName />
       </div>
-      <div className='flex flex-row items-center justify- gap-4'>
+      <div className='hidden sm:flex flex-row items-center justify-center gap-4'>
         <Link href={'/course'} className="-button-line relative text-md after:bg-slate-700 dark:after:bg-slate-200">
           Courses</Link>
         <Link href={'../'} className="-button-line relative text-md after:bg-slate-700 dark:after:bg-slate-200">
