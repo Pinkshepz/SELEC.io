@@ -1,6 +1,8 @@
+'use client'
+import React, { useState } from 'react';
+
 import { getGoogleSheetProps } from '../../../utils/ggsheet';
 import NotFound from '../../../components/not_found';
-
 import StartPage from './start_page';
 import Cards from './cards';
 
@@ -11,7 +13,13 @@ interface HeaderDataStructure {
     CardSetDescription: string,
     CardSetUrl: string,
     QuestionPoolTotal: number,
-    TopicCount: { [key: string]: number }
+    TopicCount: { [key: string]: number },
+    pageStatus?: "START" | "MID" | "END",
+    setPageStatus?: ["START" | "MID" | "END", 
+        React.Dispatch<React.SetStateAction<"START" | "MID" | "END">>],
+    quizStatus?: { shuffle: boolean, quizNumber: number },
+    setQuizStatus?: [{ shuffle: boolean, quizNumber: number },
+        React.Dispatch<React.SetStateAction<{ shuffle: boolean, quizNumber: number }>>]
 }
 
 interface QuestionDataStructure {
@@ -26,7 +34,7 @@ interface QuestionDataStructure {
 
 // Dynamic routing <cardsets>
 export default async function Page ({ params }: { params: {cardsets: string} }) {
-
+   
     // Fetch data for this dynamic route
     const questionDataRaw: Array<Array<string>> | null | undefined = await getGoogleSheetProps({ 
         ref: "cardsets",
@@ -82,6 +90,22 @@ export default async function Page ({ params }: { params: {cardsets: string} }) 
     }
 
     console.log(headerData);
+
+     // Usestate
+     let pageStatus, setPageStatus = useState<"START" | "MID" | "END">("START");
+     let quizStatus, setQuizStatus = useState<{
+        shuffle: boolean, 
+        quizNumber: number
+    }>({
+        shuffle: false, quizNumber: headerData.QuestionPoolTotal
+    });
+
+    headerData = { ...headerData,
+        pageStatus: pageStatus ,
+        setPageStatus: setPageStatus,
+        quizStatus: quizStatus,
+        setQuizStatus: setQuizStatus
+    }
 
     return (
         <div>

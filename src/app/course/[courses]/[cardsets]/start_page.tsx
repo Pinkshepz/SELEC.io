@@ -9,7 +9,13 @@ interface HeaderDataStructure {
     CardSetDescription: string,
     CardSetUrl: string,
     QuestionPoolTotal: number,
-    TopicCount: { [key: string]: number }
+    TopicCount: { [key: string]: number },
+    pageStatus?: "START" | "MID" | "END",
+    setPageStatus?: ["START" | "MID" | "END", 
+        React.Dispatch<React.SetStateAction<"START" | "MID" | "END">>],
+    quizStatus?: { shuffle: boolean, quizNumber: number },
+    setQuizStatus?: [{ shuffle: boolean, quizNumber: number },
+        React.Dispatch<React.SetStateAction<{ shuffle: boolean, quizNumber: number }>>]
 }
 
 export default function StartPage({ 
@@ -27,10 +33,10 @@ export default function StartPage({
         topicShow.pop();
 
     return (
-        <div className='mt-[25vh] bg-white/90 dark:bg-black/80 backdrop-blur-md z-[0]'>
+        <div className='relative mt-[25vh] bg-white/90 dark:bg-black/80 backdrop-blur-md'>
             
             {/* Start page content */}
-            <div className="px-4 mb-8 z-0">
+            <div className="relative px-4 mb-8">
 
                 {/* Title */}
                 <h1 className='text-3xl mt-8 mb-3'>
@@ -117,38 +123,49 @@ export default function StartPage({
                     
                     <div className="flex flex-wrap gap-6">
                         {/* Shuffle */}
-                        <div className="px-2 py-2 mr-2 flex flex-row justify-center items-center group rounded-lg border border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
-                            </svg>
-                            
-                            <p className="font-bold ml-1 mr-4 after:bg-slate-700 dark:after:bg-slate-200">
-                                Shuffle Questions
-                            </p>
-
-                            <input type="toggle" />
-                        </div>
+                        <button onClick={() => headerData.setQuizStatus?({
+                            ...headerData.quizStatus,
+                            shuffle: !headerData.quizStatus?.shuffle
+                        }): null}
+                            className="px-2 py-2 mr-2 flex flex-col sm:flex-row justify-center items-center group rounded-lg border border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30">
+                            <div className="flex flex-row">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
+                                </svg>
+                                
+                                <p className="font-bold ml-2 mr-4 after:bg-slate-700 dark:after:bg-slate-200">
+                                    Shuffle Questions
+                                </p>
+                            </div>
+                            <div className="mt-2 sm:mt-0">
+                                Enabled
+                            </div>
+                        </button>
 
                         {/* Question Number */}
-                        <div className="px-2 py-2 mr-2 flex flex-row justify-center items-center group rounded-lg border border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5-3.9 19.5m-2.1-19.5-3.9 19.5" />
-                            </svg>
+                        <div className="px-2 py-2 mr-2 flex flex-col sm:flex-row justify-center items-start group rounded-lg border border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30">
+                            <div className="flex flex-row">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5-3.9 19.5m-2.1-19.5-3.9 19.5" />
+                                </svg>
 
-                            
-                            <p className="font-bold ml-1 mr-2 after:bg-slate-700 dark:after:bg-slate-200">
-                                Questions Number
-                            </p>
+                                
+                                <p className="font-bold ml-2 mr-2 after:bg-slate-700 dark:after:bg-slate-200">
+                                    Questions Number
+                                </p>
 
-                            <p className="-text-line mr-2 after:bg-slate-700 dark:after:bg-slate-200">
-                                20
-                            </p>
+                            </div>
+                            <div className="flex flex-row mt-2 sm:mt-0">
+                                <p className="-text-line mr-2 after:bg-slate-700 dark:after:bg-slate-200">
+                                    20
+                                </p>
 
-                            <input type="range" min={0} max={headerData.QuestionPoolTotal} />
+                                <input type="range" min={0} max={headerData.QuestionPoolTotal} />
 
-                            <p className="ml-2">
-                                {headerData.QuestionPoolTotal}
-                            </p>
+                                <p className="ml-2">
+                                    {headerData.QuestionPoolTotal}
+                                </p>
+                            </div>
                         </div>
                     </div>
 

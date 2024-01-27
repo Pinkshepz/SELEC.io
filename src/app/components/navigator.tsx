@@ -6,7 +6,7 @@ import NavPathName from "./navpathname";
 
 export default function GlobalNavigator () {
   return (
-    <nav className="px-6 fixed left-0 top-0 flex w-full h-16
+    <nav className="px-6 fixed left-0 top-0 flex w-full h-16 z-100
     justify-between bg-white/75 z-100 border-b border-slate-800/10 dark:border-slate-50/40
     pb-3 pt-2 pl-4 pr-4 backdrop-blur-md dark:bg-zinc-800/30 dark:from-inherit">
       <div className='flex flex-row items-center justify-center'>
