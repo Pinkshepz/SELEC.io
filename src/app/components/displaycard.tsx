@@ -14,7 +14,7 @@ export default function DisplayCard ({
     cardDescription: string;
 }) {
     return (
-        <div className="flex flex-col p-2 mb-2 group rounded-xl border border-transparent transition-colors transition-colors ease-in-out duration-300 hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
+        <div className="flex flex-col p-2 mb-2 cursor-pointer group rounded-xl border border-transparent transition-colors transition-colors ease-in-out duration-300 hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
             <img src={cardImageLink} alt="image" className="rounded-lg h-[50vw] sm:h-[25vw] md:h-[15vw] lg:h-[12vw] xl:h-[10vw]" height={840} width={840} />
             <p className="mt-2 text-md font-[600]">{cardTitle}</p>
             <p className="mt-1 mb-3 text-xs font-light">{cardDescription}</p>

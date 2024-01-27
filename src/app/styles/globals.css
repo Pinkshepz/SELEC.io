@@ -73,6 +73,13 @@ hr {
   border-width: 1px;
 }
 
+@media (min-width: 1024px) {
+  .-full-screen {
+    position: relative;
+    height: calc(100vh - 64px);
+  }
+}
+
 .-bg-fixed {
   position: fixed;
   object-fit: cover;

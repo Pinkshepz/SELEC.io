@@ -66,7 +66,7 @@ export default async function Course({ params }: { params: {courses: string} }) 
     return (
       <div className="flex min-h-screen flex-col">
         <img className='-bg-fixed' src={courseStructure['header'][0][4]} alt=''></img>
-        <div className='mt-[25vh] bg-white/90 dark:bg-black/85 backdrop-blur-md z-[-10]'>
+        <div className='mt-[25vh] bg-white/90 dark:bg-black/85 backdrop-blur-md'>
           <div className="px-4 mb-8 z-0">
             <h1 className='text-3xl mt-8 mb-3'>
               {courseStructure['header'][0][5]}

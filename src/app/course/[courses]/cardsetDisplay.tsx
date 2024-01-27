@@ -27,9 +27,9 @@ export default async function CardsetDisplay({
         cardsetObjectsH2.push(
             <Link 
                 href={{
-                    pathname: "/course/[courses]/[cardsets]",
+                    pathname: "/course/[courses]/[quizsets]",
                     query: { courses: cardsetData[0],
-                             cardsets: cardsetData[1] }
+                             quizsets: cardsetData[1] }
                 }}
                 as={`/course/${cardsetData[0]}/${cardsetData[1]}`}
                 key={cardsetData[1]}

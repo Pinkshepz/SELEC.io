@@ -30,7 +30,7 @@ export default function RootLayout({
       <html lang="en">
         <body>
           <GlobalNavigator />
-          <main className='pt-16'>
+          <main className='mt-16'>
             {children}
           </main>
         </body>
