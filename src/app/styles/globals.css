@@ -78,6 +78,19 @@ hr {
     position: relative;
     height: calc(100vh - 64px);
   }
+  .-choice-panel {
+    height: calc(50% - 80px)
+  }
+}
+
+@media (max-width: 1024px) {
+  .-full-screen {
+    position: relative;
+    min-height: calc(100vh - 64px);
+  }
+  .-choice-panel {
+    height: 100%;
+  }
 }
 
 .-bg-fixed {

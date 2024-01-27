@@ -1,5 +1,7 @@
 'use client'
 
+import './slider.css'
+
 import React, { useState } from 'react';
 import Link from 'next/link';
 
@@ -85,7 +87,7 @@ export default function QuizInterface ({
                     // ===== SECTION I: START PAGE ======
                     // ==================================
                     pageStatus == "START" ?
-                    <div className='relative px-4 mt-[25vh] bg-white/90 dark:bg-black/80 backdrop-blur-md'>
+                    <div className='relative px-4 mt-[25vh] bg-white/90 dark:bg-black/80 backdrop-blur-lg'>
             
                         {/* Start page content */}
                         <div className="relative mb-8">
@@ -130,7 +132,6 @@ export default function QuizInterface ({
                                     <div className="flex">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
-
                                         <div className="ml-2">
                                             <p className="-text-line ml-1 after:bg-slate-700 dark:after:bg-slate-200">
                                                 Quiz Level</p>
@@ -167,9 +168,7 @@ export default function QuizInterface ({
                             </div>
             
                             {/* Settings */}
-                            <div className="flex flex-col mb-8">
-                                <h2 className="mb-6">Settings</h2>
-                                
+                            <div className="flex flex-col mb-8">                                
                                 <div className="flex flex-col md:flex-row gap-6">
                                     {/* Shuffle */}
                                     <button 
@@ -183,17 +182,17 @@ export default function QuizInterface ({
                                         </div>
                                         {/* ENABLED OR DISABLED */}
                                         {quizStatus?.shuffleQuiz ? 
-                                            <div className="-text-line mr-1 mt-0 font-bold text-teal-600 after:bg-teal-600">
+                                            <div className="mr-1 mt-0 font-bold text-indigo-600 after:bg-indigo-600">
                                                 ENABLED</div>: 
-                                            <div className="-text-line mr-1 mt-0 font-bold text-rose-600 after:bg-rose-600">
+                                            <div className="mr-1 mt-0 font-bold text-indigo-600 after:bg-indigo-600">
                                                 DISABLED</div>}
                                     </button>
             
                                     {/* Question Number */}
-                                    <div className="px-2 py-2 mr-2 flex flex-col sm:flex-row w-max justify-center items-start group rounded-xl border border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30">
+                                    <div className="px-2 py-2 mr-2 flex flex-col sm:flex-row w-max justify-center items-start group rounded-xl border border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600">
                                         <div className="flex flex-row">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-indigo-600 dark:text-indigo-500">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5-3.9 19.5m-2.1-19.5-3.9 19.5" /></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" /></svg>
                                             <p className="font-bold ml-2 mr-4 after:bg-slate-700 dark:after:bg-slate-200">
                                                 Questions Number</p>
                                         </div>
@@ -202,7 +201,7 @@ export default function QuizInterface ({
                                             <input type="range" min={1} max={headerData.QuestionPoolTotal} name='QuizNumRange' 
                                                 value={quizStatus.quizNumber} onChange={e => handleNumSlider(Number(e.target.value))}/>
                                             {/* Slider number */}
-                                            <p className="-text-line mr-1 ml-4 after:bg-slate-700 dark:after:bg-slate-200">
+                                            <p className="mr-1 ml-4 font-bold text-indigo-600 dark:text-indigo-500">
                                                 {quizStatus.quizNumber}</p>
 
                                         </div>
@@ -215,16 +214,20 @@ export default function QuizInterface ({
             
                                 <div className="flex flex-col items-center content-center text-center">
                                     <Link href={"./"} className="text-xl px-4 py-2 mr-2 group rounded-xl border border-gray-300 dark:border-neutral-700 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600">
-                                        <span className="mr-2">←</span>
-                                        <span>Back</span>
+                                        <div className='font-bold'>
+                                            <span className="mr-2">←</span>
+                                            <span>Back</span>
+                                        </div>
                                     </Link>
                                 </div>
                                 
                                 <div className="flex flex-col items-center content-center text-center">
                                     <button className="text-xl px-4 py-2 mr-2 group rounded-xl border border-gray-300 dark:border-neutral-700 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600"
                                         onClick={() => setPageStatus("MID")}>
-                                        <span>Start</span>
-                                        <span className="ml-2">→</span>
+                                            <div className='font-bold text-indigo-600 dark:text-indigo-500'>
+                                                <span>Start Quiz</span>
+                                                <span className="ml-2">→</span>
+                                            </div>
                                     </button>
                                 </div>
                             </div>
@@ -233,7 +236,7 @@ export default function QuizInterface ({
 
                     // ===== SECTION II: QUIZ PAGE =====
                     // =================================
-                    <div className='-full-screen relative px-4 bg-white/90 dark:bg-black/80 backdrop-blur-md'>
+                    <div className='-full-screen relative px-4 bg-white/95 dark:bg-black/80 backdrop-blur-lg'>
                         {/* Top bar */}
                         <div className='h-12 flex flex-row justify-between items-center'>
                             {/* Question tract */}
@@ -248,42 +251,80 @@ export default function QuizInterface ({
                                 <span className='px-2 py-1 mx-2 font-bold group rounded-xl border border-gray-300 dark:border-neutral-700'>
                                     {quizStatus.quizNumber}</span>
                             </div>
-                            {/* Topic */}
-                            <div className='-text-line text-md after:bg-slate-700 dark:after:bg-slate-200'>
-                                Sterlization & disinfection</div>
+                            {/* Quizset */}
+                            <div className='-text-line hidden sm:inline text-md after:bg-slate-700 dark:after:bg-slate-200'>
+                                Laboratory Basic Procedures</div>
+                            <div className='-text-line inline sm:hidden text-md after:bg-slate-700 dark:after:bg-slate-200'>
+                                256-A1</div>
                         </div>
 
                         {/* Question */}
-                        <div style={{height: "calc(50% - 48px)"}} className='pt-2 pb-6 flex flex-col lg:flex-row justify-center items-center'>
+                        <div style={{height: "calc(50% - 48px)"}} className='pt-2 pb-4 flex flex-col lg:flex-row justify-center items-center'>
                             {true ?
-                                <img className='w-full h-[40vh] lg:w-[40%] lg:h-full object-cover rounded-2xl'
+                                <img className='w-full h-[40vh] lg:w-[40%] lg:h-full lg:mr-4 object-cover rounded-2xl'
                                     src={"https://d2jx2rerrg6sh3.cloudfront.net/image-handler/ts/20220629062618/ri/1200/src/images/news/ImageForNews_718069_16564983776523031.jpg"} alt="" /> : null}
-                            <div className='flex flex-col justify-between'>
-                                <div className='w-max px-2 py-1 mb-4 mt-4 lg:mx-8 lg:mt-0 text-lg font-bold lg:text-lg rounded-xl border border-gray-300 dark:border-neutral-700'>
-                                    Multiple True False | Recall</div>
-                                <div className='lg:px-8 text-lg font-bold sm:text-2xl flex justify-center items-center'>
+                            <div className='flex flex-col h-full justify-between'>
+                                <div className='flex flex-wrap mb-4 mt-4 lg:mt-0 gap-4'>
+                                    <div className='flex items-center w-max px-2 py-1 text-lg font-bold lg:text-lg rounded-xl border border-gray-300 dark:border-neutral-700'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                            <path fillRule="evenodd" d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z" clipRule="evenodd" /></svg>
+                                        <span className='ml-2'>
+                                            Multiple True False</span>
+                                    </div>
+                                    <div className='flex items-center w-max px-2 py-1 text-lg font-bold lg:text-lg rounded-xl border border-gray-300 dark:border-neutral-700'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
+                                        <span className='ml-2'>
+                                            Recall</span>
+                                    </div>
+                                    <div className='flex items-center w-max px-2 py-1 text-lg font-bold lg:text-lg rounded-xl border border-gray-300 dark:border-neutral-700'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
+                                        <span className='ml-2'>
+                                            Sterlization & Disinfection</span>
+                                    </div>
+                                </div>
+                                <div className='pt-1 pb-2 px-2 lg:p-4 lg:mt-0 h-full font-bold text-lg lg:text-xl xl:text-2xl text-left lg:text-center flex justify-center items-center rounded-xl border border-gray-300 dark:border-neutral-700'>
                                     For antibody detection: the advantages is that it is fast to perform, but the disadvantages are that it can detect only specific type of bacteria and risk for false positive</div>
                             </div>
                         </div>
 
                         {/* Choices */}
-                        <div style={{height: "calc(50% - 48px)"}} className='flex flex-col lg:flex-row gap-4'>
-                            <span className='px-2 py-1 w-full h-full font-bold group rounded-xl border border-gray-300 dark:border-neutral-700'>
-                                {currentQuiz}</span>
-                            <span className='px-2 py-1 w-full h-full font-bold group rounded-xl border border-gray-300 dark:border-neutral-700'>
-                                {currentQuiz}</span>
-                            <span className='px-2 py-1 w-full h-full font-bold group rounded-xl border border-gray-300 dark:border-neutral-700'>
-                                {currentQuiz}</span>
-                            <span className='px-2 py-1 w-full h-full font-bold group rounded-xl border border-gray-300 dark:border-neutral-700'>
-                                {currentQuiz}</span>
+                        <div className='-choice-panel flex flex-col lg:flex-row gap-4'>
+                            <button className='px-2 py-3 w-full h-full font-bold text-lg group rounded-xl border border-gray-300 dark:border-neutral-700'>
+                                QWERTYUIOP</button>
+                            <button className='px-2 py-3 w-full h-full font-bold text-lg group rounded-xl border border-gray-300 dark:border-neutral-700'>
+                                ASDFGHJKL</button>
+                            <button className='px-2 py-3 w-full h-full font-bold text-lg group rounded-xl border border-gray-300 dark:border-neutral-700'>
+                                ZXCVBNM</button>
+                            <button className='px-2 py-3 w-full h-full font-bold text-lg group rounded-xl border border-gray-300 dark:border-neutral-700'>
+                                1234567890</button>
 
                         </div>
 
                         {/* Action bar */}
-                        <div className='h-12'>
-
+                        <div className='h-20 flex flex-row items-center'>
+                            <div className="flex flex-row w-full">
+                                <div className="flex flex-col items-center content-center text-center">
+                                    <button onClick={() => setPageStatus("START")} className="text-xl px-4 py-3 mr-2 group rounded-xl border border-gray-300 dark:border-neutral-700 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600">
+                                        <div className='font-bold'>
+                                            <span className="mr-2">←</span>
+                                            <span>Quit</span>
+                                        </div>
+                                    </button>
+                                </div>
+                                
+                                <div className="flex flex-col w-full ml-2 items-center content-center text-center">
+                                    <button className="text-xl px-4 py-3 mr-2 w-full group rounded-xl border border-gray-300 dark:border-neutral-700 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:bg-neutral-600"
+                                        onClick={() => setPageStatus("MID")}>
+                                            <div className='font-bold text-indigo-600 dark:text-indigo-500'>
+                                                <span>Submit</span>
+                                                <span className="ml-2">→</span>
+                                            </div>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
                 }
             </div>
