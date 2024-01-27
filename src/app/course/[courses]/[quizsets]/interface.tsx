@@ -21,8 +21,8 @@ interface QuestionDataStructure {
     QuestionImageUrl?: string, QuestionNote?: string,
     Choice1: string, Answer1: boolean, Description1?: string,
     Choice2: string, Answer2: boolean, Description2?: string,
-    Choice3: string, Answer3: boolean, Description3?: string,
-    Choice4: string, Answer4: boolean, Description4?: string,
+    Choice3?: string, Answer3?: boolean, Description3?: string,
+    Choice4?: string, Answer4?: boolean, Description4?: string,
     DetailedAnswerDescription?: string, graded: boolean
 }
 
@@ -31,7 +31,7 @@ export default function QuizInterface ({
     questionData
 }: {
     headerData: HeaderDataStructure,
-    questionData: QuestionDataStructure
+    questionData: Array<QuestionDataStructure>
 }) {
     // ===== SECTION I: START PAGE SETTING =====
     // =========================================
