@@ -29,8 +29,7 @@ body {
   
 input:focus, input,
 select:focus,
-textarea:focus,
-button:focus {
+textarea:focus {
     outline: none;
     background-color: rgba(0, 0, 0, 0);
 }
@@ -130,6 +129,7 @@ hr {
   left: 0;
   bottom: 0;
   z-index: -1;
+  background-color: var(--base);
   transition: all 0.25s ease;
   left: 50%;
   transform: translateX(-50%);

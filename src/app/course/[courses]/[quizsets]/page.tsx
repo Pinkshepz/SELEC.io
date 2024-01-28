@@ -86,6 +86,7 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
             <div className="flex flex-col overflow-hidden">
                 <img className='-bg-fixed' src={headerData.CardSetUrl} alt=''></img>
                 <QuizInterface 
+                    quizsets={params.quizsets}
                     headerData={headerData}
                     questionData={questionData}/>
             </div>
