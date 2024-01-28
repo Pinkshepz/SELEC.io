@@ -6,7 +6,7 @@ export function shuffle(array: Array<any>) {
     while (currentIndex > 0) {
   
       // Pick a remaining element
-      randomIndex = Math.floor(Math.random() * currentIndex);
+      randomIndex = Math.floor(((1000 * Math.random()) * (1000 * Math.random())) % array.length);
       currentIndex--;
   
       // And swap it with the current element
