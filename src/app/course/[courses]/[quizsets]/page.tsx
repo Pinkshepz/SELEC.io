@@ -60,10 +60,10 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
             let tempQuestionData: QuestionDataStructure = {
                 ID: questionRow[0], Topic: questionRow[1], Mode: questionRow[2], Level: questionRow[3],
                 Question: questionRow[4], QuestionImageUrl: questionRow[5], QuestionNote: questionRow[6],
-                Choice1: questionRow[7], Answer1: (questionRow[8] == "true"), Description1: questionRow[9],
-                Choice2: questionRow[10], Answer2: (questionRow[11] == "true"), Description2: questionRow[12],
-                Choice3: questionRow[13], Answer3: (questionRow[14] == "true"), Description3: questionRow[15],
-                Choice4: questionRow[16], Answer4: (questionRow[17] == "true"), Description4: questionRow[18],
+                Choice1: questionRow[7], Answer1: (questionRow[8] == "TRUE"), Description1: questionRow[9],
+                Choice2: questionRow[10], Answer2: (questionRow[11] == "TRUE"), Description2: questionRow[12],
+                Choice3: questionRow[13], Answer3: (questionRow[14] == "TRUE"), Description3: questionRow[15],
+                Choice4: questionRow[16], Answer4: (questionRow[17] == "TRUE"), Description4: questionRow[18],
                 DetailedAnswerDescription: questionRow[19], graded: false
             }
             questionData.push(tempQuestionData);

@@ -133,13 +133,16 @@ export default function QuizInterface ({
             },
             ...prev.slice(currentQuiz + 1, quizStatus.quizNumber)
         ]));
-        console.log(currentQuiz - 1);
-        console.log(quizStatus.quizNumber);
-        console.log(activeSelectedQuestions);
     }
 
     const changeQuestion = (value: number) => {
-        setCurrentQuiz(prev => (prev + value))
+        setChoicesStatus({
+            choice1: false,
+            choice2: false,
+            choice3: false,
+            choice4: false,
+        });
+        setCurrentQuiz(prev => (prev + value));
     }
 
     return (
@@ -366,51 +369,87 @@ export default function QuizInterface ({
                                 <div className='flex flex-col lg:flex-row gap-4 h-full'>
                                     <div className={'h-full w-full rounded-xl bg-white/70 dark:bg-black/40'}>
                                         <button onClick={() => handleChoiceInteract("choice1", activeSelectedQuestions[currentQuiz].Mode)}
-                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl border border-gray-300 dark:border-neutral-700 ' + 
+                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl border ' + 
                                   (choicesStatus.choice1 ? "text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
-                                                : "border-gray-100/0")}>
+                                                : "border-gray-300 dark:border-neutral-700")}>
                                             {activeSelectedQuestions[currentQuiz].Choice1}</button>
                                     </div>
                                     <div className={'h-full w-full rounded-xl bg-white/70 dark:bg-black/40'}>
                                         <button onClick={() => handleChoiceInteract("choice2", activeSelectedQuestions[currentQuiz].Mode)}
-                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl border border-gray-300 dark:border-neutral-700 ' + 
+                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl border ' + 
                                   (choicesStatus.choice2 ? "text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
-                                                : "border-gray-100/0")}>
+                                                : "border-gray-300 dark:border-neutral-700")}>
                                             {activeSelectedQuestions[currentQuiz].Choice2}</button>
                                     </div>
                                     <div className={'h-full w-full rounded-xl bg-white/70 dark:bg-black/40'}>
                                         <button onClick={() => handleChoiceInteract("choice3", activeSelectedQuestions[currentQuiz].Mode)}
-                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl border border-gray-300 dark:border-neutral-700 ' + 
+                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl border ' + 
                                   (choicesStatus.choice3 ? "text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
-                                                : "border-gray-100/0")}>
+                                                : "border-gray-300 dark:border-neutral-700")}>
                                             {activeSelectedQuestions[currentQuiz].Choice3}</button>
                                     </div>
                                     <div className={'h-full w-full rounded-xl bg-white/70 dark:bg-black/40'}>
                                         <button onClick={() => handleChoiceInteract("choice4", activeSelectedQuestions[currentQuiz].Mode)}
-                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl border border-gray-300 dark:border-neutral-700 ' + 
+                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl border ' + 
                                   (choicesStatus.choice4 ? "text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
-                                                : "border-gray-100/0")}>
+                                                : "border-gray-300 dark:border-neutral-700")}>
                                             {activeSelectedQuestions[currentQuiz].Choice4}</button>
                                     </div>
                                 </div> :
                                 <div className='flex flex-col lg:flex-row gap-4 h-full'>
-                                <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl group rounded-xl bg-white/70 dark:bg-black/40 transition-colors border border-gray-300 dark:border-neutral-700 ' + 
-                                    (activeSelectedQuestions[currentQuiz].Answer1 ? " text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
-                                        : "border-gray-100/0")}>
-                                    {activeSelectedQuestions[currentQuiz].Choice1}</div>
-                                <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl group rounded-xl bg-white/70 dark:bg-black/40 transition-colors border border-gray-300 dark:border-neutral-700 ' + 
-                                    (activeSelectedQuestions[currentQuiz].Answer2 ? " text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
-                                        : "border-gray-100/0")}>
-                                    {activeSelectedQuestions[currentQuiz].Choice2}</div>
-                                <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl group rounded-xl bg-white/70 dark:bg-black/40 transition-colors border border-gray-300 dark:border-neutral-700 ' + 
-                                    (activeSelectedQuestions[currentQuiz].Answer3 ? " text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
-                                        : "border-gray-100/0")}>
-                                    {activeSelectedQuestions[currentQuiz].Choice3}</div>
-                                <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl group rounded-xl bg-white/70 dark:bg-black/40 transition-colors border border-gray-300 dark:border-neutral-700 ' + 
-                                    (activeSelectedQuestions[currentQuiz].Answer4 ? " text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
-                                        : "border-gray-100/0")}>
-                                    {activeSelectedQuestions[currentQuiz].Choice4}</div>
-                            </div>}
+                                    <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
+                                        (activeSelectedQuestions[currentQuiz].Answer1 ? (
+                                            choicesStatus.choice1 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
+                                            choicesStatus.choice1 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
+                                        {activeSelectedQuestions[currentQuiz].Answer1 ? 
+                                            <div className={"pixellet py-2 " + (choicesStatus.choice1 ? "text-teal-600 dark:text-teal-500" 
+                                                : "text-indigo-600 dark:text-indigo-500")
+                                            }>- ANSWER -</div> : 
+                                                <div className={"pixellet py-2 " + (choicesStatus.choice1 ? "text-rose-600 dark:text-rose-500" 
+                                                : null)
+                                            }>- X -</div>}
+                                            <div>{activeSelectedQuestions[currentQuiz].Choice1}</div>
+                                        </div>
+                                    <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
+                                        (activeSelectedQuestions[currentQuiz].Answer2 ? (
+                                            choicesStatus.choice2 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
+                                            choicesStatus.choice2 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
+                                        {activeSelectedQuestions[currentQuiz].Answer2 ? 
+                                            <div className={"pixellet py-2 " + (choicesStatus.choice2 ? "text-teal-600 dark:text-teal-500" 
+                                                : "text-indigo-600 dark:text-indigo-500")
+                                            }>- ANSWER -</div> : 
+                                                <div className={"pixellet py-2 " + (choicesStatus.choice2 ? "text-rose-600 dark:text-rose-500" 
+                                                : null)
+                                            }>- X -</div>}
+                                            <div>{activeSelectedQuestions[currentQuiz].Choice2}</div>
+                                        </div>
+                                    <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
+                                        (activeSelectedQuestions[currentQuiz].Answer3 ? (
+                                            choicesStatus.choice3 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
+                                            choicesStatus.choice3 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
+                                        {activeSelectedQuestions[currentQuiz].Answer3 ? 
+                                            <div className={"pixellet py-2 " + (choicesStatus.choice3 ? "text-teal-600 dark:text-teal-500" 
+                                                : "text-indigo-600 dark:text-indigo-500")
+                                            }>- ANSWER -</div> : 
+                                                <div className={"pixellet py-2 " + (choicesStatus.choice3 ? "text-rose-600 dark:text-rose-500" 
+                                                : null)
+                                            }>- X -</div>}
+                                            <div>{activeSelectedQuestions[currentQuiz].Choice3}</div>
+                                        </div>
+                                    <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
+                                        (activeSelectedQuestions[currentQuiz].Answer4 ? (
+                                            choicesStatus.choice4 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
+                                            choicesStatus.choice4 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
+                                        {activeSelectedQuestions[currentQuiz].Answer4 ? 
+                                            <div className={"pixellet py-2 " + (choicesStatus.choice4 ? "text-teal-600 dark:text-teal-500" 
+                                                : "text-indigo-600 dark:text-indigo-500")
+                                            }>- ANSWER -</div> : 
+                                                <div className={"pixellet py-2 " + (choicesStatus.choice4 ? "text-rose-600 dark:text-rose-500" 
+                                                : null)
+                                            }>- X -</div>}
+                                            <div>{activeSelectedQuestions[currentQuiz].Choice4}</div>
+                                        </div>
+                                </div>}
                         </div>
 
                         {/* Action bar */}
@@ -445,13 +484,13 @@ export default function QuizInterface ({
                                         </button>
                                     </div> :
                                     <div className="flex flex-col w-full ml-2 items-center content-center text-center">
-                                        <button className="text-xl px-4 py-3 mr-2 w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white/70 dark:bg-black/40"
-                                            onClick={() => {}}>
+                                        <Link className="text-xl px-4 py-3 mr-2 w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white/70 dark:bg-black/40"
+                                            href={"./"}>
                                                 <div className='font-bold text-indigo-600 dark:text-indigo-500'>
                                                     <span>Finish</span>
                                                     <span className="ml-2">→</span>
                                                 </div>
-                                        </button>
+                                        </Link>
                                     </div>}
                                 { (currentQuiz > 0) ?
                                     <div className="flex flex-col ml-2 items-center content-center text-center">
