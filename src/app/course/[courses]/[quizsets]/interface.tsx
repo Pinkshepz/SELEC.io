@@ -402,7 +402,7 @@ export default function QuizInterface ({
                                 </div> :
                                 <div className='flex flex-col lg:flex-row gap-4 h-full'>
                                     { activeSelectedQuestions[currentQuiz].Choice1 ? 
-                                    <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
+                                    <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col text-center items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
                                         (activeSelectedQuestions[currentQuiz].Answer1 ? (
                                             choicesStatus.choice1 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
                                             choicesStatus.choice1 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
@@ -413,7 +413,7 @@ export default function QuizInterface ({
                                                 <div className={"pixellet py-2 " + (choicesStatus.choice1 ? "text-rose-600 dark:text-rose-500" 
                                                 : null)
                                             }>- X -</div>}
-                                            <div>{activeSelectedQuestions[currentQuiz].Choice1}</div>
+                                            <div className='text-center'>{activeSelectedQuestions[currentQuiz].Choice1}</div>
                                         </div> : null }
                                     { activeSelectedQuestions[currentQuiz].Choice2 ? 
                                     <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
@@ -427,7 +427,7 @@ export default function QuizInterface ({
                                                 <div className={"pixellet py-2 " + (choicesStatus.choice2 ? "text-rose-600 dark:text-rose-500" 
                                                 : null)
                                             }>- X -</div>}
-                                            <div>{activeSelectedQuestions[currentQuiz].Choice2}</div>
+                                            <div className='text-center'>{activeSelectedQuestions[currentQuiz].Choice2}</div>
                                         </div> : null }
                                     { activeSelectedQuestions[currentQuiz].Choice3 ? 
                                     <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
@@ -441,7 +441,7 @@ export default function QuizInterface ({
                                                 <div className={"pixellet py-2 " + (choicesStatus.choice3 ? "text-rose-600 dark:text-rose-500" 
                                                 : null)
                                             }>- X -</div>}
-                                            <div>{activeSelectedQuestions[currentQuiz].Choice3}</div>
+                                            <div className='text-center'>{activeSelectedQuestions[currentQuiz].Choice3}</div>
                                         </div> : null }
                                     { activeSelectedQuestions[currentQuiz].Choice4 ? 
                                     <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
@@ -455,7 +455,7 @@ export default function QuizInterface ({
                                                 <div className={"pixellet py-2 " + (choicesStatus.choice4 ? "text-rose-600 dark:text-rose-500" 
                                                 : null)
                                             }>- X -</div>}
-                                            <div>{activeSelectedQuestions[currentQuiz].Choice4}</div>
+                                            <div className='text-center'>{activeSelectedQuestions[currentQuiz].Choice4}</div>
                                         </div> : null }
                                 </div>}
                         </div>
@@ -485,8 +485,12 @@ export default function QuizInterface ({
                                     <div className="flex flex-col w-full ml-2 items-center content-center text-center">
                                         <button className="text-xl px-4 py-3 mr-2 w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white/70 dark:bg-black/40"
                                             onClick={() => changeQuestion(1)}>
-                                                <div className='font-bold text-indigo-600 dark:text-indigo-500'>
+                                                <div className='hidden sm:inline font-bold text-indigo-600 dark:text-indigo-500'>
                                                     <span>Next Question</span>
+                                                    <span className="ml-2">→</span>
+                                                </div>
+                                                <div className='inline sm:hidden font-bold text-indigo-600 dark:text-indigo-500'>
+                                                    <span>Next</span>
                                                     <span className="ml-2">→</span>
                                                 </div>
                                         </button>
@@ -505,7 +509,7 @@ export default function QuizInterface ({
                                         <button className="text-xl px-4 py-3 mr-2 rounded-xl border border-gray-300 dark:border-neutral-700 bg-white/70 dark:bg-black/40"
                                             onClick={() => changeQuestion(-1)}>
                                                 <div className='font-bold'>
-                                                    <span>Previous</span>
+                                                    <span>Back</span>
                                                 </div>
                                         </button>
                                     </div> : null}
