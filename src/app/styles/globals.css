@@ -78,7 +78,7 @@ hr {
     height: calc(100vh - 64px);
   }
   .-choice-panel {
-    height: calc(50% - 80px)
+    height: calc(50% - 96px)
   }
 }
 

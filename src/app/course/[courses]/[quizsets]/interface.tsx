@@ -367,36 +367,41 @@ export default function QuizInterface ({
                         <div className='-choice-panel'>
                             { !activeSelectedQuestions[currentQuiz].graded ?
                                 <div className='flex flex-col lg:flex-row gap-4 h-full'>
+                                    { activeSelectedQuestions[currentQuiz].Choice1 ? 
                                     <div className={'h-full w-full rounded-xl bg-white/70 dark:bg-black/40'}>
                                         <button onClick={() => handleChoiceInteract("choice1", activeSelectedQuestions[currentQuiz].Mode)}
-                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl border ' + 
-                                  (choicesStatus.choice1 ? "text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
-                                                : "border-gray-300 dark:border-neutral-700")}>
+                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl ' + 
+                                  (choicesStatus.choice1 ? "border-[3px] text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
+                                                : "border border-gray-300 dark:border-neutral-700")}>
                                             {activeSelectedQuestions[currentQuiz].Choice1}</button>
-                                    </div>
+                                    </div> : null }
+                                    { activeSelectedQuestions[currentQuiz].Choice2 ? 
                                     <div className={'h-full w-full rounded-xl bg-white/70 dark:bg-black/40'}>
                                         <button onClick={() => handleChoiceInteract("choice2", activeSelectedQuestions[currentQuiz].Mode)}
-                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl border ' + 
-                                  (choicesStatus.choice2 ? "text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
-                                                : "border-gray-300 dark:border-neutral-700")}>
+                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl ' + 
+                                  (choicesStatus.choice2 ? "border-[3px] text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
+                                                : "border border-gray-300 dark:border-neutral-700")}>
                                             {activeSelectedQuestions[currentQuiz].Choice2}</button>
-                                    </div>
+                                    </div> : null }
+                                    { activeSelectedQuestions[currentQuiz].Choice3 ? 
                                     <div className={'h-full w-full rounded-xl bg-white/70 dark:bg-black/40'}>
                                         <button onClick={() => handleChoiceInteract("choice3", activeSelectedQuestions[currentQuiz].Mode)}
-                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl border ' + 
-                                  (choicesStatus.choice3 ? "text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
-                                                : "border-gray-300 dark:border-neutral-700")}>
+                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl ' + 
+                                  (choicesStatus.choice3 ? "border-[3px] text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
+                                                : "border border-gray-300 dark:border-neutral-700")}>
                                             {activeSelectedQuestions[currentQuiz].Choice3}</button>
-                                    </div>
+                                    </div> : null }
+                                    { activeSelectedQuestions[currentQuiz].Choice4 ? 
                                     <div className={'h-full w-full rounded-xl bg-white/70 dark:bg-black/40'}>
                                         <button onClick={() => handleChoiceInteract("choice4", activeSelectedQuestions[currentQuiz].Mode)}
-                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl border ' + 
-                                  (choicesStatus.choice4 ? "text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
-                                                : "border-gray-300 dark:border-neutral-700")}>
+                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl ' + 
+                                  (choicesStatus.choice4 ? "border-[3px] text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
+                                                : "border border-gray-300 dark:border-neutral-700")}>
                                             {activeSelectedQuestions[currentQuiz].Choice4}</button>
-                                    </div>
+                                    </div> : null }
                                 </div> :
                                 <div className='flex flex-col lg:flex-row gap-4 h-full'>
+                                    { activeSelectedQuestions[currentQuiz].Choice1 ? 
                                     <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
                                         (activeSelectedQuestions[currentQuiz].Answer1 ? (
                                             choicesStatus.choice1 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
@@ -409,7 +414,8 @@ export default function QuizInterface ({
                                                 : null)
                                             }>- X -</div>}
                                             <div>{activeSelectedQuestions[currentQuiz].Choice1}</div>
-                                        </div>
+                                        </div> : null }
+                                    { activeSelectedQuestions[currentQuiz].Choice2 ? 
                                     <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
                                         (activeSelectedQuestions[currentQuiz].Answer2 ? (
                                             choicesStatus.choice2 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
@@ -422,7 +428,8 @@ export default function QuizInterface ({
                                                 : null)
                                             }>- X -</div>}
                                             <div>{activeSelectedQuestions[currentQuiz].Choice2}</div>
-                                        </div>
+                                        </div> : null }
+                                    { activeSelectedQuestions[currentQuiz].Choice3 ? 
                                     <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
                                         (activeSelectedQuestions[currentQuiz].Answer3 ? (
                                             choicesStatus.choice3 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
@@ -435,7 +442,8 @@ export default function QuizInterface ({
                                                 : null)
                                             }>- X -</div>}
                                             <div>{activeSelectedQuestions[currentQuiz].Choice3}</div>
-                                        </div>
+                                        </div> : null }
+                                    { activeSelectedQuestions[currentQuiz].Choice4 ? 
                                     <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
                                         (activeSelectedQuestions[currentQuiz].Answer4 ? (
                                             choicesStatus.choice4 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
@@ -448,7 +456,7 @@ export default function QuizInterface ({
                                                 : null)
                                             }>- X -</div>}
                                             <div>{activeSelectedQuestions[currentQuiz].Choice4}</div>
-                                        </div>
+                                        </div> : null }
                                 </div>}
                         </div>
 

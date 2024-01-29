@@ -61,7 +61,7 @@ export default async function CourseDisplay({
                 <DisplayCard 
                     cardId={courseData[0]}
                     cardGroup={courseData[1]}
-                    cardCategory={courseData[2]}
+                    cardCategory={courseData[2] + " credit"}
                     cardImageLink={courseData[3]}
                     cardTitle={courseData[4]}
                     cardDescription={courseData[5]}
