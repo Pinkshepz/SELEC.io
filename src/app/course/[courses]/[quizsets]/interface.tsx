@@ -342,7 +342,7 @@ export default function QuizInterface ({
                     // =================================
                     <>
                         <div className='-full-screen flex flex-col relative px-4 pb-24 lg:pb-0 bg-white/90 dark:bg-black/85 backdrop-blur-lg'>
-                            {/* Top bar for large screen */}
+                            {/* Top bar */}
                             <div className='h-12 flex flex-row justify-between items-center'>
                                 {/* Question tract */}
                                 <div>
@@ -365,8 +365,17 @@ export default function QuizInterface ({
                                 {/* Quizset */}
                                 <div className='-text-line hidden sm:inline text-md after:bg-slate-700 dark:after:bg-slate-200'>
                                     {headerData.CardSetName}</div>
-                                <div className='-text-line inline sm:hidden text-md after:bg-slate-700 dark:after:bg-slate-200'>
-                                    {quizsets}</div>
+                                <div className='flex flex-row sm:hidden text-md'>
+                                    <span className='-button-line mx-1 after:bg-slate-700 dark:after:bg-slate-200'>
+                                        <Link href={"./"}>Go Back</Link>
+                                    </span>
+                                    <span className='flex items-center justify-center mx-1'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                                            <path fillRule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clipRule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span className='mx-1'>{quizsets}</span>
+                                    </div>
                             </div>
 
                             {/* Question */}
