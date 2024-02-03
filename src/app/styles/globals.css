@@ -72,23 +72,30 @@ hr {
   border-width: 1px;
 }
 
-@media (min-width: 1024px) {
+@media screen and (min-width: 1024px) {
   .-full-screen {
     position: relative;
     height: calc(100vh - 64px);
   }
+  .-question-panel {
+    height: calc(50% - 32px);
+  }
   .-choice-panel {
-    height: calc(50% - 96px)
+    height: calc(50% - 96px);
   }
 }
 
-@media (max-width: 1024px) {
+@media screen and (min-width: 0px) and (max-width: 1024px) {
   .-full-screen {
     position: relative;
     min-height: calc(100vh - 64px);
+    height: max-content;
+  }
+  .-question-panel {
+    height: calc(50% - 32px);
   }
   .-choice-panel {
-    height: 100%;
+    min-height: max-content;
   }
 }
 

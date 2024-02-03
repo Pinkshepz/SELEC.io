@@ -24,6 +24,7 @@ interface QuestionDataStructure {
     Choice2: string, Answer2: boolean, Description2?: string,
     Choice3?: string, Answer3?: boolean, Description3?: string,
     Choice4?: string, Answer4?: boolean, Description4?: string,
+    Choice5?: string, Answer5?: boolean, Description5?: string,
     DetailedAnswerDescription?: string, graded: boolean
 }
 
@@ -90,38 +91,63 @@ export default function QuizInterface ({
         setPageStatus("START");
         setActiveSelectedQuestions(questionData.slice(0, questionData.length));
         setCurrentQuiz(0);
+        setChoicesStatus({
+            0: {
+                choice1: false,
+                choice2: false,
+                choice3: false,
+                choice4: false,
+                choice5: false,
+            }
+        });
+
     }
 
     // UseState for quiz navigation
     const [currentQuiz, setCurrentQuiz] = useState<number>(0);
 
     const [choicesStatus, setChoicesStatus] = useState<{
-        [key: string]: boolean
+        [key: number]: {
+            [key: string]: boolean
+        }
     }>({
-        choice1: false,
-        choice2: false,
-        choice3: false,
-        choice4: false,
+        0: {
+            choice1: false,
+            choice2: false,
+            choice3: false,
+            choice4: false,
+            choice5: false,
+        }
     });
 
-    const handleChoiceInteract = (choice: keyof typeof choicesStatus, mode: string) => {
+    const handleChoiceInteract = (choice: keyof typeof choicesStatus[number], mode: string) => {
         if (mode == "Multiple Answer") {
             setChoicesStatus(prev => ({
                 ...prev,
-                [choice]: !(prev[choice])
-            }))
+                [currentQuiz]: {
+                    ...prev[currentQuiz],
+                    [choice]: !(prev[currentQuiz][choice])
+                }
+            }));
         } else {
-            setChoicesStatus({
-                choice1: false,
-                choice2: false,
-                choice3: false,
-                choice4: false,
-            });
             setChoicesStatus(prev => ({
                 ...prev,
-                [choice]: true
-            }))
-        }
+                [currentQuiz]: {
+                    choice1: false,
+                    choice2: false,
+                    choice3: false,
+                    choice4: false,
+                    choice5: false,
+                }
+            }));
+            setChoicesStatus(prev => ({
+                ...prev,
+                [currentQuiz]: {
+                    ...prev[currentQuiz],
+                    [choice]: true
+                }
+            }));
+        };
     }
 
     const gradeQuestion = () => {
@@ -136,13 +162,22 @@ export default function QuizInterface ({
     }
 
     const changeQuestion = (value: number) => {
-        setChoicesStatus({
-            choice1: false,
-            choice2: false,
-            choice3: false,
-            choice4: false,
-        });
         setCurrentQuiz(prev => (prev + value));
+    }
+
+    const handleNextQuestion = () => {
+        !activeSelectedQuestions[currentQuiz + 1].graded ?
+            (setChoicesStatus(prev => ({
+                ...prev,
+                [currentQuiz + 1]: {
+                    choice1: false,
+                    choice2: false,
+                    choice3: false,
+                    choice4: false,
+                    choice5: false,
+                }
+            }))) : null;
+        changeQuestion(1);
     }
 
     return (
@@ -304,7 +339,7 @@ export default function QuizInterface ({
 
                     // ===== SECTION II: QUIZ PAGE =====
                     // =================================
-                    <div className='-full-screen relative px-4 bg-white/90 dark:bg-black/85 backdrop-blur-lg'>
+                    <div className='-full-screen flex flex-col relative px-4 bg-white/90 dark:bg-black/85 backdrop-blur-lg'>
                         {/* Top bar */}
                         <div className='h-12 flex flex-row justify-between items-center'>
                             {/* Question tract */}
@@ -333,7 +368,7 @@ export default function QuizInterface ({
                         </div>
 
                         {/* Question */}
-                        <div style={{height: "calc(50% - 48px)"}} className='pt-2 pb-4 flex flex-col lg:flex-row justify-center items-center'>
+                        <div className='-question-panel pt-2 pb-4 flex flex-col lg:flex-row justify-center items-center'>
                             {activeSelectedQuestions[currentQuiz].QuestionImageUrl ?
                                 <img className='w-full h-[40vh] lg:w-[40%] lg:h-full lg:mr-4 object-cover rounded-2xl bg-white/95 dark:bg-black/80'
                                     src={activeSelectedQuestions[currentQuiz].QuestionImageUrl} alt="" /> : null}
@@ -358,7 +393,7 @@ export default function QuizInterface ({
                                             {activeSelectedQuestions[currentQuiz].Topic}</span>
                                     </div>
                                 </div>
-                                <div className='py-4 px-2 lg:p-4 lg:mt-0 h-full font-bold text-lg lg:text-xl xl:text-2xl text-left text-center flex justify-center items-center rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700'>
+                                <div className='py-8 px-2 lg:p-4 lg:mt-0 h-full font-bold text-lg lg:text-xl xl:text-2xl text-left text-center flex justify-center items-center rounded-xl lg:bg-white/70 lg:dark:bg-black/40 lg:border border-gray-300 dark:border-neutral-700'>
                                     {activeSelectedQuestions[currentQuiz].Question}</div>
                             </div>
                         </div>
@@ -367,101 +402,135 @@ export default function QuizInterface ({
                         <div className='-choice-panel'>
                             { !activeSelectedQuestions[currentQuiz].graded ?
                                 <div className='flex flex-col lg:flex-row gap-4 h-full'>
+
                                     { activeSelectedQuestions[currentQuiz].Choice1 ? 
                                     <div className={'h-full w-full rounded-xl bg-white/70 dark:bg-black/40'}>
                                         <button onClick={() => handleChoiceInteract("choice1", activeSelectedQuestions[currentQuiz].Mode)}
                                             className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl ' + 
-                                  (choicesStatus.choice1 ? "border-[3px] text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
+                                  (choicesStatus[currentQuiz].choice1 ? "border-[3px] text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
                                                 : "border border-gray-300 dark:border-neutral-700")}>
                                             {activeSelectedQuestions[currentQuiz].Choice1}</button>
                                     </div> : null }
+
                                     { activeSelectedQuestions[currentQuiz].Choice2 ? 
                                     <div className={'h-full w-full rounded-xl bg-white/70 dark:bg-black/40'}>
                                         <button onClick={() => handleChoiceInteract("choice2", activeSelectedQuestions[currentQuiz].Mode)}
                                             className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl ' + 
-                                  (choicesStatus.choice2 ? "border-[3px] text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
+                                  (choicesStatus[currentQuiz].choice2 ? "border-[3px] text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
                                                 : "border border-gray-300 dark:border-neutral-700")}>
                                             {activeSelectedQuestions[currentQuiz].Choice2}</button>
                                     </div> : null }
+                                    
                                     { activeSelectedQuestions[currentQuiz].Choice3 ? 
                                     <div className={'h-full w-full rounded-xl bg-white/70 dark:bg-black/40'}>
                                         <button onClick={() => handleChoiceInteract("choice3", activeSelectedQuestions[currentQuiz].Mode)}
                                             className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl ' + 
-                                  (choicesStatus.choice3 ? "border-[3px] text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
+                                  (choicesStatus[currentQuiz].choice3 ? "border-[3px] text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
                                                 : "border border-gray-300 dark:border-neutral-700")}>
                                             {activeSelectedQuestions[currentQuiz].Choice3}</button>
                                     </div> : null }
+
                                     { activeSelectedQuestions[currentQuiz].Choice4 ? 
                                     <div className={'h-full w-full rounded-xl bg-white/70 dark:bg-black/40'}>
                                         <button onClick={() => handleChoiceInteract("choice4", activeSelectedQuestions[currentQuiz].Mode)}
                                             className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl ' + 
-                                  (choicesStatus.choice4 ? "border-[3px] text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
+                                  (choicesStatus[currentQuiz].choice4 ? "border-[3px] text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
                                                 : "border border-gray-300 dark:border-neutral-700")}>
                                             {activeSelectedQuestions[currentQuiz].Choice4}</button>
                                     </div> : null }
+
+                                    { activeSelectedQuestions[currentQuiz].Choice5 ? 
+                                    <div className={'h-full w-full rounded-xl bg-white/70 dark:bg-black/40'}>
+                                        <button onClick={() => handleChoiceInteract("choice4", activeSelectedQuestions[currentQuiz].Mode)}
+                                            className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl ' + 
+                                  (choicesStatus[currentQuiz].choice5 ? "border-[3px] text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
+                                                : "border border-gray-300 dark:border-neutral-700")}>
+                                            {activeSelectedQuestions[currentQuiz].Choice5}</button>
+                                    </div> : null }
+
                                 </div> :
                                 <div className='flex flex-col lg:flex-row gap-4 h-full'>
+
                                     { activeSelectedQuestions[currentQuiz].Choice1 ? 
                                     <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col text-center items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
                                         (activeSelectedQuestions[currentQuiz].Answer1 ? (
-                                            choicesStatus.choice1 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
-                                            choicesStatus.choice1 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
+                                            choicesStatus[currentQuiz].choice1 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
+                                            choicesStatus[currentQuiz].choice1 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
                                         {activeSelectedQuestions[currentQuiz].Answer1 ? 
-                                            <div className={"pixellet py-2 " + (choicesStatus.choice1 ? "text-teal-600 dark:text-teal-500" 
+                                            <div className={"pixellet py-2 " + (choicesStatus[currentQuiz].choice1 ? "text-teal-600 dark:text-teal-500" 
                                                 : "text-indigo-600 dark:text-indigo-500")
                                             }>- ANSWER -</div> : 
-                                                <div className={"pixellet py-2 " + (choicesStatus.choice1 ? "text-rose-600 dark:text-rose-500" 
+                                                <div className={"pixellet py-2 " + (choicesStatus[currentQuiz].choice1 ? "text-rose-600 dark:text-rose-500" 
                                                 : null)
                                             }>- X -</div>}
                                             <div className='text-center'>{activeSelectedQuestions[currentQuiz].Choice1}</div>
                                         </div> : null }
+
                                     { activeSelectedQuestions[currentQuiz].Choice2 ? 
                                     <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
                                         (activeSelectedQuestions[currentQuiz].Answer2 ? (
-                                            choicesStatus.choice2 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
-                                            choicesStatus.choice2 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
+                                            choicesStatus[currentQuiz].choice2 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
+                                            choicesStatus[currentQuiz].choice2 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
                                         {activeSelectedQuestions[currentQuiz].Answer2 ? 
-                                            <div className={"pixellet py-2 " + (choicesStatus.choice2 ? "text-teal-600 dark:text-teal-500" 
+                                            <div className={"pixellet py-2 " + (choicesStatus[currentQuiz].choice2 ? "text-teal-600 dark:text-teal-500" 
                                                 : "text-indigo-600 dark:text-indigo-500")
                                             }>- ANSWER -</div> : 
-                                                <div className={"pixellet py-2 " + (choicesStatus.choice2 ? "text-rose-600 dark:text-rose-500" 
+                                                <div className={"pixellet py-2 " + (choicesStatus[currentQuiz].choice2 ? "text-rose-600 dark:text-rose-500" 
                                                 : null)
                                             }>- X -</div>}
                                             <div className='text-center'>{activeSelectedQuestions[currentQuiz].Choice2}</div>
                                         </div> : null }
+
                                     { activeSelectedQuestions[currentQuiz].Choice3 ? 
                                     <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
                                         (activeSelectedQuestions[currentQuiz].Answer3 ? (
-                                            choicesStatus.choice3 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
-                                            choicesStatus.choice3 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
+                                            choicesStatus[currentQuiz].choice3 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
+                                            choicesStatus[currentQuiz].choice3 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
                                         {activeSelectedQuestions[currentQuiz].Answer3 ? 
-                                            <div className={"pixellet py-2 " + (choicesStatus.choice3 ? "text-teal-600 dark:text-teal-500" 
+                                            <div className={"pixellet py-2 " + (choicesStatus[currentQuiz].choice3 ? "text-teal-600 dark:text-teal-500" 
                                                 : "text-indigo-600 dark:text-indigo-500")
                                             }>- ANSWER -</div> : 
-                                                <div className={"pixellet py-2 " + (choicesStatus.choice3 ? "text-rose-600 dark:text-rose-500" 
+                                                <div className={"pixellet py-2 " + (choicesStatus[currentQuiz].choice3 ? "text-rose-600 dark:text-rose-500" 
                                                 : null)
                                             }>- X -</div>}
                                             <div className='text-center'>{activeSelectedQuestions[currentQuiz].Choice3}</div>
                                         </div> : null }
+
                                     { activeSelectedQuestions[currentQuiz].Choice4 ? 
                                     <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
                                         (activeSelectedQuestions[currentQuiz].Answer4 ? (
-                                            choicesStatus.choice4 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
-                                            choicesStatus.choice4 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
+                                            choicesStatus[currentQuiz].choice4 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
+                                            choicesStatus[currentQuiz].choice4 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
                                         {activeSelectedQuestions[currentQuiz].Answer4 ? 
-                                            <div className={"pixellet py-2 " + (choicesStatus.choice4 ? "text-teal-600 dark:text-teal-500" 
+                                            <div className={"pixellet py-2 " + (choicesStatus[currentQuiz].choice4 ? "text-teal-600 dark:text-teal-500" 
                                                 : "text-indigo-600 dark:text-indigo-500")
                                             }>- ANSWER -</div> : 
-                                                <div className={"pixellet py-2 " + (choicesStatus.choice4 ? "text-rose-600 dark:text-rose-500" 
+                                                <div className={"pixellet py-2 " + (choicesStatus[currentQuiz].choice4 ? "text-rose-600 dark:text-rose-500" 
                                                 : null)
                                             }>- X -</div>}
                                             <div className='text-center'>{activeSelectedQuestions[currentQuiz].Choice4}</div>
                                         </div> : null }
+
+                                    { activeSelectedQuestions[currentQuiz].Choice5 ? 
+                                    <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
+                                        (activeSelectedQuestions[currentQuiz].Answer5 ? (
+                                            choicesStatus[currentQuiz].choice5 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
+                                            choicesStatus[currentQuiz].choice5 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
+                                        {activeSelectedQuestions[currentQuiz].Answer5 ? 
+                                            <div className={"pixellet py-2 " + (choicesStatus[currentQuiz].choice5 ? "text-teal-600 dark:text-teal-500" 
+                                                : "text-indigo-600 dark:text-indigo-500")
+                                            }>- ANSWER -</div> : 
+                                                <div className={"pixellet py-2 " + (choicesStatus[currentQuiz].choice5 ? "text-rose-600 dark:text-rose-500" 
+                                                : null)
+                                            }>- X -</div>}
+                                            <div className='text-center'>{activeSelectedQuestions[currentQuiz].Choice5}</div>
+                                        </div> : null }
+
                                 </div>}
                         </div>
 
                         {/* Action bar */}
-                        <div className='h-20 flex flex-row items-center'>
+                        <div className='h-20 absolute bottom-0 flex flex-row items-center'>
                             <div className="flex flex-row w-full">
                                 <div className="flex flex-col items-center content-center text-center">
                                     <button onClick={() => handleReload()} 
@@ -484,7 +553,7 @@ export default function QuizInterface ({
                                     </div> : (currentQuiz < quizStatus.quizNumber - 1) ? 
                                     <div className="flex flex-col w-full ml-2 items-center content-center text-center">
                                         <button className="text-xl px-4 py-3 mr-2 w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white/70 dark:bg-black/40"
-                                            onClick={() => changeQuestion(1)}>
+                                            onClick={() => handleNextQuestion()}>
                                                 <div className='hidden sm:inline font-bold text-indigo-600 dark:text-indigo-500'>
                                                     <span>Next Question</span>
                                                     <span className="ml-2">→</span>
