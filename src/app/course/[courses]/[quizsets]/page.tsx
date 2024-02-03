@@ -20,6 +20,7 @@ interface QuestionDataStructure {
     Choice2: string, Answer2: boolean, Description2?: string,
     Choice3?: string, Answer3?: boolean, Description3?: string,
     Choice4?: string, Answer4?: boolean, Description4?: string,
+    Choice5?: string, Answer5?: boolean, Description5?: string,
     DetailedAnswerDescription?: string, graded: boolean
 }
 
@@ -64,7 +65,8 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
                 Choice2: questionRow[10], Answer2: (questionRow[11] == "TRUE"), Description2: questionRow[12],
                 Choice3: questionRow[13], Answer3: (questionRow[14] == "TRUE"), Description3: questionRow[15],
                 Choice4: questionRow[16], Answer4: (questionRow[17] == "TRUE"), Description4: questionRow[18],
-                DetailedAnswerDescription: questionRow[19], graded: false
+                Choice5: questionRow[19], Answer5: (questionRow[20] == "TRUE"), Description5: questionRow[21],
+                DetailedAnswerDescription: questionRow[22], graded: false
             }
             questionData.push(tempQuestionData);
 
