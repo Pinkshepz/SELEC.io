@@ -81,6 +81,7 @@ export default function QuizInterface ({
         setPageStatus("MID")
         quizStatus.shuffleQuiz ? setActiveSelectedQuestions(shuffle(activeSelectedQuestions)) : null;
         quizStatus.shuffleQuiz ? setActiveSelectedQuestions(activeSelectedQuestions.slice(0, quizStatus.quizNumber)) : null;
+        console.log(questionData)
     }
 
     // ===== SECTION II: QUIZ PAGE SETTING =====
@@ -341,7 +342,7 @@ export default function QuizInterface ({
                     // =================================
                     <>
                         <div className='-full-screen flex flex-col relative px-4 pb-24 lg:pb-0 bg-white/90 dark:bg-black/85 backdrop-blur-lg'>
-                            {/* Top bar */}
+                            {/* Top bar for large screen */}
                             <div className='h-12 flex flex-row justify-between items-center'>
                                 {/* Question tract */}
                                 <div>
@@ -370,11 +371,14 @@ export default function QuizInterface ({
 
                             {/* Question */}
                             <div className='-question-panel pt-2 pb-4 flex flex-col lg:flex-row justify-center items-center'>
+                                {/* Question Image */}
                                 {activeSelectedQuestions[currentQuiz].QuestionImageUrl ?
                                     <img className='w-full h-[40vh] lg:w-[40%] lg:h-full lg:mr-4 object-cover rounded-2xl bg-white/95 dark:bg-black/80'
                                         src={activeSelectedQuestions[currentQuiz].QuestionImageUrl} alt="" /> : null}
+                                
                                 <div className='flex flex-col h-full w-full justify-between'>
-                                    <div className='flex flex-wrap mb-4 mt-4 lg:mt-0 gap-4'>
+                                    {/* Question stats for large screen*/}
+                                    <div className='hidden lg:flex flex-wrap mb-4 mt-4 lg:mt-0 gap-4'>
                                         <div className='flex items-center w-max px-2 py-1 text-lg font-bold lg:text-lg rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700'>
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
                                                 <path fillRule="evenodd" d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z" clipRule="evenodd" /></svg>
@@ -393,9 +397,11 @@ export default function QuizInterface ({
                                             <span className='ml-2 mr-1'>
                                                 {activeSelectedQuestions[currentQuiz].Topic}</span>
                                         </div>
-                                    </div>
-                                    <div className='py-8 px-2 lg:p-4 lg:mt-0 h-full font-bold text-lg lg:text-xl xl:text-2xl text-left text-center flex justify-center items-center rounded-xl lg:bg-white/70 lg:dark:bg-black/40 lg:border border-gray-300 dark:border-neutral-700'>
-                                        {activeSelectedQuestions[currentQuiz].Question}</div>
+                                    </div> 
+                                    
+                                    {/* Question Text */}
+                                    <div className='py-8 px-2 lg:p-4 lg:mt-0 h-full font-bold text-xl xl:text-2xl text-left text-center flex justify-center items-center rounded-xl lg:bg-white/70 lg:dark:bg-black/40 lg:border border-gray-300 dark:border-neutral-700'>
+                                    {activeSelectedQuestions[currentQuiz].Question}</div>
                                 </div>
                             </div>
 
@@ -442,7 +448,7 @@ export default function QuizInterface ({
 
                                         { activeSelectedQuestions[currentQuiz].Choice5 ? 
                                         <div className={'h-full w-full rounded-xl bg-white/70 dark:bg-black/40'}>
-                                            <button onClick={() => handleChoiceInteract("choice4", activeSelectedQuestions[currentQuiz].Mode)}
+                                            <button onClick={() => handleChoiceInteract("choice5", activeSelectedQuestions[currentQuiz].Mode)}
                                                 className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl ' + 
                                     (choicesStatus[currentQuiz].choice5 ? "border-[3px] text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500" 
                                                     : "border border-gray-300 dark:border-neutral-700")}>
@@ -453,7 +459,7 @@ export default function QuizInterface ({
                                     <div className='flex flex-col lg:flex-row gap-4 h-full'>
 
                                         { activeSelectedQuestions[currentQuiz].Choice1 ? 
-                                        <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col text-center items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
+                                        <div className={'px-2 pb-3 lg:py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col text-center items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
                                             (activeSelectedQuestions[currentQuiz].Answer1 ? (
                                                 choicesStatus[currentQuiz].choice1 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
                                                 choicesStatus[currentQuiz].choice1 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
@@ -468,7 +474,7 @@ export default function QuizInterface ({
                                             </div> : null }
 
                                         { activeSelectedQuestions[currentQuiz].Choice2 ? 
-                                        <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
+                                        <div className={'px-2 pb-3 lg:py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
                                             (activeSelectedQuestions[currentQuiz].Answer2 ? (
                                                 choicesStatus[currentQuiz].choice2 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
                                                 choicesStatus[currentQuiz].choice2 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
@@ -483,7 +489,7 @@ export default function QuizInterface ({
                                             </div> : null }
 
                                         { activeSelectedQuestions[currentQuiz].Choice3 ? 
-                                        <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
+                                        <div className={'px-2 pb-3 lg:py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
                                             (activeSelectedQuestions[currentQuiz].Answer3 ? (
                                                 choicesStatus[currentQuiz].choice3 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
                                                 choicesStatus[currentQuiz].choice3 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
@@ -498,7 +504,7 @@ export default function QuizInterface ({
                                             </div> : null }
 
                                         { activeSelectedQuestions[currentQuiz].Choice4 ? 
-                                        <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
+                                        <div className={'px-2 pb-3 lg:py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
                                             (activeSelectedQuestions[currentQuiz].Answer4 ? (
                                                 choicesStatus[currentQuiz].choice4 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
                                                 choicesStatus[currentQuiz].choice4 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
@@ -513,7 +519,7 @@ export default function QuizInterface ({
                                             </div> : null }
 
                                         { activeSelectedQuestions[currentQuiz].Choice5 ? 
-                                        <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
+                                        <div className={'px-2 pb-3 lg:py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/70 dark:bg-black/40 border ' + 
                                             (activeSelectedQuestions[currentQuiz].Answer5 ? (
                                                 choicesStatus[currentQuiz].choice5 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
                                                 choicesStatus[currentQuiz].choice5 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/10 dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
@@ -529,6 +535,29 @@ export default function QuizInterface ({
 
                                     </div>}
                             </div>
+
+                            {/* Question stats for small screen*/}
+                            <div className='flex lg:hidden flex-wrap mb-4 mt-4 lg:mt-0 gap-4'>
+                                <div className='flex items-center w-max px-2 py-1 text-lg font-bold lg:text-lg rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                        <path fillRule="evenodd" d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z" clipRule="evenodd" /></svg>
+                                    <span className='ml-2 mr-1'>
+                                        {activeSelectedQuestions[currentQuiz].Mode}</span>
+                                </div>
+                                <div className='flex items-center w-max px-2 py-1 text-lg font-bold lg:text-lg rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
+                                    <span className='ml-2 mr-1'>
+                                        {activeSelectedQuestions[currentQuiz].Level}</span>
+                                </div>
+                                <div className='flex items-center w-max px-2 py-1 text-lg font-bold lg:text-lg rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
+                                    <span className='ml-2 mr-1'>
+                                        {activeSelectedQuestions[currentQuiz].Topic}</span>
+                                </div>
+                            </div> 
+                            
                         </div>
 
                         {/* Action bar */}

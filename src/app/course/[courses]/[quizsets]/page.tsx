@@ -31,7 +31,7 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
     const questionDataRaw: Array<Array<string>> | null | undefined = await getGoogleSheetProps({ 
         ref: "cardsets",
         sheetName: params.quizsets,
-        rangeName: 'A2:S'
+        rangeName: 'A2:W'
     }!)
 
     // If no header, return not found
@@ -82,6 +82,8 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
             console.log("MINOR ERROR: Question data entry error");
         }
     }
+
+    console.log(questionData)
 
     return (
         <div>
