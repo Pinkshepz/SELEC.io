@@ -29,7 +29,7 @@ export default function RootLayout({
     <React.StrictMode>
       <html lang="en">
         <body>
-          <main className='mt-16'>
+          <main>
             {children}
           </main>
           <GlobalNavigator />

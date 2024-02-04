@@ -1,7 +1,6 @@
 import LinksetDisplay from './linksetDisplay';
 import CardsetDisplay from './cardsetDisplay';
 import NotFound from '../../components/not_found';
-import Footer from '../../components/footer';
 import { getGoogleSheetProps } from '../../utils/ggsheet';
 
 // Dynamic routing <courses>
@@ -65,8 +64,7 @@ export default async function Course({ params }: { params: {courses: string} }) 
   
     return (
       <div className="flex min-h-screen flex-col">
-        <img className='-bg-fixed' src={courseStructure['header'][0][4]} alt=''></img>
-        <div className='mt-[25vh] bg-white/90 dark:bg-black/85 backdrop-blur-md'>
+        <div className='mt-16 bg-white/90 dark:bg-black/85 backdrop-blur-md'>
           <div className="px-4 mb-8 z-0">
             <h1 className='text-3xl mt-8 mb-3'>
               {courseStructure['header'][0][5]}
@@ -82,7 +80,6 @@ export default async function Course({ params }: { params: {courses: string} }) 
             <div className="mt-2">
               {elementCardsetDisplay}
             </div>
-            <Footer />
           </div>
         </div>
       </div>

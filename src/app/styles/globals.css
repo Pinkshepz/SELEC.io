@@ -103,7 +103,7 @@ hr {
   position: fixed;
   object-fit: cover;
   width: 100%;
-  height: calc(100% - 64px);
+  height: 100%;
   z-index: -100;
 }
 
@@ -166,7 +166,7 @@ hr {
 }
 
 .-section-1 {
-  height: calc(100vh - 64px);
+  height: calc(100vh);
 }
 
 .-terra {

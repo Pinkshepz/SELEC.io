@@ -3,10 +3,10 @@ import Terra from "./terra";
 export default function Hero ({ props }: any) {
     return (
         <>
-            <div className="pixellet text-6xl sm:text-8xl lg:text-[9rem] mt-[33vh] lg:mt-[25vh] mb-4 sm:mb-6 md:mb-8 lg:mb-12">
+            <div className="pixellet text-6xl sm:text-8xl md:text-9xl lg:text-[9rem] mt-[43vh] sm:mt-[40vh] md:mt-[37vh] lg:mt-[33vh] mb-4 sm:mb-6 md:mb-8 lg:mb-12">
                 {props.name}
             </div>
-            <div className="text-lg sm:text-xl md:text-2xl lg:text-4xl mt-4 mb-16 sm:mb-24 md:mb-32 lg:mb-48">
+            <div className="text-lg sm:text-2xl md:text-3xl lg:text-4xl mt-4 mb-16 sm:mb-24 md:mb-32 lg:mb-48">
                 {props.description}
             </div>
             <div className="-hero-effect border-b border-slate-800/10 dark:border-slate-50/40">
