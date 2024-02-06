@@ -9,22 +9,15 @@ export default async function CardsetDisplay({
 
   // Map cardset data into objects
   // Store elements level 1
-  let cardsetObjectsH1: Array<React.ReactNode> = [];
+  let cardsetCollection: Array<React.ReactNode> = [];
 
   // Start from topic
   for (let index = 0; index < Object.keys(cardsetData).length; index++) {
     const topic = Object.keys(cardsetData)[index];
-    // Topic header
-    cardsetObjectsH1.push(
-      <h2 className='my-4' key={`heading${topic}`}>{topic}</h2>
-    );
-
-    // Store elements level 2
-    let cardsetObjectsH2: Array<React.ReactNode> = [];
 
     // Map cardsetData into each card
     cardsetData[topic]?.map((cardsetData) => {
-        cardsetObjectsH2.push(
+        cardsetCollection.push(
             <Link 
                 href={{
                     pathname: "/course/[courses]/[quizsets]",
@@ -45,13 +38,11 @@ export default async function CardsetDisplay({
             </Link>
         );
     });
+  };
 
-    cardsetObjectsH1.push(
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4" key={`group${topic}`}>
-        {cardsetObjectsH2}
-      </div>
-    );
-  }
-
-  return cardsetObjectsH1;
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1">
+      {cardsetCollection}
+    </div>
+  );
 }

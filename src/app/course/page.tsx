@@ -15,10 +15,8 @@ export default async function HomePage() {
         </section>
 
         {/* Section 2: Display */}
-        <section className="flex flex-col mx-4">
-            <div className="flex flex-col mt-4">
-                {elementCourseDisplay}
-            </div>
+        <section className="flex flex-col items-center mx-4">
+            {elementCourseDisplay}
         </section>
       </div>
     );
