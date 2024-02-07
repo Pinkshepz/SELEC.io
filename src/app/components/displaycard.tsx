@@ -14,9 +14,9 @@ export default function DisplayCard ({
     cardDescription: string;
 }) {
     return (
-        <div className="-card-hover">
+        <div className="-card-hover md:p-[1px]">
             <img src={cardImageLink} alt="image" className="object-cover h-[25vw] lg:h-[20vw]" height={840} width={840} />
-            <div>
+            <div className="pl-2 md:pl-0">
                 <h4 className="mt-2 text-md font-[600]">{cardTitle}</h4>
                 <p className="mt-1 mb-3 text-xs font-light">{cardDescription}</p>
                 <div className="flex flex-row text-xs">

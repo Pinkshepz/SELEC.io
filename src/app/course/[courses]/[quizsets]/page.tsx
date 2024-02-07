@@ -83,8 +83,6 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
         }
     }
 
-    console.log(questionData)
-
     return (
         <div>
             <div className="flex flex-col overflow-hidden">

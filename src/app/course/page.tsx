@@ -1,4 +1,5 @@
 import CourseDisplay from "./coursedisplay"
+import Footer from "../components/footer";
 
 export default async function HomePage() {
     const elementCourseDisplay = await CourseDisplay({searchKey: ''});
@@ -15,9 +16,10 @@ export default async function HomePage() {
         </section>
 
         {/* Section 2: Display */}
-        <section className="flex flex-col items-center mx-4">
+        <section className="flex flex-col items-center md:mx-2">
             {elementCourseDisplay}
         </section>
+        <Footer />
       </div>
     );
 }

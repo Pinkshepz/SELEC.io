@@ -38,12 +38,12 @@ async function getServerSideProps({
         const data = response.data.values;
         
         // Show data status
-        console.log(`-----GGSHEETAPI 200 - OK AT ${ref}-----`);
+        // console.log(`-----API 200 - OK AT ${ref}-----`);
         return data;
 
     } catch (error) {
         // If sheet doesn't exist, show status
-        console.log(`-----GGSHEETAPI 404 - NOT FOUND AT ${ref}-----`);
+        // console.log(`-----API 404 - NOT FOUND AT ${ref}-----`);
         return undefined;
     }
 }

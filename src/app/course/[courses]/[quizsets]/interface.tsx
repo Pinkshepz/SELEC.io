@@ -188,7 +188,7 @@ export default function QuizInterface ({
                     // ===== SECTION I: START PAGE ======
                     // ==================================
                     pageStatus == "START" ?
-                    <div className='relative px-4 mt-[33vh] bg-white/90 dark:bg-zinc-900/70 backdrop-blur-md'>
+                    <div className='relative px-4 mt-[28vh] lg:mt-[33vh] bg-white/90 dark:bg-zinc-900/70 backdrop-blur-md'>
             
                         {/* Start page content */}
                         <div className="relative mb-8">
@@ -472,40 +472,40 @@ export default function QuizInterface ({
                                         { activeSelectedQuestions[currentQuiz].Choice1 ? 
                                         <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col text-center items-center justify-center rounded-xl bg-white/50 dark:bg-zinc-900/70 border ' + 
                                             (activeSelectedQuestions[currentQuiz].Answer1 ? (
-                                                choicesStatus[currentQuiz].choice1 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/[0.1] dark:bg-teal-500/[0.1]" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
-                                                choicesStatus[currentQuiz].choice1 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/[0.1] dark:bg-rose-500/[0.1]" : "border-gray-300 dark:border-neutral-700")}>
+                                                choicesStatus[currentQuiz].choice1 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/[0.1] dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
+                                                choicesStatus[currentQuiz].choice1 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/[0.1] dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
                                                 <div className='text-center'>{activeSelectedQuestions[currentQuiz].Choice1}</div>
                                             </div> : null }
 
                                         { activeSelectedQuestions[currentQuiz].Choice2 ? 
                                         <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/50 dark:bg-zinc-900/70 border ' + 
                                             (activeSelectedQuestions[currentQuiz].Answer2 ? (
-                                                choicesStatus[currentQuiz].choice2 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/[0.1] dark:bg-teal-500/[0.1]" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
-                                                choicesStatus[currentQuiz].choice2 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/[0.1] dark:bg-rose-500/[0.1]" : "border-gray-300 dark:border-neutral-700")}>
+                                                choicesStatus[currentQuiz].choice2 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/[0.1] dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
+                                                choicesStatus[currentQuiz].choice2 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/[0.1] dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
                                                 <div className='text-center'>{activeSelectedQuestions[currentQuiz].Choice2}</div>
                                             </div> : null }
 
                                         { activeSelectedQuestions[currentQuiz].Choice3 ? 
                                         <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/50 dark:bg-zinc-900/70 border ' + 
                                             (activeSelectedQuestions[currentQuiz].Answer3 ? (
-                                                choicesStatus[currentQuiz].choice3 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/[0.1] dark:bg-teal-500/[0.1]" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
-                                                choicesStatus[currentQuiz].choice3 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/[0.1] dark:bg-rose-500/[0.1]" : "border-gray-300 dark:border-neutral-700")}>
+                                                choicesStatus[currentQuiz].choice3 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/[0.1] dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
+                                                choicesStatus[currentQuiz].choice3 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/[0.1] dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
                                                 <div className='text-center'>{activeSelectedQuestions[currentQuiz].Choice3}</div>
                                             </div> : null }
 
                                         { activeSelectedQuestions[currentQuiz].Choice4 ? 
                                         <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/50 dark:bg-zinc-900/70 border ' + 
                                             (activeSelectedQuestions[currentQuiz].Answer4 ? (
-                                                choicesStatus[currentQuiz].choice4 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/[0.1] dark:bg-teal-500/[0.1]" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
-                                                choicesStatus[currentQuiz].choice4 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/[0.1] dark:bg-rose-500/[0.1]" : "border-gray-300 dark:border-neutral-700")}>
+                                                choicesStatus[currentQuiz].choice4 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/[0.1] dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
+                                                choicesStatus[currentQuiz].choice4 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/[0.1] dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
                                                 <div className='text-center'>{activeSelectedQuestions[currentQuiz].Choice4}</div>
                                             </div> : null }
 
                                         { activeSelectedQuestions[currentQuiz].Choice5 ? 
                                         <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col items-center justify-center rounded-xl bg-white/50 dark:bg-zinc-900/70 border ' + 
                                             (activeSelectedQuestions[currentQuiz].Answer5 ? (
-                                                choicesStatus[currentQuiz].choice5 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/[0.1] dark:bg-teal-500/[0.1]" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
-                                                choicesStatus[currentQuiz].choice5 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/[0.1] dark:bg-rose-500/[0.1]" : "border-gray-300 dark:border-neutral-700")}>
+                                                choicesStatus[currentQuiz].choice5 ? "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/[0.1] dark:bg-teal-500/10" : "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500") :
+                                                choicesStatus[currentQuiz].choice5 ? "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/[0.1] dark:bg-rose-500/10" : "border-gray-300 dark:border-neutral-700")}>
                                                 <div className='text-center'>{activeSelectedQuestions[currentQuiz].Choice5}</div>
                                             </div> : null }
 

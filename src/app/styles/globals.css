@@ -235,7 +235,7 @@ hr {
 }
 
 .-card-hover {
-  padding: 4px;
+  margin-bottom: 12px;
   cursor: pointer;
   display: flex;
   flex-direction: column;

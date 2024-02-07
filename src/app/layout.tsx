@@ -24,7 +24,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  console.log("-----INITIATE APP-----")
   return (
     <React.StrictMode>
       <html lang="en">
