@@ -1,88 +1,68 @@
-import LinksetDisplay from './linksetDisplay';
 import CardsetDisplay from './cardsetDisplay';
 import NotFound from '../../components/not_found';
 import { getGoogleSheetProps } from '../../utils/ggsheet';
+import Footer from '@/app/components/footer';
 
 // Dynamic routing <courses>
 export default async function Course({ params }: { params: {courses: string} }) {
   // Get data from GG Sheet api
-  const cardsetDisplayData: any = await getGoogleSheetProps({
+  const courseDataRaw: any = await getGoogleSheetProps({
     ref: '[courses]',
-    sheetName: "CARDSET",
-    rangeName: "A2:G"
+    sheetName: "COURSE",
+    rangeName: "A1:F"
   });
 
-  // Data structure for this page
-  const courseStructure: {
-    header: Array<Array<string>>;
-    link: Array<Array<string>>;
-    card: {[key: string]: Array<Array<string>>};
-  } = {
-    header: [],
-    link: [],
-    card: {},
+  const courseData = courseDataRaw[params.courses];
+
+  const cardsetDisplayDataRaw: any = await getGoogleSheetProps({
+    ref: '[courses]/cardset',
+    sheetName: "CARDSET",
+    rangeName: "A1:G"
+  });
+
+  let cardsetDisplayData: Array<{[key: string]: any}> = [];
+
+  const cardsetKeys = Object.keys(cardsetDisplayDataRaw);
+  
+  for (let index = 0; index < cardsetKeys.length; index++) {
+    const _cardsetId = cardsetKeys[index];
+    if (_cardsetId.split("-")[0] == params.courses) {
+      cardsetDisplayData.push(cardsetDisplayDataRaw[cardsetKeys[index]]);
+    }
   }
 
   // Sort header & link, and sort cardsets by its topics
-  try {
-    for (let index = 0; index < cardsetDisplayData!.length; index++) {
-      // Choose each element of array
-      const element = cardsetDisplayData![index];
-      
-      // Filter if card's course is corresponse to params.courses
-      if (element[0] == params.courses) {
-        // Check for element type: display data or card data
-        switch (element[1]) {
-          // Filter header
-          case 'HEADER':
-            courseStructure['header'].push(element);
-            break;
-            // Filter link
-          case 'LINK':
-            courseStructure['link'].push(element);
-            break;
-            // Others = card data
-          default:
-            // Sort cardsetDisplayData by its topics
-            if (courseStructure['card'][element[2]] == undefined) {
-              courseStructure['card'][element[2]] = [element];
-            } else {
-              courseStructure['card'][element[2]].push(element);
-            }
-            break;
-        }
-      }
-    }
-     
-    // Get linksetDisplay & cardsetDisplay elements
-    const elementLinksetDisplay = await LinksetDisplay({
-      linksetData: courseStructure.link
-    });
+  try {     
+    // Get cardsetDisplay elements
     const elementCardsetDisplay = await CardsetDisplay({
-      cardsetData: courseStructure.card
+      cardsetData: cardsetDisplayData
     });
   
     return (
       <div className="flex min-h-screen flex-col">
-        <img src={courseStructure['header'][0][4]} alt="image" className="object-cover h-[28vh] w-[100vw]" height={840} width={840} />
+        <img src={courseData.ImageLink} alt="image" className="object-cover h-[28vh] w-[100vw]" height={840} width={840} />
         <div className='bg-white dark:bg-black'>
           <div className="px-4 mb-8 z-0">
             <h1 className='text-3xl mt-8 mb-3'>
-              {courseStructure['header'][0][5]}
+              {courseData.Title}
             </h1>
-            <p className="mb-8">
-              {courseStructure['header'][0][6]}
+            <p className="mb-4">
+              {courseData.Description}
             </p>
-            <div className="flex flex-wrap">
-              {elementLinksetDisplay}
+            <div>
+              <span className="-text-line mr-2 after:bg-black dark:after:bg-white">
+                  {courseData.Group}
+              </span>
+              <span className="-text-line mr-2 after:bg-black dark:after:bg-white">
+                  {"BLOCK " + courseData.Block}
+              </span>
             </div>
           </div>
-          <div className="px-4">
-            <div className="mt-2">
+          <div className="px-4 my-4">
               {elementCardsetDisplay}
-            </div>
           </div>
         </div>
+        <Footer />
       </div>
     )
   } catch (error) {

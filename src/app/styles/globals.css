@@ -235,20 +235,24 @@ hr {
 }
 
 .-card-hover {
+  position: relative;
+  margin: 4px;
   margin-bottom: 12px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   transition: all ease-in-out 300ms;
+  overflow: hidden;
 }
 
 .-card-hover > img {
+  position: relative;
   transition: all ease-in-out 300ms;
+  object-fit: cover;
 }
 
 .-card-hover:hover > img {
   transform: scale(1.02);
-  margin-bottom: 2px;
   transition: all ease-in-out 300ms;
 }
 

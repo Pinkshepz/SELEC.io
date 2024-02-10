@@ -3,79 +3,79 @@ import DisplayCard from '../components/displaycard';
 import { getGoogleSheetProps } from '../utils/ggsheet';
 
 export default async function CourseDisplay({
-    searchKey
+    searchKey // For future serch bar feature
 }: {
     searchKey: string
 }) {
   // Get data from GG Sheet api
-  const courseDisplayData: any = await getGoogleSheetProps({
-    ref: 'homepage',
+  const courseDisplayDataRaw = await getGoogleSheetProps({
+    ref: 'course',
     sheetName: "COURSE",
-    rangeName: "A2:F"
+    rangeName: "A1:F"
   });
 
-  // Data structure for this page
-  const courseDisplayStructure: {
-    card: {[key: string]: Array<Array<string>>};
-  } = {
-    card: {},
-  }
+  const courseDisplayData = Object.values(courseDisplayDataRaw!);
 
-  // Sort header & link, and sort cardsets by its topics
+  // Data structure for this page
+  const courseDisplayDataStructure: {[key: string]: Array<{[key: string]: any}>} = {};
+
+  // Sort cardsets by its topic group
   for (let index = 0; index < courseDisplayData!.length; index++) {
-    const element = courseDisplayData![index];
+    // Each course data
+    const element: {[key: string]: any} = courseDisplayData![index];
     // Sort courseDisplayData cards by its topics
-    if (courseDisplayStructure['card'][element[1]] == undefined) {
-        courseDisplayStructure['card'][element[1]] = [element];
+    if (courseDisplayDataStructure[element["Group"]] == undefined) {
+        courseDisplayDataStructure[element["Group"]] = [element];
     } else {
-        courseDisplayStructure['card'][element[1]].push(element);
+        courseDisplayDataStructure[element["Group"]].push(element);
     }
   }
 
   // Map cardset data into objects
-  // Store elements level 1
-  let cardsetObjectsH1: Array<React.ReactNode> = [];
+  // Store all courses
+  let courseDisplayAllTopicGroups: Array<React.ReactNode> = [];
 
   // Start from topic
-  for (let index = 0; index < Object.keys(courseDisplayStructure['card']).length; index++) {
-    const topic = Object.keys(courseDisplayStructure['card'])[index];
+  for (let index = 0; index < Object.keys(courseDisplayDataStructure).length; index++) {
+    const topic = Object.keys(courseDisplayDataStructure)[index];
     // Topic header
-    cardsetObjectsH1.push(
+    courseDisplayAllTopicGroups.push(
       <h2 className="my-8" key={`heading ${topic}`}>{topic}</h2>
     );
 
-    // Store elements level 2
-    let cardsetObjectsH2: Array<React.ReactNode> = [];
+    // Store course with a particular topic group
+    let courseDisplaySingleTopicGroup: Array<React.ReactNode> = [];
 
     // Map courseData into each card
-    courseDisplayStructure['card'][topic]?.map((courseData) => {
-        cardsetObjectsH2.push(
+    courseDisplayDataStructure[topic]?.map((courseData) => {
+        courseDisplaySingleTopicGroup.push(
             <Link 
                 href={{
                     pathname: "./course/[courses]",
-                    query: { courses: courseData[0] }
+                    query: { courses: courseData["ID"] }
                 }}
-                as={`course/${courseData[0]}`}
-                key={courseData[0]}
+                as={`course/${courseData["ID"]}`}
+                key={courseData["ID"]}
             >
                 <DisplayCard 
-                    cardId={courseData[0]}
-                    cardGroup={courseData[1]}
-                    cardCategory={courseData[2] + " credit"}
-                    cardImageLink={courseData[3]}
-                    cardTitle={courseData[4]}
-                    cardDescription={courseData[5]}
-                    key={courseData[0]}/>
+                    cardId={courseData["ID"]}
+                    cardGroup={topic}
+                    cardCategory={"BLOCK " + courseData["Block"]}
+                    cardImageLink={courseData["ImageLink"]}
+                    cardTitle={courseData["Title"]}
+                    cardDescription={courseData["Description"]}
+                    key={courseData["ID"]}/>
             </Link>
         );
     });
 
-    cardsetObjectsH1.push(
+    // Display grid full screen
+    courseDisplayAllTopicGroups.push(
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1" key={`group${topic}`}>
-        {cardsetObjectsH2}
+        {courseDisplaySingleTopicGroup}
       </div>
     );
   }
 
-  return cardsetObjectsH1;
+  return courseDisplayAllTopicGroups;
 }
