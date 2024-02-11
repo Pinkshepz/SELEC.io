@@ -17,14 +17,24 @@ export default function Terra () {
         window.addEventListener("mousemove", setCoordinate);
     }, [setCoordinate]);
 
-    const setScreenSize = (e: MouseEvent) => {
-        setScreenWidth(window.innerWidth);
-        setScreenHeight(window.innerHeight);
+    const setScreenSize = () => {
+        if (window.innerWidth < 768) {
+            setScreenWidth(window.innerWidth);
+            setScreenHeight(384);
+        } else {
+            setScreenWidth(window.innerWidth);
+            setScreenHeight(window.innerHeight);
+        }
     };
 
     useEffect(() => {
-        setScreenHeight(window.innerHeight * 0.75);
-        setScreenWidth(window.innerWidth);
+        if (window.innerWidth < 768) {
+            setScreenWidth(window.innerWidth);
+            setScreenHeight(384);
+        } else {
+            setScreenWidth(window.innerWidth);
+            setScreenHeight(window.innerHeight);
+        }
     }, [setScreenSize]);
 
     const x = cursorPos.x;

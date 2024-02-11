@@ -17,8 +17,6 @@ export default function GlobalNavigator () {
       <div className='flex flex-row items-center justify-center gap-4'>
         <Link href={'/course'} className="-button-line relative text-md after:bg-slate-700 dark:after:bg-slate-200">
           Courses</Link>
-        <Link href={'../'} className="-button-line relative text-md after:bg-slate-700 dark:after:bg-slate-200">
-          Library</Link>
       </div>
     </nav>
   )

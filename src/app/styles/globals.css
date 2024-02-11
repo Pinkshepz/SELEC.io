@@ -77,33 +77,28 @@ hr {
   border-width: 1px;
 }
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
 @media screen and (min-width: 1024px) {
-  .-full-screen {
-    position: relative;
-    height: calc(100vh - 64px);
-  }
   .-question-panel {
     height: calc(50% - 32px);
   }
   .-choice-panel {
-    height: calc(50% - 96px);
+    height: calc(50% - 32px);
   }
 }
 
 @media screen and (min-width: 0px) and (max-width: 1024px) {
-  .-full-screen {
-    position: relative;
-    min-height: calc(100vh - 64px);
-    height: max-content;
-  }
   .-question-panel {
     height: calc(50% - 32px);
   }
-  .-choice-panel {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-  }
+}
+
+.-quiz-height-control {
+  min-height: calc(100vh - 80px);
 }
 
 .-bg-fixed {
@@ -173,10 +168,6 @@ hr {
   transform: translateX(-50%);
 }
 
-.-section-1 {
-  height: calc(100vh);
-}
-
 .-terra {
   position: relative;
   height: 100%;
@@ -194,7 +185,6 @@ hr {
   position: relative;
   top: 0;
   left: 0;
-  height: 100vh;
   z-index: -1;
 }
 
@@ -202,7 +192,6 @@ hr {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
   width: 100%;
   z-index: -2;
   overflow: hidden;
@@ -236,8 +225,7 @@ hr {
 
 .-card-hover {
   position: relative;
-  margin: 4px;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   cursor: pointer;
   display: flex;
   flex-direction: column;

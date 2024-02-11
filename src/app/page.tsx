@@ -22,7 +22,7 @@ export default async function HomePage() {
     
             {/* Section 1: Hero */}
     
-            <section className="-section-1 flex flex-col items-center justify-start">
+            <section className="sm:h-[100vh] flex flex-col items-center justify-start">
                 <Hero homeData={homeData} />
             </section>
     

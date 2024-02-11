@@ -40,23 +40,25 @@ export default function CourseDisplay({
 
   // Store all elements
   let courseDisplayAllElements: Array<React.ReactNode> = [
-    <><section className="relative h-[50vh] md:h-[50vw] flex flex-col items-center justify-center overflow-hidden">
+    <><section className="relative h-96 md:h-[50vw] flex flex-col items-center justify-center overflow-hidden">
       <img src="https://4kwallpapers.com/images/wallpapers/star-trails-night-sky-waterfront-reflection-astronomy-outer-7680x4320-6378.jpg" alt=""
         className="absolute z-[-10] h-full w-full object-cover" />
       <div className="absolute top-0 h-full w-full bg-black/25"></div>
       <div className="absolute bottom-0 h-[15vh] w-full dark:bg-gradient-to-t dark:from-black"></div>
         <div className="flex flex-row items-center justify-center relative w-full">
-            <span className="pixellet text-white text-[12vw]">Courses</span>
+            <span className="pixellet text-white text-[16vw] md:text-[12vw]">Courses</span>
         </div>
-        <div className="z-0 md:max-w-[35vw] p-0.5 mt-8 md:mt-12 items-center justify-center flex flex-row text-lg md:text-xl">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 mx-2 text-neutral-300">
-            <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-          </svg>
+        <div className="z-0 p-0.5 mt-8 md:mt-12 items-center justify-center flex flex-row text-lg md:text-xl  border rounded-xl">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 mx-2 text-neutral-300">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+          </span>
           <input
             type="text" 
             placeholder="Search courses"
             onChange={e => setSearchKey(e.target.value)}
-            className="text-neutral-300 max-w-full"/>
+            className="text-neutral-300 w-40 focus:w-[50vw] transition-all ease-in-out duration-500"/>
         </div>
     </section>
 

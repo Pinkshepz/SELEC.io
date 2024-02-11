@@ -90,7 +90,7 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
     
     return (
         <div>
-            <div className="flex flex-col overflow-hidden">
+            <div className="relative min-h-max flex flex-col">
                 <img className='-bg-fixed' src={headerData.ImageLink} alt=''></img>
                 <QuizInterface 
                     quizsets={params.quizsets}

@@ -40,7 +40,7 @@ export default async function Course({ params }: { params: {courses: string} }) 
   
     return (
       <div className="flex min-h-screen flex-col">
-        <img src={courseData.ImageLink} alt="image" className="object-cover h-[36vh] w-[100vw]" height={840} width={840} />
+        <img src={courseData.ImageLink} alt="image" className="object-cover h-[24vh] md:h-[36vh] w-[100vw]" height={840} width={840} />
         <div className='bg-white dark:bg-black'>
           <div className="px-4 mb-8 z-0">
             <h1 className='text-3xl mt-8 mb-3'>
@@ -58,7 +58,7 @@ export default async function Course({ params }: { params: {courses: string} }) 
               </span>
             </div>
           </div>
-          <div className="px-4 my-4">
+          <div>
               {elementCardsetDisplay}
           </div>
         </div>
