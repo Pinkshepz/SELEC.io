@@ -10,7 +10,7 @@ export default function Hero ({ homeData }: any) {
                 {homeData.Description}
             </div>
             <div className="-hero-effect border-b border-slate-800/10 dark:border-slate-50/40">
-                <div className="-hero-effect-top relative bg-slate-50/[90%] dark:bg-black/[85%] backdrop-blur-[108px]">
+                <div className="-hero-effect-top relative bg-slate-50/[80%] dark:bg-black/[80%] backdrop-blur-[128px]">
                     <Terra />
                 </div>
                 <div className="-hero-effect-backdrop">

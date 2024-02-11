@@ -1,11 +1,10 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 import './slider.css'
 import { shuffle } from '@/app/utils/gadgetfx';
-import { act } from 'react-dom/test-utils';
 
 export default function QuizInterface ({ 
     quizsets,
