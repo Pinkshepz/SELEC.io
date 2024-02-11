@@ -1,3 +1,5 @@
+import { type } from "os";
+
 // Shuffle items in array
 export function shuffle(array: Array<any>) {
     let currentIndex = array.length, randomIndex;
@@ -33,4 +35,25 @@ export function arrayOfArrayToObject(arrayOfArray: Array<Array<any>>) {
     }
 
     return object;
+}
+
+export function arrayToChips(text: any) {
+    if (typeof text === "string") {
+        if ((text[0] == "[") && (text[text.length - 1] == "]")) {
+            const parsed_text = text.slice(1, -1).split(", ");
+            let chips: Array<React.ReactNode> = []
+            parsed_text.map((_text) => {
+                chips.push(
+                    <div className="my-3 px-2 rounded-xl border-2 border-indigo-600/70 dark:border-indigo-500/70 bg-indigo-600/10 dark:bg-indigo-500/10" key={_text}>
+                        {_text}
+                    </div>
+                )
+            })
+            return chips;
+        } else {
+            return text;
+        }
+    } else {
+        return text;
+    }
 }

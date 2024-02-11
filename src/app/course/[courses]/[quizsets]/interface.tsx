@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 import './slider.css'
-import { shuffle } from '@/app/utils/gadgetfx';
+import { shuffle, arrayToChips } from '@/app/utils/gadgetfx';
 
 export default function QuizInterface ({ 
     quizsets,
@@ -59,7 +59,6 @@ export default function QuizInterface ({
         setPageStatus("MID")
         quizStatus.shuffleQuiz ? setActiveSelectedQuestions(shuffle(activeSelectedQuestions)) : null;
         quizStatus.shuffleQuiz ? setActiveSelectedQuestions(activeSelectedQuestions.slice(0, quizStatus.quizNumber)) : null;
-        console.log(questionData)
     }
 
     // ===== SECTION II: QUIZ PAGE SETTING =====
@@ -163,7 +162,6 @@ export default function QuizInterface ({
 
     const gradeAllQuestions = () => {
         for (let index = 0; index < Object.keys(activeSelectedQuestions[currentQuiz].choices).length; index++) {
-            console.log(index)
             setActiveSelectedQuestions((prev) => ([
                 ...prev.slice(0, currentQuiz),
                 {
@@ -203,15 +201,15 @@ export default function QuizInterface ({
                         className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl ' + 
                             (_choice["selected"] ? "border text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500 bg-indigo-600/10 dark:bg-indigo-500/10" 
                                 : "border border-gray-300 dark:border-neutral-700")}>
-                        {_choice["choice"]}
+                        {arrayToChips(_choice["choice"])}
                     </button>
                 </div>
             );
         } else {
             ChoiceObject.push(
-                <div className={'h-full w-full rounded-xl'} key={index}>
+                <div className={'_graded h-full w-full rounded-xl'} key={index}>
                     <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col text-center items-center justify-center rounded-xl border ' + 
-                        (_choice["answer"] ? (
+                        ((_choice["answer"] || (activeSelectedQuestions[currentQuiz].Mode == "Flashcard")) ? (
                             // Answer is True
                             _choice["selected"] ? 
                                 // selected is True and choosed -> CORRECT
@@ -225,8 +223,8 @@ export default function QuizInterface ({
                                 // Answer is False and unchoosed -> CORRECT
                                 "border-gray-300 dark:border-neutral-700 bg-white/50 dark:bg-zinc-900/70"))}>
                         <div className='text-center'>{
-                            _choice["backText"] || 
-                            _choice["choice"]
+                            arrayToChips(_choice["backText"]) || 
+                            arrayToChips(_choice["choice"])
                         }</div>
                     </div>
                 </div>
