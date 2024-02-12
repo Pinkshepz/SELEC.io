@@ -4,7 +4,7 @@ import QuizInterface from './interface';
 
 // CONSTANT VARIABLE
 const CARDSET_RANGE = "A1:G";
-const QUIZSET_RANGE = "A1:W";
+const QUIZSET_RANGE = "A1:AE";
 const CHOICE_SCOPE = ["Choice1", "Choice2", "Choice3", "Choice4", "Choice5"];
 
 // Dynamic routing <cardsets>
@@ -51,9 +51,10 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
         try {
             for (let j = 0; j < CHOICE_SCOPE.length; j++) {
                 const _choice = CHOICE_SCOPE[j];
-                questionRow[_choice] ? 
+                (questionRow[_choice] || (questionRow["ChoiceImageUrl" + (j + 1)])) ? 
                     _choice_structure[j] = {
                         choice: questionRow[_choice],
+                        choiceImageUrl: questionRow["ChoiceImageUrl" + (j + 1)],
                         answer: questionRow["Answer" + (j + 1)] === "TRUE",
                         backText: questionRow["BackText" + (j + 1)],
                         description: questionRow["Description" + (j + 1)],
@@ -63,6 +64,7 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
 
                 // Delete old choice data
                 delete questionData[questionDataId[i]][_choice];
+                delete questionData[questionDataId[i]]["ChoiceImageUrl" + (j + 1)];
                 delete questionData[questionDataId[i]]["Answer" + (j + 1)];
                 delete questionData[questionDataId[i]]["BackText" + (j + 1)];
                 delete questionData[questionDataId[i]]["Description" + (j + 1)];
@@ -90,7 +92,7 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
     
     return (
         <div>
-            <div className="relative min-h-max flex flex-col">
+            <div className="relative min-h-[100vh] flex flex-col">
                 <img className='-bg-fixed' src={headerData.ImageLink} alt=''></img>
                 <QuizInterface 
                     quizsets={params.quizsets}

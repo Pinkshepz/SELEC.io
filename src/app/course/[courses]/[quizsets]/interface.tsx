@@ -111,17 +111,6 @@ export default function QuizInterface ({
                         ...prev.slice(currentQuiz + 1, quizStatus.quizNumber)
                     ]));
                 }
-                console.log(choice_index)
-                console.log({
-                    ...activeSelectedQuestions[currentQuiz],
-                    choices: {
-                        ...activeSelectedQuestions[currentQuiz].choices,
-                            [choice_index]: {
-                                ...activeSelectedQuestions[currentQuiz].choices[choice_index],
-                                selected: !activeSelectedQuestions[currentQuiz].choices[choice_index].selected
-                            }
-                    }
-                })
                 setActiveSelectedQuestions((prev) => ([
                     ...prev.slice(0, currentQuiz),
                     {
@@ -193,39 +182,54 @@ export default function QuizInterface ({
     // Render each choice into html object
     for (let index = 0; index < Object.keys(activeSelectedQuestions[currentQuiz].choices).length; index++) {
         const _choice = activeSelectedQuestions[currentQuiz].choices[index];
+        console.log(activeSelectedQuestions[currentQuiz])
         if (!_choice.graded) {
             ChoiceObject.push(
                 <div className={'h-full w-full rounded-xl bg-white/50 dark:bg-zinc-900/70'} key={index}>
                     <button 
                         onClick={() => handleChoiceInteract(index, activeSelectedQuestions[currentQuiz].Mode)}
-                        className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl rounded-xl ' + 
-                            (_choice["selected"] ? "border text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500 bg-indigo-600/10 dark:bg-indigo-500/10" 
-                                : "border border-gray-300 dark:border-neutral-700")}>
-                        {arrayToChips(_choice["choice"])}
+                        className={'relative p-1 w-full h-full font-bold text-lg sm:text-xl flex flex-col text-center items-center justify-center rounded-xl border-2 ' + 
+                            (_choice["selected"] ? " text-indigo-600 dark:text-indigo-500 border-indigo-600 dark:border-indigo-500 bg-indigo-600/10 dark:bg-indigo-500/10" 
+                                : " border-gray-300 dark:border-neutral-700")}>
+                        <div className={"flex flex-wrap items-center justify-center gap-2 text-center " + (_choice["choice"] ? "py-1" : "")}>
+                            {arrayToChips(_choice["choice"])}
+                        </div>
+                        {_choice["choiceImageUrl"] ? 
+                            <div className='flex h-full p-1'>
+                                <img src={_choice["choiceImageUrl"]} alt=""
+                                    className='h-full max-h-[40vh] xl:max-h-full w-full rounded-lg object-cover' />
+                            </div> : null
+                        }
                     </button>
                 </div>
             );
         } else {
             ChoiceObject.push(
                 <div className={'_graded h-full w-full rounded-xl'} key={index}>
-                    <div className={'px-2 py-3 w-full h-full font-bold text-lg sm:text-xl relative flex flex-col text-center items-center justify-center rounded-xl border ' + 
+                    <div className={'relative p-1 w-full h-full font-bold text-lg sm:text-xl flex flex-col text-center items-center justify-center rounded-xl border-2 ' + 
                         ((_choice["answer"] || (activeSelectedQuestions[currentQuiz].Mode == "Flashcard")) ? (
                             // Answer is True
                             _choice["selected"] ? 
                                 // selected is True and choosed -> CORRECT
                                 "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" :
                                 // Answer is True but unchoosed -> INCORRECT
-                                "border-gray-300 dark:border-neutral-700 text-indigo-600 dark:text-indigo-500 bg-white/50 dark:bg-zinc-900/70") : (
+                                "border-indigo-600 dark:border-indigo-500 text-indigo-600 dark:text-indigo-500 bg-indigo-600/10 dark:bg-indigo-500/10") : (
                             // Answer is False
                             _choice["selected"] ? 
                                 // Answer is False but choosed -> INCORRECT
                                 "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/15 dark:bg-rose-500/15" : 
                                 // Answer is False and unchoosed -> CORRECT
                                 "border-gray-300 dark:border-neutral-700 bg-white/50 dark:bg-zinc-900/70"))}>
-                        <div className='text-center'>{
+                        <div className={'flex flex-wrap items-center justify-center gap-2 text-center ' + (_choice["choice"] ? "py-1" : "")}>{
                             arrayToChips(_choice["backText"]) || 
                             arrayToChips(_choice["choice"])
                         }</div>
+                        {_choice["choiceImageUrl"] ? 
+                            <div className='flex h-full p-1'>
+                                <img src={_choice["choiceImageUrl"]} alt=""
+                                    className='h-full max-h-[40vh] xl:max-h-full w-full rounded-lg object-cover' />
+                            </div> : null
+                        }
                     </div>
                 </div>
             );
@@ -233,13 +237,13 @@ export default function QuizInterface ({
     }
 
     return (
-        <div className="relative h-max flex flex-col">
-            <div className="relative h-max flex flex-col">
+        <div className="relative min-h-[100vh] flex flex-col">
+            <div className="relative min-h-[100vh] flex flex-col">
                 {
                     // ===== SECTION I: START PAGE ======
                     // ==================================
                     pageStatus == "START" ?
-                    <div className='relative h-[100vh] md:h-auto px-4 pt-16 md:pt-0 mt-0 md:mt-[30vh] bg-white/90 dark:bg-zinc-900/70 backdrop-blur-md'>
+                    <div className='relative h-[100vh] lg:h-auto px-2 pt-16 md:pt-0 mt-0 md:mt-[30vh] bg-white/90 dark:bg-zinc-900/70 backdrop-blur-md'>
             
                         {/* Start page content */}
                         <div className="relative mb-8">
@@ -369,7 +373,7 @@ export default function QuizInterface ({
 
                     // ===== SECTION II: QUIZ PAGE =====
                     // =================================
-                    <div className='min-h-[100vh] h-max lg:h-[100vh] flex flex-col pt-16 px-4 bg-white/90 dark:bg-zinc-900/70 backdrop-blur-md'>
+                    <div className='relative min-h-[100vh] lg:h-[100vh] flex flex-col pt-16 px-2 bg-white/90 dark:bg-zinc-900/70 backdrop-blur-md'>
                         {/* 01 - Top stats bar */}
                         <div className='relative h-12 w-full py-2 flex flex-row items-center space-between'>
                             {/* Question tract */}
@@ -414,7 +418,7 @@ export default function QuizInterface ({
                             {/* Portion 1 */}
                             {activeSelectedQuestions[currentQuiz].QuestionImageUrl ?
                                 <img className='w-full sm:w-[40%] sm:h-full sm:mr-4 object-cover rounded-2xl bg-white/95 dark:bg-black/80'
-                                    src={activeSelectedQuestions[currentQuiz].QuestionImageUrl} alt="" /> : null}
+                                    src={activeSelectedQuestions[currentQuiz].QuestionImageUrl} alt={activeSelectedQuestions[currentQuiz].ID} /> : null}
                                 
                             {/* Portion 2 */}
                             <div className='flex flex-col h-full w-full px-2 sm:px-0 mt-4 sm:mt-0 justify-between'>
@@ -442,12 +446,12 @@ export default function QuizInterface ({
                         </div>
 
                         {/* 03 - Choice */}
-                        <div className='relative h-max lg:min-h-0 lg:h-full w-full flex py-2 flex-col lg:flex-row gap-4'>
+                        <div className='relative min-h-[316px] lg:min-h-0 lg:h-full lg:max-h-[40vh] w-full grid grid-cols-1 lg:flex lg:flex-row gap-4'>
                             {ChoiceObject}
                         </div>
 
                         {/* 04 - Bottom action bar */}
-                        <div className='relative h-20 w-full pt-2 pb-4 flex flex-row'>
+                        <div className='-bottom-bar md:backdrop-blur-lg h-20 w-full pt-3 sm:py-2 flex flex-row'>
                             <div className="flex flex-col items-center content-center text-center">
                                 <button onClick={() => handleReload()} 
                                     className="text-xl px-4 py-3 group rounded-xl border border-gray-300 dark:border-neutral-700 bg-white/70 dark:bg-black/40">
@@ -469,17 +473,19 @@ export default function QuizInterface ({
                                     </div> : 
                                 (currentQuiz < quizStatus.quizNumber - 1) ? 
                                     <div className="flex flex-col w-full ml-2 items-center content-center text-center">
-                                        <button className="text-xl px-4 py-3 w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white/70 dark:bg-black/40"
-                                            onClick={() => handleNextQuestion()}>
-                                                <div className='hidden sm:inline font-bold text-indigo-600 dark:text-indigo-500'>
-                                                    <span>Next Question</span>
-                                                    <span className="ml-2">→</span>
-                                                </div>
-                                                <div className='inline sm:hidden font-bold text-indigo-600 dark:text-indigo-500'>
-                                                    <span>Next</span>
-                                                    <span className="ml-2">→</span>
-                                                </div>
-                                        </button>
+                                        <a href="#top" className='w-full'>
+                                            <button className="text-xl px-4 py-3 w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white/70 dark:bg-black/40"
+                                                onClick={() => handleNextQuestion()}>
+                                                    <div className='hidden sm:inline font-bold text-indigo-600 dark:text-indigo-500'>
+                                                        <span>Next Question</span>
+                                                        <span className="ml-2">→</span>
+                                                    </div>
+                                                    <div className='inline sm:hidden font-bold text-indigo-600 dark:text-indigo-500'>
+                                                        <span>Next</span>
+                                                        <span className="ml-2">→</span>
+                                                    </div>
+                                            </button>
+                                        </a>
                                     </div> :
                                     <div className="flex flex-col w-full ml-2 items-center content-center text-center">
                                         <Link className="text-xl px-4 py-3 w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white/70 dark:bg-black/40"
