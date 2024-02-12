@@ -446,7 +446,7 @@ export default function QuizInterface ({
                         </div>
 
                         {/* 03 - Choice */}
-                        <div className='relative min-h-[316px] lg:min-h-0 lg:h-full lg:max-h-[40vh] w-full grid grid-cols-1 lg:flex lg:flex-row gap-4'>
+                        <div className='relative h-full lg:min-h-0 lg:h-full lg:max-h-[40vh] w-full grid grid-cols-1 lg:flex lg:flex-row gap-4'>
                             {ChoiceObject}
                         </div>
 
