@@ -31,7 +31,7 @@ export default function RootLayout({
           <main>
             {children}
           </main>
-          <GlobalNavigator />
+          {/* <GlobalNavigator /> */}
         </body>
       </html>
     </React.StrictMode>
