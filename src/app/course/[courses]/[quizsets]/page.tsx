@@ -32,7 +32,7 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
     }!)
 
     // If no data, return not found
-    if (questionData === undefined) {
+    if ((questionData === undefined) || (Object.keys(questionData)).length == 0) {
         return <NotFound />}
     
     // Construct headerData as main setting for quiz environment

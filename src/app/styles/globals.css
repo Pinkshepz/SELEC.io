@@ -79,12 +79,8 @@ hr {
 }
 
 /* Track */
-::-webkit-scrollbar-track {
+div::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0);
-}
-
-.-bottom-bar {
-  position: relative;
 }
 
 @media screen and (min-width: 1024px) {

@@ -211,13 +211,13 @@ export default function QuizInterface ({
                             // Answer is True
                             _choice["selected"] ? 
                                 // selected is True and choosed -> CORRECT
-                                "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-teal-600/10 dark:bg-teal-500/10" :
+                                "text-teal-600 dark:text-teal-500 border-teal-600 dark:border-teal-500 bg-white/50 dark:bg-zinc-900/70" :
                                 // Answer is True but unchoosed -> INCORRECT
-                                "border-indigo-600 dark:border-indigo-500 text-indigo-600 dark:text-indigo-500 bg-indigo-600/10 dark:bg-indigo-500/10") : (
+                                "border-indigo-600 dark:border-indigo-500 text-indigo-600 dark:text-indigo-500 bg-white/50 dark:bg-zinc-900/70") : (
                             // Answer is False
                             _choice["selected"] ? 
                                 // Answer is False but choosed -> INCORRECT
-                                "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-rose-600/15 dark:bg-rose-500/15" : 
+                                "text-rose-600 dark:text-rose-500 border-rose-600 dark:border-rose-500 bg-white/50 dark:bg-zinc-900/70" : 
                                 // Answer is False and unchoosed -> CORRECT
                                 "border-gray-300 dark:border-neutral-700 bg-white/50 dark:bg-zinc-900/70"))}>
                         <div className={'flex flex-wrap items-center justify-center gap-2 text-center ' + (_choice["choice"] ? "py-1" : "")}>{
@@ -373,7 +373,7 @@ export default function QuizInterface ({
 
                     // ===== SECTION II: QUIZ PAGE =====
                     // =================================
-                    <div className='relative min-h-[100vh] lg:h-[100vh] flex flex-col pt-16 px-2 bg-white/90 dark:bg-zinc-900/70 backdrop-blur-md'>
+                    <div className='relative min-h-[100vh] lg:h-[100vh] flex flex-col pt-16 px-2 bg-white/10 dark:bg-zinc-900/10 backdrop-blur-md'>
                         {/* 01 - Top stats bar */}
                         <div className='relative h-12 w-full py-2 flex flex-row items-center space-between'>
                             {/* Question tract */}
@@ -446,12 +446,12 @@ export default function QuizInterface ({
                         </div>
 
                         {/* 03 - Choice */}
-                        <div className='relative h-full lg:min-h-0 lg:h-full lg:max-h-[40vh] w-full grid grid-cols-1 lg:flex lg:flex-row gap-4'>
+                        <div className='relative h-full lg:min-h-0 lg:h-full lg:max-h-[40vh] w-full grid grid-cols-1 lg:flex lg:flex-row gap-2'>
                             {ChoiceObject}
                         </div>
 
                         {/* 04 - Bottom action bar */}
-                        <div className='-bottom-bar md:backdrop-blur-lg h-20 w-full pt-3 sm:py-2 flex flex-row'>
+                        <div className=' h-20 w-full pt-3 sm:py-2 flex flex-row'>
                             <div className="flex flex-col items-center content-center text-center">
                                 <button onClick={() => handleReload()} 
                                     className="text-xl px-4 py-3 group rounded-xl border border-gray-300 dark:border-neutral-700 bg-white/70 dark:bg-black/40">
