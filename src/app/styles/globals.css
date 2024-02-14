@@ -15,7 +15,6 @@
 }
 
 body {
-  height: 100dvh;
   padding: 0;
   margin: 0;
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -26,8 +25,14 @@ body {
   overflow-x: hidden;
   color: var(--base);
   background-color: var(--bg);
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
 }
-  
+
+html::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
 input:focus, input,
 select:focus,
 textarea:focus {
@@ -46,8 +51,7 @@ textarea:focus {
 h1 {
   font-weight: 800;
   font-size: 3rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 }
 
 h2 {
@@ -78,22 +82,25 @@ hr {
   border-width: 1px;
 }
 
-/* Track */
-div::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0);
-}
-
 @media screen and (min-width: 1024px) {
   .-full-screen {
-    height: calc(100dvh - 72px);
+    height: calc(100dvh - 70px);
   }
 }
 
 @media screen and (min-width: 0px) and (max-width: 1024px) {
   .-full-screen {
-    height: calc(100dvh - 72px);
-    overflow: scroll;
+    height: calc(100dvh - 70px);
+    overflow-y: scroll;
   }
+}
+
+.-scroll-none {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.-scroll-none::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
 }
 
 ._graded {

@@ -21,5 +21,5 @@ export default function RootLayout({
         <GlobalNavigator />
       </body>
     </html>
-  )
+  );
 }

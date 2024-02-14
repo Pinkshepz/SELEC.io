@@ -12,7 +12,7 @@ export default async function Footer() {
     return (
         <footer className='flex flex-col w-auto px-4 items-center justify-center border-t border-slate-800/10 dark:border-slate-50/40"'>
             <div className="flex flex-row w-full justify-between my-3 pixelify">
-                <div>@{footerData.Name} 2024 by Pinkshepz</div>
+                <div>{footerData.Name} by Pinkshepz</div>
                 <div>{footerData.Version}</div>
             </div>
         </footer>

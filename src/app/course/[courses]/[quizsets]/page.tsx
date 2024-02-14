@@ -91,13 +91,11 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
     }
     
     return (
-        <div>
-            <div className="relative flex flex-col">
-                <img className='-bg-fixed' src={headerData.ImageLink} alt=''></img>
-                <QuizInterface
-                    headerData={headerData}
-                    questionData={Object.values(questionData)}/>
-            </div>
+        <div className="relative flex flex-col">
+            <img className='-bg-fixed' src={headerData.ImageLink} alt=''></img>
+            <QuizInterface
+                headerData={headerData}
+                questionData={Object.values(questionData)}/>
         </div>
     );
   }

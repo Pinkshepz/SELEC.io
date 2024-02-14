@@ -41,7 +41,7 @@ export default function CourseDisplay({
     let courseDisplayAllTopicGroups: Array<React.ReactNode> = [];
 
   // Store all elements
-  let courseDisplayAllElements: Array<React.ReactNode> = []
+  let courseDisplayAllElements: Array<React.ReactNode> = [];
   
   courseDisplayAllElements.push(
       <section className="relative h-96 md:h-[50vw] flex flex-col items-center justify-center overflow-hidden" key={"sky"}>
@@ -72,7 +72,7 @@ export default function CourseDisplay({
     const topic = Object.keys(courseDisplayDataStructure)[index];
     // Topic header
     courseDisplayAllTopicGroups.push(
-      <h2 className="my-8 border rounded-xl" key={`heading ${topic}`}>{topic}</h2>
+      <h2 className="my-8 px-2 border rounded-xl" key={`heading ${topic}`}>{topic}</h2>
     );
 
     // Store course with a particular topic group

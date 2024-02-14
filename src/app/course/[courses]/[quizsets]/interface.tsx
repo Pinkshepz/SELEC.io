@@ -244,13 +244,13 @@ export default function QuizInterface ({
                 // ===== SECTION I: START PAGE ======
                 // ==================================
                 pageStatus == "START" ?
-                <div className='min-h-[100dvh] relative px-4 pt-16 bg-white/95 dark:bg-slate-900/70 backdrop-blur-md'>
+                <div className='min-h-[100dvh] relative px-4 pt-20 md:pt-12 md:flex md:items-center md:justify-center bg-white/95 dark:bg-slate-900/70 md:bg-none backdrop-blur-md'>
         
                     {/* Start page content */}
-                    <div className="relative mb-8">
+                    <div className="relative md:w-[75dvw] md:p-6 md:m-16 md:border md:rounded-xl md:bg-white md:dark:bg-slate-800/80 md:border-slate-200 md:dark:border-slate-700">
         
                         {/* Title */}
-                        <h1 className='text-3xl mt-8 mb-3'>
+                        <h1 className='text-3xl mt-3 md:mt-0'>
                             {headerData.Title}</h1>
         
                         {/* Description */}
@@ -306,7 +306,7 @@ export default function QuizInterface ({
                                 {/* Shuffle */}
                                 <button 
                                     onClick={() => handleShuffleToggle()}
-                                    className="px-2 py-2.5 mr-2 flex flex-row w-max justify-center items-center group rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700">
+                                    className={"px-2 py-2.5 mr-2 flex flex-row w-max justify-center items-center group rounded-xl bg-white dark:bg-slate-900/40"}>
                                     <div className="flex flex-row">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" /></svg>
@@ -323,7 +323,7 @@ export default function QuizInterface ({
 
                                 {/* Question Number */}
                                 { quizStatus.shuffleQuiz ?
-                                    <div className="px-2 py-2 mr-2 flex flex-col sm:flex-row w-max justify-center items-start group rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30">
+                                    <div className="px-2 py-2 mr-2 flex flex-col sm:flex-row w-max justify-center items-start group rounded-xl bg-white dark:bg-slate-900/40">
                                         <div className="flex flex-row">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" /></svg>
@@ -348,7 +348,7 @@ export default function QuizInterface ({
                         <div className="flex flex-row gap-2">
         
                             <div className="flex flex-col items-center content-center text-center">
-                                <Link href={"./"} className="text-xl px-4 py-2 rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700">
+                                <Link href={"./"} className="text-xl px-4 py-2 rounded-xl bg-white dark:bg-slate-900/40 border-2 border-slate-200 dark:border-slate-700">
                                     <div className='font-bold'>
                                         <span className="mr-2">←</span>
                                         <span>Back</span>
@@ -358,7 +358,7 @@ export default function QuizInterface ({
 
                             <div className="flex flex-col items-center content-center text-center">
                                 <a href="#top">
-                                    <button className="text-xl px-4 py-2 rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700"
+                                    <button className="text-xl px-4 py-2 rounded-xl bg-white dark:bg-slate-900/40 border-2 border-slate-200 dark:border-slate-700"
                                         onClick={() => renderQuestion()}>
                                             <div className='font-bold text-indigo-600 dark:text-indigo-500'>
                                                 <span>Start Quiz</span>
@@ -366,15 +366,14 @@ export default function QuizInterface ({
                                             </div>
                                     </button>
                                 </a>
-                            </div>
-                            
+                            </div>             
                         </div>
                     </div>
                 </div> : 
 
                 // ===== SECTION II: QUIZ PAGE =====
                 // =================================
-                <div className='-full-screen relative flex flex-col pt-16 bg-white/90 dark:bg-slate-900/80 backdrop-blur-md'>
+                <div className='-full-screen -scroll-none relative flex flex-col pt-16 bg-white/90 dark:bg-slate-900/80 backdrop-blur-md'>
                     {/* 01 - Top stats bar */}
                     <div className='relative h-12 w-full px-4 py-2 mt-2 flex items-center gap-2'>
                         {/* Question stats */}
@@ -425,7 +424,7 @@ export default function QuizInterface ({
                     </div>
 
                     {/* 02 - Question */}
-                    <div className='relative lg:h-[35dvh] w-full px-4 py-2 flex flex-col sm:flex-row'>
+                    <div className='relative lg:h-[40dvh] w-full px-4 py-2 flex flex-col sm:flex-row'>
                         {/* Question Image */}
                         {activeSelectedQuestions[currentQuiz].QuestionImageUrl ?
                             <img className='w-full max-h-[50vh] sm:w-[40%] sm:mr-4 object-cover rounded-2xl'
@@ -439,14 +438,14 @@ export default function QuizInterface ({
                     </div>
 
                     {/* 03 - Choice */}
-                    <div className='relative px-4 py-2 mb-2 h-full lg:h-[37dvh] w-full flex flex-col lg:flex-row gap-4'>
+                    <div className='-scroll-none relative px-4 py-2 mb-2 h-full lg:h-full w-full flex flex-col lg:grid lg:grid-cols-2 gap-4 lg:overflow-y-scroll'>
                         {ChoiceObject}
                     </div>
 
                 </div>
             }
             {/* 04 - Bottom action bar */}
-            {pageStatus == "MID" ? <div className='sticky bottom-0 right-0 w-full px-4 py-2 flex flex-row items-end bg-white/90 dark:bg-zinc-900/70 backdrop-blur-md border-t border-slate-100 dark:border-slate-700'>
+            {pageStatus == "MID" ? <div className='sticky bottom-0 right-0 w-full px-4 pb-4 flex flex-row items-end bg-white/90 dark:bg-slate-900/80 backdrop-blur-md'>
                 <div className="flex flex-col items-center content-center text-center">
                     <button onClick={() => handleReload()} 
                         className={"text-xl px-4 py-3 group rounded-xl border" + C_NORMAL}>

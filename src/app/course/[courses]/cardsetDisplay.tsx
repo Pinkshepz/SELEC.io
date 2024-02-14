@@ -14,6 +14,7 @@ export default async function CardsetDisplay({
   // Map cardsetData into each card
   cardsetData.map((cardsetData) => {
       cardsetDisplayAll.push(
+        <a href="#top">
           <Link 
               href={{
                   pathname: "/course/[courses]/[quizsets]",
@@ -21,8 +22,7 @@ export default async function CardsetDisplay({
                             quizsets: cardsetData[1] }
               }}
               as={`/course/${cardsetData["Course"]}/${cardsetData["ID"]}`}
-              key={cardsetData["ID"]}
-          >
+              key={cardsetData["ID"]}>
               <DisplayCard 
                   cardId={cardsetData["ID"]}
                   cardGroup={cardsetData["Group"]}
@@ -32,6 +32,7 @@ export default async function CardsetDisplay({
                   cardDescription={cardsetData["Description"]}
                   key={cardsetData["ID"]}/>
           </Link>
+        </a>
       );
   });
 
