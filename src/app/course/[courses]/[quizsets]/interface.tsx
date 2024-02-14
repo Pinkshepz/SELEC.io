@@ -397,26 +397,26 @@ export default function QuizInterface ({
                                     </span>
                                     : null }
                             </div>
-                            <div className={'hidden xl:flex items-center w-max px-2 py-1 text-md font-bold rounded-xl border' + C_NORMAL}>
+                            <div className={'hidden xl:flex items-center w-max px-1 py-1 text-md font-bold rounded-xl border' + C_NORMAL}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="m21 7.5-2.25-1.313M21 7.5v2.25m0-2.25-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3 2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75 2.25-1.313M12 21.75V19.5m0 2.25-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25" /></svg>
                                 <span className='ml-2 mr-1'>
                                     {activeSelectedQuestions[currentQuiz].ID}</span>
                             </div>
-                            <div className={'flex items-center w-max px-2 py-1 text-md font-bold rounded-xl border' + C_NORMAL}>
+                            <div className={'flex items-center w-max px-1 py-1 text-md font-bold rounded-xl border' + C_NORMAL}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
                                     <path fillRule="evenodd" d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z" clipRule="evenodd" />
                                 </svg>
                                 <span className='ml-2 mr-1'>
                                     {activeSelectedQuestions[currentQuiz].Mode}</span>
                             </div>
-                            <div className={'hidden sm:flex items-center w-max px-2 py-1 text-md font-bold rounded-xl border' + C_NORMAL}>
+                            <div className={'hidden sm:flex items-center w-max px-1 py-1 text-md font-bold rounded-xl border' + C_NORMAL}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
                                 <span className='ml-2 mr-1'>
                                     {activeSelectedQuestions[currentQuiz].Level}</span>
                             </div>
-                            <div className={'hidden md:flex items-center w-max px-2 py-1 ml-auto text-md font-bold rounded-xl border' + C_NORMAL}>
+                            <div className={'hidden md:flex items-center w-max px-1 py-1 ml-auto text-md font-bold rounded-xl border' + C_NORMAL}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                                 </svg>
@@ -440,7 +440,7 @@ export default function QuizInterface ({
                         </div>
 
                         {/* 03 - Choice */}
-                        <div className='relative px-4 py-2 mb-2 h-full lg:min-h-0 lg:h-full lg:max-h-[40dvh] w-full grid grid-cols-1 lg:flex lg:flex-row gap-4'>
+                        <div className='relative px-4 py-2 mb-2 h-full lg:max-h-[40dvh] w-full grid grid-cols-1 lg:flex lg:flex-row gap-4'>
                             {ChoiceObject}
                         </div>
 
