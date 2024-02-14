@@ -5,7 +5,6 @@ import QuizInterface from './interface';
 // CONSTANT VARIABLE
 const CARDSET_RANGE = "A1:G";
 const QUIZSET_RANGE = "A1:AE";
-const CHOICE_SCOPE = ["Choice1", "Choice2", "Choice3", "Choice4", "Choice5"];
 
 // Dynamic routing <cardsets>
 export default async function Quizset ({ params }: { params: {quizsets: string} }) {
@@ -49,26 +48,29 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
         let _choice_structure: {[key: string]: {[key: string]: any}} = {};
         const questionRow = questionData[questionDataId[i]];
         try {
-            for (let j = 0; j < CHOICE_SCOPE.length; j++) {
-                const _choice = CHOICE_SCOPE[j];
-                (questionRow[_choice] || (questionRow["ChoiceImageUrl" + (j + 1)])) ? 
-                    _choice_structure[j] = {
-                        choice: questionRow[_choice],
-                        choiceImageUrl: questionRow["ChoiceImageUrl" + (j + 1)],
-                        answer: questionRow["Answer" + (j + 1)] === "TRUE",
-                        backText: questionRow["BackText" + (j + 1)],
-                        description: questionRow["Description" + (j + 1)],
+            let _choice_num = 1;
+            while (_choice_num > 0) {
+                (questionRow["Choice" + (_choice_num)] || (questionRow["ChoiceImageUrl" + (_choice_num)])) ? 
+                    _choice_structure[_choice_num - 1] = {
+                        choice: questionRow["Choice" + (_choice_num)],
+                        choiceImageUrl: questionRow["ChoiceImageUrl" + (_choice_num)],
+                        answer: questionRow["Answer" + (_choice_num)] === "TRUE",
+                        backText: questionRow["BackText" + (_choice_num)],
+                        description: questionRow["Description" + (_choice_num)],
                         selected: false,
                         graded: false} : 
-                    null;
+                    _choice_num = -1;
 
                 // Delete old choice data
-                delete questionData[questionDataId[i]][_choice];
-                delete questionData[questionDataId[i]]["ChoiceImageUrl" + (j + 1)];
-                delete questionData[questionDataId[i]]["Answer" + (j + 1)];
-                delete questionData[questionDataId[i]]["BackText" + (j + 1)];
-                delete questionData[questionDataId[i]]["Description" + (j + 1)];
+                delete questionData[questionDataId[i]]["Choice" + (_choice_num)];
+                delete questionData[questionDataId[i]]["ChoiceImageUrl" + (_choice_num)];
+                delete questionData[questionDataId[i]]["Answer" + (_choice_num)];
+                delete questionData[questionDataId[i]]["BackText" + (_choice_num)];
+                delete questionData[questionDataId[i]]["Description" + (_choice_num)];
+
+                _choice_num += 1;
             }
+
             // Redesign choices data structure
             questionData[questionDataId[i]] = {
                 ...questionRow,
