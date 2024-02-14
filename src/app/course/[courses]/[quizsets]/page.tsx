@@ -94,8 +94,7 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
         <div>
             <div className="relative min-h-[100vh] flex flex-col">
                 <img className='-bg-fixed' src={headerData.ImageLink} alt=''></img>
-                <QuizInterface 
-                    quizsets={params.quizsets}
+                <QuizInterface
                     headerData={headerData}
                     questionData={Object.values(questionData)}/>
             </div>

@@ -39,9 +39,9 @@ textarea:focus {
   font-family: 'Pixellet';
 }
 
-.pixelify {
+/* .pixelify {
   font-family: 'Pixelify Sans';
-}
+} */
 
 h1 {
   font-weight: 800;
@@ -249,15 +249,15 @@ div::-webkit-scrollbar-track {
   overflow: hidden;
 }
 
-.-card-hover > img {
+.-card-hover > div > img {
   position: relative;
-  transition: all ease-in-out 300ms;
+  transition: all ease-in-out 400ms;
   object-fit: cover;
 }
 
-.-card-hover:hover > img {
+.-card-hover:hover > div > img {
   transform: scale(1.02);
-  transition: all ease-in-out 300ms;
+  transition: all ease-in-out 400ms;
 }
 
 .-X {

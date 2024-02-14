@@ -67,18 +67,12 @@ export default function CourseDisplay({
       </section>
   );
 
-    courseDisplayAllElements.push(
-      <section className="flex flex-col items-center md:mx-2" key={"course_display"}>
-          {courseDisplayAllTopicGroups}
-      </section>
-    );
-
   // Start from topic
   for (let index = 0; index < Object.keys(courseDisplayDataStructure).length; index++) {
     const topic = Object.keys(courseDisplayDataStructure)[index];
     // Topic header
     courseDisplayAllTopicGroups.push(
-      <h2 className="my-8 px-2 border rounded-xl" key={`heading ${topic}`}>{topic}</h2>
+      <h2 className="my-8 border rounded-xl" key={`heading ${topic}`}>{topic}</h2>
     );
 
     // Store course with a particular topic group
@@ -114,6 +108,12 @@ export default function CourseDisplay({
       </div>
     );
   }
+
+  courseDisplayAllElements.push(
+    <section className="flex flex-col items-center" key={"course_display"}>
+        {courseDisplayAllTopicGroups}
+    </section>
+  );
 
   return courseDisplayAllElements;
 }
