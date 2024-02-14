@@ -4,7 +4,7 @@ import QuizInterface from './interface';
 
 // CONSTANT VARIABLE
 const CARDSET_RANGE = "A1:G";
-const QUIZSET_RANGE = "A1:AE";
+const QUIZSET_RANGE = "A1:AZ";
 
 // Dynamic routing <cardsets>
 export default async function Quizset ({ params }: { params: {quizsets: string} }) {
