@@ -44,7 +44,7 @@ export function arrayToChips(text: any) {
             let chips: Array<React.ReactNode> = []
             parsed_text.map((_text) => {
                 chips.push(
-                    <div className="px-2 rounded-xl border-2 border-indigo-600/70 dark:border-indigo-500/70 bg-indigo-600/10 dark:bg-indigo-500/10" key={_text}>
+                    <div className="px-2 rounded-xl bg-amber-600/10 dark:bg-amber-500/10" key={_text}>
                         {_text}
                     </div>
                 )

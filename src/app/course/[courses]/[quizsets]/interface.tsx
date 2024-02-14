@@ -379,7 +379,7 @@ export default function QuizInterface ({
 
                     // ===== SECTION II: QUIZ PAGE =====
                     // =================================
-                    <div className='relative min-h-[100vh] lg:h-[100vh] flex flex-col pt-16 lg:bg-none dark:lg:bg-none bg-white dark:bg-slate-900/85 backdrop-blur-md'>
+                    <div className='relative min-h-[100dvh] lg:h-[100dvh] h-max flex flex-col pt-16 lg:bg-none dark:lg:bg-none bg-white dark:bg-slate-900/85 backdrop-blur-md'>
                         {/* 01 - Top stats bar */}
                         <div className='relative h-12 w-full px-4 py-2 mt-2 flex items-center gap-2'>
                             {/* Question stats */}
@@ -438,7 +438,7 @@ export default function QuizInterface ({
 
                             {/* Question Text */}
                             <div className='flex flex-col h-full w-full justify-between'>
-                                <div className={'p-4 h-full font-bold text-2xl text-center flex justify-center items-center rounded-xl' + C_NORMAL}>
+                                <div className={'p-4 h-full font-bold text-2xl text-center flex justify-center items-center rounded-xl border' + C_NORMAL}>
                                 {activeSelectedQuestions[currentQuiz].Question}</div>
                             </div>
                         </div>
