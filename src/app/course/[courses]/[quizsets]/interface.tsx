@@ -244,7 +244,7 @@ export default function QuizInterface ({
                 // ===== SECTION I: START PAGE ======
                 // ==================================
                 pageStatus == "START" ?
-                <div className='h-[100dvh] relative px-4 pt-16 bg-white/95 dark:bg-slate-900/70 backdrop-blur-md'>
+                <div className='min-h-[100dvh] relative px-4 pt-16 bg-white/95 dark:bg-slate-900/70 backdrop-blur-md'>
         
                     {/* Start page content */}
                     <div className="relative mb-8">
