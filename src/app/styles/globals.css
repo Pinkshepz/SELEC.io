@@ -84,17 +84,15 @@ div::-webkit-scrollbar-track {
 }
 
 @media screen and (min-width: 1024px) {
-  .-question-panel {
-    height: calc(50% - 32px);
-  }
-  .-choice-panel {
-    height: calc(50% - 32px);
+  .-full-screen {
+    height: calc(100dvh - 72px);
   }
 }
 
 @media screen and (min-width: 0px) and (max-width: 1024px) {
-  .-question-panel {
-    height: calc(50% - 32px);
+  .-full-screen {
+    height: calc(100dvh - 72px);
+    overflow: scroll;
   }
 }
 

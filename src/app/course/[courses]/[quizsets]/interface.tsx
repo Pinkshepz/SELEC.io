@@ -239,272 +239,270 @@ export default function QuizInterface ({
     }
 
     return (
-        <div className="relative flex flex-col">
-            <div className="relative flex flex-col">
-                {
-                    // ===== SECTION I: START PAGE ======
-                    // ==================================
-                    pageStatus == "START" ?
-                    <div className='relative min-h-[100dvh] px-4 pt-16 bg-white/95 dark:bg-slate-900/70 backdrop-blur-md'>
-            
-                        {/* Start page content */}
-                        <div className="relative mb-8">
-            
-                            {/* Title */}
-                            <h1 className='text-3xl mt-8 mb-3'>
-                                {headerData.Title}</h1>
-            
-                            {/* Description */}
-                            <p>{headerData.Description}</p>
-            
-                            {/* Properties */}
-                            <div className="flex flex-col md:flex-row mt-6 mb-8">
-            
-                                {/* 3 Icons */}
-                                <div className="flex flex-wrap gap-8">
-                                    {/* Quiz mode */}
-                                    <div className="flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
-                                            <path fillRule="evenodd" d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z" clipRule="evenodd" /></svg>
-                                        <div className="ml-2">
-                                            <p className="-text-line ml-1 after:bg-slate-700 dark:after:bg-slate-200">
-                                                Quiz Mode</p>
-                                            <p className="ml-1 mt-1 text-sm">
-                                                {headerData.Category}</p>
-                                        </div>
+        <div className="relative">
+            {
+                // ===== SECTION I: START PAGE ======
+                // ==================================
+                pageStatus == "START" ?
+                <div className='h-[100dvh] relative px-4 pt-16 bg-white/95 dark:bg-slate-900/70 backdrop-blur-md'>
+        
+                    {/* Start page content */}
+                    <div className="relative mb-8">
+        
+                        {/* Title */}
+                        <h1 className='text-3xl mt-8 mb-3'>
+                            {headerData.Title}</h1>
+        
+                        {/* Description */}
+                        <p>{headerData.Description}</p>
+        
+                        {/* Properties */}
+                        <div className="flex flex-col md:flex-row mt-6 mb-8">
+        
+                            {/* 3 Icons */}
+                            <div className="flex flex-wrap gap-8">
+                                {/* Quiz mode */}
+                                <div className="flex">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                        <path fillRule="evenodd" d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z" clipRule="evenodd" /></svg>
+                                    <div className="ml-2">
+                                        <p className="-text-line ml-1 after:bg-slate-700 dark:after:bg-slate-200">
+                                            Quiz Mode</p>
+                                        <p className="ml-1 mt-1 text-sm">
+                                            {headerData.Category}</p>
                                     </div>
-            
-                                    {/* Question Pool */}
-                                    <div className="flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
-                                            <path d="M2.273 5.625A4.483 4.483 0 0 1 5.25 4.5h13.5c1.141 0 2.183.425 2.977 1.125A3 3 0 0 0 18.75 3H5.25a3 3 0 0 0-2.977 2.625ZM2.273 8.625A4.483 4.483 0 0 1 5.25 7.5h13.5c1.141 0 2.183.425 2.977 1.125A3 3 0 0 0 18.75 6H5.25a3 3 0 0 0-2.977 2.625ZM5.25 9a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h13.5a3 3 0 0 0 3-3v-6a3 3 0 0 0-3-3H15a.75.75 0 0 0-.75.75 2.25 2.25 0 0 1-4.5 0A.75.75 0 0 0 9 9H5.25Z" /></svg>
-                                        <div className="ml-2">
-                                            <p className="-text-line ml-1 after:bg-slate-700 dark:after:bg-slate-200">
-                                                Question Pool</p>
-                                            <p className="ml-1 mt-1 text-sm">
-                                                {headerData.QuestionPoolTotal} Questions</p>
-                                        </div>
+                                </div>
+        
+                                {/* Question Pool */}
+                                <div className="flex">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                        <path d="M2.273 5.625A4.483 4.483 0 0 1 5.25 4.5h13.5c1.141 0 2.183.425 2.977 1.125A3 3 0 0 0 18.75 3H5.25a3 3 0 0 0-2.977 2.625ZM2.273 8.625A4.483 4.483 0 0 1 5.25 7.5h13.5c1.141 0 2.183.425 2.977 1.125A3 3 0 0 0 18.75 6H5.25a3 3 0 0 0-2.977 2.625ZM5.25 9a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h13.5a3 3 0 0 0 3-3v-6a3 3 0 0 0-3-3H15a.75.75 0 0 0-.75.75 2.25 2.25 0 0 1-4.5 0A.75.75 0 0 0 9 9H5.25Z" /></svg>
+                                    <div className="ml-2">
+                                        <p className="-text-line ml-1 after:bg-slate-700 dark:after:bg-slate-200">
+                                            Question Pool</p>
+                                        <p className="ml-1 mt-1 text-sm">
+                                            {headerData.QuestionPoolTotal} Questions</p>
                                     </div>
-            
-                                    {/* Topics */}
-                                    <div className="flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
-            
-                                        <div className="ml-2">
-                                            <p className="-text-line ml-1 after:bg-slate-700 dark:after:bg-slate-200">
-                                                Topics</p>
-                                            <p className="ml-1 mt-1 text-sm">
-                                                {topicShow}</p>
-                                        </div>
+                                </div>
+        
+                                {/* Topics */}
+                                <div className="flex">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
+        
+                                    <div className="ml-2">
+                                        <p className="-text-line ml-1 after:bg-slate-700 dark:after:bg-slate-200">
+                                            Topics</p>
+                                        <p className="ml-1 mt-1 text-sm">
+                                            {topicShow}</p>
                                     </div>
-                                </div>     
-                            </div>
-            
-                            {/* Settings */}
-                            <div className="flex flex-col mb-8">                                
-                                <div className="flex flex-col md:flex-row gap-6">
-                                    {/* Shuffle */}
-                                    <button 
-                                        onClick={() => handleShuffleToggle()}
-                                        className="px-2 py-2.5 mr-2 flex flex-row w-max justify-center items-center group rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700">
+                                </div>
+                            </div>     
+                        </div>
+        
+                        {/* Settings */}
+                        <div className="flex flex-col mb-8">                                
+                            <div className="flex flex-col md:flex-row gap-6">
+                                {/* Shuffle */}
+                                <button 
+                                    onClick={() => handleShuffleToggle()}
+                                    className="px-2 py-2.5 mr-2 flex flex-row w-max justify-center items-center group rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700">
+                                    <div className="flex flex-row">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" /></svg>
+                                        <p className="font-bold ml-2 mr-4 after:bg-slate-700 dark:after:bg-slate-200">
+                                            Shuffle Questions</p>
+                                    </div>
+                                    {/* ENABLED OR DISABLED */}
+                                    {quizStatus?.shuffleQuiz ? 
+                                        <div className="mr-1 mt-0 font-bold text-indigo-600 after:bg-indigo-600">
+                                            ENABLED</div> : 
+                                        <div className="mr-1 mt-0 font-bold text-indigo-600 after:bg-indigo-600">
+                                            DISABLED</div>}
+                                </button>
+
+                                {/* Question Number */}
+                                { quizStatus.shuffleQuiz ?
+                                    <div className="px-2 py-2 mr-2 flex flex-col sm:flex-row w-max justify-center items-start group rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30">
                                         <div className="flex flex-row">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" /></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" /></svg>
                                             <p className="font-bold ml-2 mr-4 after:bg-slate-700 dark:after:bg-slate-200">
-                                                Shuffle Questions</p>
+                                                Questions Number</p>
                                         </div>
-                                        {/* ENABLED OR DISABLED */}
-                                        {quizStatus?.shuffleQuiz ? 
-                                            <div className="mr-1 mt-0 font-bold text-indigo-600 after:bg-indigo-600">
-                                                ENABLED</div> : 
-                                            <div className="mr-1 mt-0 font-bold text-indigo-600 after:bg-indigo-600">
-                                                DISABLED</div>}
-                                    </button>
+                                        <div className="flex flex-row mt-2 ml-8 mr-1 sm:mt-0 sm:ml-0">
+                                            {/* INPUT - slider */}
+                                            <input type="range" min={1} max={headerData.QuestionPoolTotal} name='QuizNumRange' 
+                                                value={quizStatus.quizNumber} onChange={e => handleNumSlider(Number(e.target.value))}/>
+                                            {/* Slider number */}
+                                            <p className="mr-1 ml-4 font-bold text-indigo-600 dark:text-indigo-500">
+                                                {quizStatus.quizNumber}</p>
 
-                                    {/* Question Number */}
-                                    { quizStatus.shuffleQuiz ?
-                                        <div className="px-2 py-2 mr-2 flex flex-col sm:flex-row w-max justify-center items-start group rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30">
-                                            <div className="flex flex-row">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" /></svg>
-                                                <p className="font-bold ml-2 mr-4 after:bg-slate-700 dark:after:bg-slate-200">
-                                                    Questions Number</p>
-                                            </div>
-                                            <div className="flex flex-row mt-2 ml-8 mr-1 sm:mt-0 sm:ml-0">
-                                                {/* INPUT - slider */}
-                                                <input type="range" min={1} max={headerData.QuestionPoolTotal} name='QuizNumRange' 
-                                                    value={quizStatus.quizNumber} onChange={e => handleNumSlider(Number(e.target.value))}/>
-                                                {/* Slider number */}
-                                                <p className="mr-1 ml-4 font-bold text-indigo-600 dark:text-indigo-500">
-                                                    {quizStatus.quizNumber}</p>
-
-                                            </div>
-                                        </div> : null
-                                    }
-                                </div>    
-                            </div>
-            
-                            {/* Action */}
-                            <div className="flex flex-row gap-2">
-            
-                                <div className="flex flex-col items-center content-center text-center">
-                                    <Link href={"./"} className="text-xl px-4 py-2 rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700">
-                                        <div className='font-bold'>
-                                            <span className="mr-2">←</span>
-                                            <span>Back</span>
                                         </div>
-                                    </Link>
-                                </div>
-
-                                <div className="flex flex-col items-center content-center text-center">
-                                    <a href="#top">
-                                        <button className="text-xl px-4 py-2 rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700"
-                                            onClick={() => renderQuestion()}>
-                                                <div className='font-bold text-indigo-600 dark:text-indigo-500'>
-                                                    <span>Start Quiz</span>
-                                                    <span className="ml-2">→</span>
-                                                </div>
-                                        </button>
-                                    </a>
-                                </div>
-                                
-                            </div>
+                                    </div> : null
+                                }
+                            </div>    
                         </div>
-                    </div> : 
-
-                    // ===== SECTION II: QUIZ PAGE =====
-                    // =================================
-                    <div className='relative min-h-[100dvh] lg:h-[100dvh] h-max flex flex-col pt-16 lg:bg-none dark:lg:bg-none bg-white/90 dark:bg-slate-900/70 backdrop-blur-md'>
-                        {/* 01 - Top stats bar */}
-                        <div className='relative h-12 w-full px-4 py-2 mt-2 flex items-center gap-2'>
-                            {/* Question stats */}
-                            <div className={'flex items-center px-2 py-1 rounded-xl border' + C_NORMAL}>
-                                <span className='font-bold hidden sm:inline text-md after:bg-slate-700 dark:after:bg-slate-200'>
-                                    Question</span>
-                                <span className='font-bold inline sm:hidden text-md after:bg-slate-700 dark:after:bg-slate-200'>
-                                    Quiz</span>
-                                <span className='px-2 font-bold'>
-                                    {currentQuiz + 1}</span>
-                                <span className='font-bold'>|</span>
-                                <span className='px-2 font-bold'>
-                                    {quizStatus.quizNumber}</span>
-                                { quizStatus.shuffleQuiz ? 
-                                    <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6 inline text-indigo-600 dark:text-indigo-500">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" />
-                                        </svg>
-                                    </span>
-                                    : null }
-                            </div>
-                            <div className={'hidden xl:flex items-center w-max px-1 py-1 text-md font-bold rounded-xl border' + C_NORMAL}>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="m21 7.5-2.25-1.313M21 7.5v2.25m0-2.25-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3 2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75 2.25-1.313M12 21.75V19.5m0 2.25-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25" /></svg>
-                                <span className='ml-2 mr-1'>
-                                    {activeSelectedQuestions[currentQuiz].ID}</span>
-                            </div>
-                            <div className={'flex items-center w-max px-1 py-1 text-md font-bold rounded-xl border' + C_NORMAL}>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
-                                    <path fillRule="evenodd" d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z" clipRule="evenodd" />
-                                </svg>
-                                <span className='ml-2 mr-1'>
-                                    {activeSelectedQuestions[currentQuiz].Mode}</span>
-                            </div>
-                            <div className={'hidden sm:flex items-center w-max px-1 py-1 text-md font-bold rounded-xl border' + C_NORMAL}>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
-                                <span className='ml-2 mr-1'>
-                                    {activeSelectedQuestions[currentQuiz].Level}</span>
-                            </div>
-                            <div className={'hidden md:flex items-center w-max px-1 py-1 ml-auto text-md font-bold rounded-xl border' + C_NORMAL}>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                                </svg>
-                                <span className='ml-2 mr-1'>
-                                    {activeSelectedQuestions[currentQuiz].Topic}</span>
-                            </div>
-                        </div>
-
-                        {/* 02 - Question */}
-                        <div className='relative sm:min-h-[40dvh] w-full px-4 py-2 flex flex-col sm:flex-row'>
-                            {/* Question Image */}
-                            {activeSelectedQuestions[currentQuiz].QuestionImageUrl ?
-                                <img className='w-full max-h-[50vh] sm:w-[40%] sm:mr-4 object-cover rounded-2xl'
-                                    src={activeSelectedQuestions[currentQuiz].QuestionImageUrl} alt={activeSelectedQuestions[currentQuiz].ID} /> : null}
-
-                            {/* Question Text */}
-                            <div className='flex flex-col w-full pt-4 sm:pt-0 justify-between'>
-                                <div className={'p-4 h-full font-bold text-2xl text-center flex justify-center items-center rounded-xl border' + C_NORMAL}>
-                                {activeSelectedQuestions[currentQuiz].Question}</div>
-                            </div>
-                        </div>
-
-                        {/* 03 - Choice */}
-                        <div className='relative px-4 py-2 mb-2 lg:max-h-[40dvh] w-full flex flex-col lg:flex-row gap-4'>
-                            {ChoiceObject}
-                        </div>
-
-                        {/* 04 - Bottom action bar */}
-                        <div className='sticky bottom-0 right-0 w-full px-4 py-2 flex flex-row items-end backdrop-blur-md border-t border-slate-100 dark:border-slate-700'>
+        
+                        {/* Action */}
+                        <div className="flex flex-row gap-2">
+        
                             <div className="flex flex-col items-center content-center text-center">
-                                <button onClick={() => handleReload()} 
-                                    className={"text-xl px-4 py-3 group rounded-xl border" + C_NORMAL}>
+                                <Link href={"./"} className="text-xl px-4 py-2 rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700">
                                     <div className='font-bold'>
                                         <span className="mr-2">←</span>
-                                        <span>Quit</span>
+                                        <span>Back</span>
                                     </div>
-                                </button>
+                                </Link>
                             </div>
-                            { !((activeSelectedQuestions[currentQuiz].choices[0].graded) ||
-                                (activeSelectedQuestions[currentQuiz].Mode == "Flashcard")) ?
-                                    <div className="flex flex-col w-full ml-2 items-center content-center text-center">
-                                        <button className={"text-xl py-3 w-full rounded-xl border" + C_NORMAL}
-                                            onClick={() => gradeAllQuestions()}>
-                                                <div className='font-bold text-indigo-600 dark:text-indigo-500'>
-                                                    <span>Submit →</span>
-                                                </div>
-                                        </button>
-                                    </div> : 
-                                (currentQuiz < quizStatus.quizNumber - 1) ? 
-                                    <div className="flex flex-col w-full ml-2 items-center content-center text-center">
-                                        <a href="#top" className='w-full'>
-                                            <button className={"text-xl px-4 py-3 w-full rounded-xl border" + C_NORMAL}
-                                                onClick={() => handleNextQuestion()}>
-                                                    <div className='hidden sm:inline font-bold text-indigo-600 dark:text-indigo-500'>
-                                                        <span>Next Question</span>
-                                                        <span className="ml-2">→</span>
-                                                    </div>
-                                                    <div className='inline sm:hidden font-bold'>
-                                                        <span>Next</span>
-                                                        <span className="ml-2">→</span>
-                                                    </div>
-                                            </button>
-                                        </a>
-                                    </div> :
-                                    <div className="flex flex-col w-full ml-2 items-center content-center text-center">
-                                        <Link className={"text-xl px-4 py-3 w-full rounded-xl border" + C_NORMAL}
-                                            href={"./"}>
-                                                <div className='font-bold text-indigo-600 dark:text-indigo-500'>
-                                                    <span>Finish</span>
-                                                    <span className="ml-2">→</span>
-                                                </div>
-                                        </Link>
-                                    </div>
-                                }
-                            { (currentQuiz > 0) ?
-                                <div className="flex flex-col ml-2 items-center content-center text-center">
-                                    <button className={"text-xl px-4 py-3 rounded-xl border" + C_NORMAL}
-                                        onClick={() => changeQuestion(-1)}>
-                                            <div className='font-bold'>
-                                                <span>Back</span>
+
+                            <div className="flex flex-col items-center content-center text-center">
+                                <a href="#top">
+                                    <button className="text-xl px-4 py-2 rounded-xl bg-white/70 dark:bg-black/40 border border-gray-300 dark:border-neutral-700"
+                                        onClick={() => renderQuestion()}>
+                                            <div className='font-bold text-indigo-600 dark:text-indigo-500'>
+                                                <span>Start Quiz</span>
+                                                <span className="ml-2">→</span>
                                             </div>
                                     </button>
-                                </div> : null
-                            }
+                                </a>
+                            </div>
+                            
                         </div>
                     </div>
+                </div> : 
+
+                // ===== SECTION II: QUIZ PAGE =====
+                // =================================
+                <div className='-full-screen relative flex flex-col pt-16 bg-white/90 dark:bg-slate-900/80 backdrop-blur-md'>
+                    {/* 01 - Top stats bar */}
+                    <div className='relative h-12 w-full px-4 py-2 mt-2 flex items-center gap-2'>
+                        {/* Question stats */}
+                        <div className={'flex items-center px-2 py-1 rounded-xl border' + C_NORMAL}>
+                            <span className='font-bold hidden sm:inline text-md after:bg-slate-700 dark:after:bg-slate-200'>
+                                Question</span>
+                            <span className='font-bold inline sm:hidden text-md after:bg-slate-700 dark:after:bg-slate-200'>
+                                Quiz</span>
+                            <span className='px-2 font-bold'>
+                                {currentQuiz + 1}</span>
+                            <span className='font-bold'>|</span>
+                            <span className='px-2 font-bold'>
+                                {quizStatus.quizNumber}</span>
+                            { quizStatus.shuffleQuiz ? 
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6 inline text-indigo-600 dark:text-indigo-500">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" />
+                                    </svg>
+                                </span>
+                                : null }
+                        </div>
+                        <div className={'hidden xl:flex items-center w-max px-1 py-1 text-md font-bold rounded-xl border' + C_NORMAL}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m21 7.5-2.25-1.313M21 7.5v2.25m0-2.25-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3 2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75 2.25-1.313M12 21.75V19.5m0 2.25-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25" /></svg>
+                            <span className='ml-2 mr-1'>
+                                {activeSelectedQuestions[currentQuiz].ID}</span>
+                        </div>
+                        <div className={'flex items-center w-max px-1 py-1 text-md font-bold rounded-xl border' + C_NORMAL}>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                <path fillRule="evenodd" d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 0 1 1.5 10.875v-3.75Zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 0 1-1.875-1.875v-8.25ZM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 0 1 3 18.375v-2.25Z" clipRule="evenodd" />
+                            </svg>
+                            <span className='ml-2 mr-1'>
+                                {activeSelectedQuestions[currentQuiz].Mode}</span>
+                        </div>
+                        <div className={'hidden sm:flex items-center w-max px-1 py-1 text-md font-bold rounded-xl border' + C_NORMAL}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
+                            <span className='ml-2 mr-1'>
+                                {activeSelectedQuestions[currentQuiz].Level}</span>
+                        </div>
+                        <div className={'hidden md:flex items-center w-max px-1 py-1 ml-auto text-md font-bold rounded-xl border' + C_NORMAL}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="ml-1 w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                            </svg>
+                            <span className='ml-2 mr-1'>
+                                {activeSelectedQuestions[currentQuiz].Topic}</span>
+                        </div>
+                    </div>
+
+                    {/* 02 - Question */}
+                    <div className='relative lg:h-[35dvh] w-full px-4 py-2 flex flex-col sm:flex-row'>
+                        {/* Question Image */}
+                        {activeSelectedQuestions[currentQuiz].QuestionImageUrl ?
+                            <img className='w-full max-h-[50vh] sm:w-[40%] sm:mr-4 object-cover rounded-2xl'
+                                src={activeSelectedQuestions[currentQuiz].QuestionImageUrl} alt={activeSelectedQuestions[currentQuiz].ID} /> : null}
+
+                        {/* Question Text */}
+                        <div className='flex flex-col w-full pt-4 sm:pt-0 justify-between'>
+                            <div className={'p-4 h-full font-bold text-2xl text-center flex justify-center items-center rounded-xl border' + C_NORMAL}>
+                            {activeSelectedQuestions[currentQuiz].Question}</div>
+                        </div>
+                    </div>
+
+                    {/* 03 - Choice */}
+                    <div className='relative px-4 py-2 mb-2 h-full lg:h-[37dvh] w-full flex flex-col lg:flex-row gap-4'>
+                        {ChoiceObject}
+                    </div>
+
+                </div>
+            }
+            {/* 04 - Bottom action bar */}
+            {pageStatus == "MID" ? <div className='sticky bottom-0 right-0 w-full px-4 py-2 flex flex-row items-end bg-white/90 dark:bg-zinc-900/70 backdrop-blur-md border-t border-slate-100 dark:border-slate-700'>
+                <div className="flex flex-col items-center content-center text-center">
+                    <button onClick={() => handleReload()} 
+                        className={"text-xl px-4 py-3 group rounded-xl border" + C_NORMAL}>
+                        <div className='font-bold'>
+                            <span className="mr-2">←</span>
+                            <span>Quit</span>
+                        </div>
+                    </button>
+                </div>
+                { !((activeSelectedQuestions[currentQuiz].choices[0].graded) ||
+                    (activeSelectedQuestions[currentQuiz].Mode == "Flashcard")) ?
+                        <div className="flex flex-col w-full ml-2 items-center content-center text-center">
+                            <button className={"text-xl py-3 w-full rounded-xl border" + C_NORMAL}
+                                onClick={() => gradeAllQuestions()}>
+                                    <div className='font-bold text-indigo-600 dark:text-indigo-500'>
+                                        <span>Submit →</span>
+                                    </div>
+                            </button>
+                        </div> : 
+                    (currentQuiz < quizStatus.quizNumber - 1) ? 
+                        <div className="flex flex-col w-full ml-2 items-center content-center text-center">
+                            <a href="#top" className='w-full'>
+                                <button className={"text-xl px-4 py-3 w-full rounded-xl border" + C_NORMAL}
+                                    onClick={() => handleNextQuestion()}>
+                                        <div className='hidden sm:inline font-bold text-indigo-600 dark:text-indigo-500'>
+                                            <span>Next Question</span>
+                                            <span className="ml-2">→</span>
+                                        </div>
+                                        <div className='inline sm:hidden font-bold'>
+                                            <span>Next</span>
+                                            <span className="ml-2">→</span>
+                                        </div>
+                                </button>
+                            </a>
+                        </div> :
+                        <div className="flex flex-col w-full ml-2 items-center content-center text-center">
+                            <Link className={"text-xl px-4 py-3 w-full rounded-xl border" + C_NORMAL}
+                                href={"./"}>
+                                    <div className='font-bold text-indigo-600 dark:text-indigo-500'>
+                                        <span>Finish</span>
+                                        <span className="ml-2">→</span>
+                                    </div>
+                            </Link>
+                        </div>
+                    }
+                { (currentQuiz > 0) ?
+                    <div className="flex flex-col ml-2 items-center content-center text-center">
+                        <button className={"text-xl px-4 py-3 rounded-xl border" + C_NORMAL}
+                            onClick={() => changeQuestion(-1)}>
+                                <div className='font-bold'>
+                                    <span>Back</span>
+                                </div>
+                        </button>
+                    </div> : null
                 }
-            </div>
+            </div> : null}
         </div>
     );
   }

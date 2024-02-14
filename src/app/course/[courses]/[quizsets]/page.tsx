@@ -92,7 +92,7 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
     
     return (
         <div>
-            <div className="relative min-h-[100vh] flex flex-col">
+            <div className="relative flex flex-col">
                 <img className='-bg-fixed' src={headerData.ImageLink} alt=''></img>
                 <QuizInterface
                     headerData={headerData}
