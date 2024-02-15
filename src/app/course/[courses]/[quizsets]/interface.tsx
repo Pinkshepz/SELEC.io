@@ -244,7 +244,7 @@ export default function QuizInterface ({
                 // ===== SECTION I: START PAGE ======
                 // ==================================
                 pageStatus == "START" ?
-                <div className='min-h-[100dvh] relative px-4 pt-20 md:pt-12 md:flex md:items-center md:justify-center bg-white/95 dark:bg-slate-900/70 md:bg-none backdrop-blur-md'>
+                <div className='min-h-[100dvh] relative px-4 pt-20 md:pt-12 md:flex md:items-center md:justify-center bg-white/70 dark:bg-slate-900/60 md:bg-none backdrop-blur-md'>
         
                     {/* Start page content */}
                     <div className="relative md:w-[75dvw] md:p-6 md:m-16 md:border md:rounded-xl md:bg-white md:dark:bg-slate-800/80 md:border-slate-200 md:dark:border-slate-700">
