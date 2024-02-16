@@ -5,7 +5,7 @@ import './styles/globals.css'
 import './styles/fontface.css'
 
 export const metadata: Metadata = {
-  title: 'SELEC.io',
+  title: 'SELESTIAL',
   description: 'Explore. Extract. Exam. Exercise.',
 }
 
