@@ -11,7 +11,7 @@ export default function GlobalNavigator () {
     pb-3 pt-2 pl-4 pr-4 bg-white/90 dark:bg-zinc-900/70 backdrop-blur-md">
       <div className='flex flex-row items-center justify-center'>
         <Link href={'/'} className="-button-line pixellet relative text-xl font-bold after:bg-slate-700 dark:after:bg-slate-200">
-          SELEC.io</Link>
+          SELESTIAL</Link>
         <NavPathName />
       </div>
       <div className='flex flex-row items-center justify-center gap-4'>

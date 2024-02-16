@@ -438,7 +438,7 @@ export default function QuizInterface ({
                     </div>
 
                     {/* 03 - Choice */}
-                    <div className='-scroll-none relative px-4 py-2 mb-2 h-full lg:h-full w-full flex flex-col lg:grid lg:grid-cols-2 gap-4 lg:overflow-y-scroll'>
+                    <div className={'-scroll-none relative px-4 py-2 mb-2 h-full lg:h-full w-full flex flex-col lg:grid gap-4 lg:overflow-y-scroll ' + (Object.keys(activeSelectedQuestions[currentQuiz].choices).length == 1 ? 'lg:grid-cols-1' : 'lg:grid-cols-2')}>
                         {ChoiceObject}
                     </div>
 
