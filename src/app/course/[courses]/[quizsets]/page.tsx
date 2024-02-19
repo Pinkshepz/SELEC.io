@@ -45,20 +45,20 @@ export default async function Quizset ({ params }: { params: {quizsets: string} 
     const questionDataId = Object.keys(questionData)
 
     for (let i = 0; i < questionDataId.length; i++) {
-        let _choice_structure: {[key: string]: {[key: string]: any}} = {};
+        let _choice_structure = [];
         const questionRow = questionData[questionDataId[i]];
         try {
             let _choice_num = 1;
             while (_choice_num > 0) {
                 (questionRow["Choice" + (_choice_num)] || (questionRow["ChoiceImageUrl" + (_choice_num)])) ? 
-                    _choice_structure[_choice_num - 1] = {
+                    _choice_structure.push({
                         choice: questionRow["Choice" + (_choice_num)],
                         choiceImageUrl: questionRow["ChoiceImageUrl" + (_choice_num)],
                         answer: questionRow["Answer" + (_choice_num)] === "TRUE",
                         backText: questionRow["BackText" + (_choice_num)],
                         description: questionRow["Description" + (_choice_num)],
                         selected: false,
-                        graded: false} : 
+                        graded: false}) : 
                     _choice_num = -1;
 
                 // Delete old choice data

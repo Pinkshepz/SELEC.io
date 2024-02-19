@@ -34,17 +34,26 @@ export default function QuizInterface ({
      const [pageStatus, setPageStatus] = useState<"START" | "MID" | "END">("START");
      const [quizStatus, setQuizStatus] = useState<{
             shuffleQuiz: boolean, 
+            shuffleChoice: boolean, 
             quizNumber: number
         }>({
             shuffleQuiz: true,
+            shuffleChoice: ((headerData.Category == "Flashcard") ? false : true),
             quizNumber: headerData.QuestionPoolTotal
         });
 
     // Handle toogle shuffle quiz option
-    const handleShuffleToggle = () => {
+    const handleShuffleQuestionToggle = () => {
         setQuizStatus(prev => ({
             ...prev,
             shuffleQuiz: !prev.shuffleQuiz
+        }));
+    }
+
+    const handleShuffleChoiceToggle = () => {
+        setQuizStatus(prev => ({
+            ...prev,
+            shuffleChoice: !prev.shuffleChoice
         }));
     }
     
@@ -55,23 +64,41 @@ export default function QuizInterface ({
             quizNumber: value
         }));
     }
-    
-    // Select questions
+
     const [activeSelectedQuestions, setActiveSelectedQuestions] = useState(questionData.slice(0, questionData.length));
 
     const renderQuestion = () => {
-        setPageStatus("MID")
-        quizStatus.shuffleQuiz ? setActiveSelectedQuestions(shuffle(activeSelectedQuestions)) : null;
-        quizStatus.shuffleQuiz ? setActiveSelectedQuestions(activeSelectedQuestions.slice(0, quizStatus.quizNumber)) : null;
+        setPageStatus("MID");
+        if (quizStatus.shuffleQuiz) {
+            setActiveSelectedQuestions(shuffle(activeSelectedQuestions).slice(0, quizStatus.quizNumber));
+        } else {
+            setActiveSelectedQuestions(questionData.slice(0, questionData.length));
+        }
+        
+        // Shuffle choices
+        if (quizStatus.shuffleChoice) {
+            activeSelectedQuestions.map((_question, index) => {
+                setActiveSelectedQuestions((prev) => ([
+                    ...prev.slice(0, index),
+                    {
+                        ...prev[index],
+                        choices: shuffle(_question.choices)
+                    },
+                    ...prev.slice(index + 1, quizStatus.quizNumber)
+                ]));
+            });
+        } else {
+            setActiveSelectedQuestions(questionData.slice(0, questionData.length));
+        }
     }
-
+    
     // ===== SECTION II: QUIZ PAGE SETTING =====
     // =========================================
 
     // Reload
     const handleReload = () => {
         setPageStatus("START");
-        setActiveSelectedQuestions(questionData.slice(0, questionData.length));
+        setActiveSelectedQuestions(questionData.slice(0, questionData.length).slice(0, questionData.length));
         setCurrentQuiz(0);
     }
 
@@ -302,10 +329,10 @@ export default function QuizInterface ({
         
                         {/* Settings */}
                         <div className="flex flex-col mb-8">                                
-                            <div className="flex flex-col md:flex-row gap-6">
-                                {/* Shuffle */}
+                            <div className="flex flex-col md:flex-row gap-4">
+                                {/* Shuffle Quiz */}
                                 <button 
-                                    onClick={() => handleShuffleToggle()}
+                                    onClick={() => handleShuffleQuestionToggle()}
                                     className={"px-2 py-2.5 mr-2 flex flex-row w-max justify-center items-center group rounded-xl bg-white dark:bg-slate-900/40"}>
                                     <div className="flex flex-row">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
@@ -341,7 +368,27 @@ export default function QuizInterface ({
                                         </div>
                                     </div> : null
                                 }
+
                             </div>    
+                            {/* Shuffle Choice */}
+                            <div className="mt-4">
+                                <button 
+                                    onClick={() => handleShuffleChoiceToggle()}
+                                    className={"px-2 py-2.5 mr-2 flex flex-row w-max justify-center items-center group rounded-xl bg-white dark:bg-slate-900/40"}>
+                                    <div className="flex flex-row">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" /></svg>
+                                        <p className="font-bold ml-2 mr-4 after:bg-slate-700 dark:after:bg-slate-200">
+                                            Shuffle Choice</p>
+                                    </div>
+                                    {/* ENABLED OR DISABLED */}
+                                    {quizStatus?.shuffleChoice ? 
+                                        <div className="mr-1 mt-0 font-bold text-indigo-600 after:bg-indigo-600">
+                                            ENABLED</div> : 
+                                        <div className="mr-1 mt-0 font-bold text-indigo-600 after:bg-indigo-600">
+                                            DISABLED</div>}
+                                </button>
+                            </div>
                         </div>
         
                         {/* Action */}
@@ -427,7 +474,7 @@ export default function QuizInterface ({
                     <div className='relative lg:h-[35dvh] w-full px-4 py-2 flex flex-col sm:flex-row'>
                         {/* Question Image */}
                         {activeSelectedQuestions[currentQuiz].QuestionImageUrl ?
-                            <img className='w-full max-h-[50vh] sm:w-[40%] sm:mr-4 object-cover rounded-2xl'
+                            <img className='w-full max-h-[45vh] sm:w-[40%] sm:mr-4 object-cover rounded-2xl'
                                 src={activeSelectedQuestions[currentQuiz].QuestionImageUrl} alt={activeSelectedQuestions[currentQuiz].ID} /> : null}
 
                         {/* Question Text */}
