@@ -250,9 +250,11 @@ export default function QuizInterface ({
                                 // Answer is False and unchoosed -> CORRECT
                                 ("border" + C_NORMAL)))}>
                         <div className={'flex flex-wrap items-center justify-center px-2 gap-2 text-center ' + (_choice["choice"] ? "py-1" : "")}>{
-                            arrayToChips(_choice["backText"]) || 
                             arrayToChips(_choice["choice"])
                         }</div>
+                        {_choice["backText"] && <div className={'flex flex-wrap items-center justify-center mt-2 px-2 gap-2 text-center font-medium ' + (_choice["choice"] ? "py-1" : "")}>{
+                            arrayToChips(_choice["backText"])
+                        }</div>}
                         {_choice["choiceImageUrl"] ? 
                             <div className='flex h-full max-h-[25vh] p-1'>
                                 <img src={_choice["choiceImageUrl"]} alt=""
