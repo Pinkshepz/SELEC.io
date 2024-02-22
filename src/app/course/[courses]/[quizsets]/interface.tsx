@@ -273,7 +273,7 @@ export default function QuizInterface ({
                 // ===== SECTION I: START PAGE ======
                 // ==================================
                 pageStatus == "START" ?
-                <div className='min-h-[100dvh] relative px-4 pt-20 md:pt-12 md:flex md:items-center md:justify-center bg-white/70 dark:bg-slate-900/60 md:bg-none backdrop-blur-md'>
+                <div className='min-h-[100dvh] relative px-4 pt-20 md:pt-12 pb-4 md:pb-0 md:flex md:items-center md:justify-center bg-white/80 dark:bg-slate-900/70 md:bg-none backdrop-blur-md'>
         
                     {/* Start page content */}
                     <div className="relative md:w-[75dvw] md:p-6 md:m-16 md:border md:rounded-xl md:bg-white md:dark:bg-slate-800/80 md:border-slate-200 md:dark:border-slate-700">
@@ -480,7 +480,7 @@ export default function QuizInterface ({
                                 src={activeSelectedQuestions[currentQuiz].QuestionImageUrl} alt={activeSelectedQuestions[currentQuiz].ID} /> : null}
 
                         {/* Question Text */}
-                        <div className='flex flex-col w-full pt-4 sm:pt-0 justify-between'>
+                        <div className='flex flex-col w-full pt-2 sm:pt-0 justify-between'>
                             <div className={'p-4 h-full font-bold text-2xl text-center flex justify-center items-center rounded-xl border' + C_NORMAL}>
                             {activeSelectedQuestions[currentQuiz].Question}</div>
                         </div>
@@ -494,12 +494,11 @@ export default function QuizInterface ({
                 </div>
             }
             {/* 04 - Bottom action bar */}
-            {pageStatus == "MID" ? <div className='sticky bottom-0 right-0 w-full px-4 pb-4 flex flex-row items-end bg-white/90 dark:bg-slate-900/80 backdrop-blur-md'>
+            {pageStatus == "MID" ? <div className='sticky bottom-0 right-0 w-full px-4 pb-4 flex flex-row items-center justify-center bg-white/90 dark:bg-slate-900/80 backdrop-blur-md'>
                 <div className="flex flex-col items-center content-center text-center">
                     <button onClick={() => handleReload()} 
                         className={"text-xl px-4 py-3 group rounded-xl border" + C_NORMAL}>
                         <div className='font-bold'>
-                            <span className="mr-2">←</span>
                             <span>Quit</span>
                         </div>
                     </button>
