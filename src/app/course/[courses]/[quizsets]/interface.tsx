@@ -480,7 +480,7 @@ export default function QuizInterface ({
                                 src={activeSelectedQuestions[currentQuiz].QuestionImageUrl} alt={activeSelectedQuestions[currentQuiz].ID} /> : null}
 
                         {/* Question Text */}
-                        <div className='flex flex-col w-full pt-2 sm:pt-0 justify-between'>
+                        <div className='flex flex-col w-full pt-4 sm:pt-0 justify-between'>
                             <div className={'p-4 h-full font-bold text-2xl text-center flex justify-center items-center rounded-xl border' + C_NORMAL}>
                             {activeSelectedQuestions[currentQuiz].Question}</div>
                         </div>
@@ -494,10 +494,10 @@ export default function QuizInterface ({
                 </div>
             }
             {/* 04 - Bottom action bar */}
-            {pageStatus == "MID" ? <div className='sticky bottom-0 right-0 w-full px-4 pb-4 flex flex-row items-center justify-center bg-white/90 dark:bg-slate-900/80 backdrop-blur-md'>
+            {pageStatus == "MID" ? <div className='sticky bottom-0 right-0 w-full px-4 py-2 flex flex-row items-center justify-center bg-white/90 dark:bg-slate-900/80 backdrop-blur-md'>
                 <div className="flex flex-col items-center content-center text-center">
                     <button onClick={() => handleReload()} 
-                        className={"text-xl px-4 py-3 group rounded-xl border" + C_NORMAL}>
+                        className={"text-xl px-4 py-2 group rounded-xl border" + C_NORMAL}>
                         <div className='font-bold'>
                             <span>Quit</span>
                         </div>
@@ -506,7 +506,7 @@ export default function QuizInterface ({
                 { !((activeSelectedQuestions[currentQuiz].choices[0].graded) ||
                     (activeSelectedQuestions[currentQuiz].Mode == "Flashcard")) ?
                         <div className="flex flex-col w-full ml-2 items-center content-center text-center">
-                            <button className={"text-xl py-3 w-full rounded-xl border" + C_NORMAL}
+                            <button className={"text-xl py-2 w-full rounded-xl border" + C_NORMAL}
                                 onClick={() => gradeAllQuestions()}>
                                     <div className='font-bold text-indigo-600 dark:text-indigo-500'>
                                         <span>Submit →</span>
@@ -516,7 +516,7 @@ export default function QuizInterface ({
                     (currentQuiz < quizStatus.quizNumber - 1) ? 
                         <div className="flex flex-col w-full ml-2 items-center content-center text-center">
                             <a href="#top" className='w-full'>
-                                <button className={"text-xl px-4 py-3 w-full rounded-xl border" + C_NORMAL}
+                                <button className={"text-xl px-4 py-2 w-full rounded-xl border" + C_NORMAL}
                                     onClick={() => handleNextQuestion()}>
                                         <div className='hidden sm:inline font-bold text-indigo-600 dark:text-indigo-500'>
                                             <span>Next Question</span>
@@ -530,7 +530,7 @@ export default function QuizInterface ({
                             </a>
                         </div> :
                         <div className="flex flex-col w-full ml-2 items-center content-center text-center">
-                            <Link className={"text-xl px-4 py-3 w-full rounded-xl border" + C_NORMAL}
+                            <Link className={"text-xl px-4 py-2 w-full rounded-xl border" + C_NORMAL}
                                 href={"./"}>
                                     <div className='font-bold text-indigo-600 dark:text-indigo-500'>
                                         <span>Finish</span>
@@ -541,7 +541,7 @@ export default function QuizInterface ({
                     }
                 { (currentQuiz > 0) ?
                     <div className="flex flex-col ml-2 items-center content-center text-center">
-                        <button className={"text-xl px-4 py-3 rounded-xl border" + C_NORMAL}
+                        <button className={"text-xl px-4 py-2 rounded-xl border" + C_NORMAL}
                             onClick={() => changeQuestion(-1)}>
                                 <div className='font-bold'>
                                     <span>Back</span>
