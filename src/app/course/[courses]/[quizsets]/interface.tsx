@@ -223,7 +223,7 @@ export default function QuizInterface ({
                             {arrayToChips(_choice["choice"])}
                         </div>
                         {_choice["choiceImageUrl"] ? 
-                            <div className='flex h-full max-h-[25vh] p-1'>
+                            <div className='flex h-full max-h-[35vh] p-1'>
                                 <img src={_choice["choiceImageUrl"]} alt=""
                                     className='h-full max-h-[40vh] xl:max-h-full w-full rounded-lg object-cover' />
                             </div> : null
@@ -255,7 +255,7 @@ export default function QuizInterface ({
                             arrayToChips(_choice["backText"])
                         }</div>}
                         {_choice["choiceImageUrl"] ? 
-                            <div className='flex h-full max-h-[25vh] p-1'>
+                            <div className='flex h-full max-h-[35vh] p-1'>
                                 <img src={_choice["choiceImageUrl"]} alt=""
                                     className='h-full max-h-[40vh] xl:max-h-full w-full rounded-lg object-cover' />
                             </div> : null
