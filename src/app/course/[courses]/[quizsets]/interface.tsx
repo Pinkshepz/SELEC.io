@@ -2,15 +2,14 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-
 import './slider.css'
 import { shuffle, arrayToChips } from '@/app/utils/gadgetfx';
 
-const C_NORMAL = " bg-white dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 ";
-const C_PRI = " bg-indigo-50 dark:bg-indigo-900/60 border-indigo-500 dark:border-indigo-400 text-indigo-600 dark:text-indigo-400 ";
-const C_TER_GREEN = " bg-teal-50 dark:bg-teal-900/60 border-teal-500 dark:border-teal-400 text-teal-600 dark:text-teal-400 ";
-const C_TER_RED = " bg-rose-50 dark:bg-rose-900/60 border-rose-500 dark:border-rose-400 text-rose-600 dark:text-rose-400 ";
-const C_TER_YELLOW = " bg-amber-50 dark:bg-amber-900/60 border-amber-500 dark:border-amber-400 text-amber-600 dark:text-amber-400 ";
+const C_NORMAL = " bg-white/90 dark:bg-slate-800/80 border-slate-200/80 dark:border-slate-700/80 ";
+const C_PRI = " bg-indigo-50/90 dark:bg-indigo-900/60 border-indigo-500/80 dark:border-indigo-400/80 text-indigo-600 dark:text-indigo-400 ";
+const C_TER_GREEN = " bg-teal-50/90 dark:bg-teal-900/60 border-teal-500/80 dark:border-teal-400/80 text-teal-600 dark:text-teal-400 ";
+const C_TER_RED = " bg-rose-50/90 dark:bg-rose-900/60 border-rose-500/80 dark:border-rose-400/80 text-rose-600 dark:text-rose-400 ";
+const C_TER_YELLOW = " bg-amber-50/90 dark:bg-amber-900/60 border-amber-500/80 dark:border-amber-400/80 text-amber-600 dark:text-amber-400 ";
 
 export default function QuizInterface ({
     headerData,
@@ -252,7 +251,7 @@ export default function QuizInterface ({
                         <div className={'flex flex-wrap items-center justify-center px-2 gap-2 text-center ' + (_choice["choice"] ? "py-1" : "")}>{
                             arrayToChips(_choice["choice"])
                         }</div>
-                        {_choice["backText"] && <div className={'flex flex-wrap items-center justify-center mt-2 px-2 gap-2 text-center font-medium ' + (_choice["choice"] ? "py-1" : "")}>{
+                        {_choice["backText"] && <div className={'flex flex-wrap items-center justify-center px-2 gap-2 text-center font-medium ' + (_choice["choice"] ? "py-1" : "")}>{
                             arrayToChips(_choice["backText"])
                         }</div>}
                         {_choice["choiceImageUrl"] ? 
@@ -473,21 +472,21 @@ export default function QuizInterface ({
                     </div>
 
                     {/* 02 - Question */}
-                    <div className='relative lg:h-[35dvh] w-full px-4 py-2 flex flex-col sm:flex-row'>
+                    <div className='relative lg:h-[40dvh] w-full px-4 py-2 flex flex-col sm:flex-row'>
                         {/* Question Image */}
                         {activeSelectedQuestions[currentQuiz].QuestionImageUrl ?
                             <img className='w-full max-h-[45vh] sm:w-[40%] sm:mr-4 object-cover rounded-2xl'
                                 src={activeSelectedQuestions[currentQuiz].QuestionImageUrl} alt={activeSelectedQuestions[currentQuiz].ID} /> : null}
 
                         {/* Question Text */}
-                        <div className='flex flex-col w-full pt-4 sm:pt-0 justify-between'>
+                        <div className='flex flex-col w-full justify-between'>
                             <div className={'p-4 h-full font-bold text-2xl text-center flex justify-center items-center rounded-xl border' + C_NORMAL}>
                             {activeSelectedQuestions[currentQuiz].Question}</div>
                         </div>
                     </div>
 
                     {/* 03 - Choice */}
-                    <div className={'-scroll-none relative px-4 py-2 mb-2 h-full lg:h-full w-full flex flex-col lg:grid gap-4 lg:overflow-y-scroll ' + (Object.keys(activeSelectedQuestions[currentQuiz].choices).length == 1 ? 'lg:grid-cols-1' : 'lg:grid-cols-2')}>
+                    <div className={'-scroll-none relative px-4 py-2 h-full lg:h-full w-full flex flex-col lg:grid gap-4 lg:overflow-y-scroll ' + (Object.keys(activeSelectedQuestions[currentQuiz].choices).length == 1 ? 'lg:grid-cols-1' : 'lg:grid-cols-2')}>
                         {ChoiceObject}
                     </div>
 
