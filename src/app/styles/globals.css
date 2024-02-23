@@ -56,7 +56,7 @@ h1 {
 
 h2 {
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 h3 {
@@ -82,6 +82,12 @@ hr {
   border-width: 1px;
 }
 
+.sticky {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
 @media screen and (min-width: 1024px) {
   .-full-screen {
     height: calc(100dvh - 60px);
@@ -93,6 +99,11 @@ hr {
     height: calc(100dvh - 60px);
     overflow-y: scroll;
   }
+}
+
+.-cover-nav {
+  width: 100dvw;
+  height: calc(30dvh + 64px);
 }
 
 .-scroll-none {

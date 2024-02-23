@@ -16,7 +16,7 @@ export default function CourseDisplay({
   const [searchKey, setSearchKey] = useState("");
 
   // Data structure for this page
-  const courseDisplayDataStructure: {[key: string]: Array<{[key: string]: any}>} = {};
+  const courseDataByTopics: {[key: string]: Array<{[key: string]: any}>} = {};
 
   // Sort cardsets by its topic group
   for (let index = 0; index < courseData!.length; index++) {
@@ -28,22 +28,21 @@ export default function CourseDisplay({
     // Check if data matches to searchkey
     if (search_target.toLowerCase().includes(searchKey.toLowerCase())) {
       // Sort courseDisplayData cards by its topics
-      if (courseDisplayDataStructure[element["Group"]] == undefined) {
-          courseDisplayDataStructure[element["Group"]] = [element];
+      if (courseDataByTopics[element["Group"]] == undefined) {
+          courseDataByTopics[element["Group"]] = [element];
       } else {
-          courseDisplayDataStructure[element["Group"]].push(element);
+          courseDataByTopics[element["Group"]].push(element);
       }
     }
   }
 
-  // Map cardset data into objects
-    // Store all courses
-    let courseDisplayAllTopicGroups: Array<React.ReactNode> = [];
-
   // Store all elements
-  let courseDisplayAllElements: Array<React.ReactNode> = [];
-  
-  courseDisplayAllElements.push(
+  let pageElements: Array<React.ReactNode> = [];
+
+  // Store all courses
+  let courseElements: Array<React.ReactNode> = [];
+
+  pageElements.push(
       <section className="relative h-96 md:h-[50vw] flex flex-col items-center justify-center overflow-hidden" key={"sky"}>
         <Image src={sky} alt="" priority={true}
           className="absolute z-[-10] h-full w-full object-cover" width={7000} height={4000} />
@@ -68,52 +67,49 @@ export default function CourseDisplay({
   );
 
   // Start from topic
-  for (let index = 0; index < Object.keys(courseDisplayDataStructure).length; index++) {
-    const topic = Object.keys(courseDisplayDataStructure)[index];
+  for (let index = 0; index < Object.keys(courseDataByTopics).length; index++) {
+    const topic = Object.keys(courseDataByTopics)[index];
     // Topic header
-    courseDisplayAllTopicGroups.push(
+    courseElements.push(
       <h2 className="my-8 px-2 border rounded-xl" key={`heading ${topic}`}>{topic}</h2>
     );
 
     // Store course with a particular topic group
-    let courseDisplaySingleTopicGroup: Array<React.ReactNode> = [];
+    let courseElementsSingleTopic: Array<React.ReactNode> = [];
 
     // Map courseData into each card
-    courseDisplayDataStructure[topic]?.map((courseData) => {
-        courseDisplaySingleTopicGroup.push(
+    courseDataByTopics[topic]?.map((courseDataEach) => {
+        courseElementsSingleTopic.push(
             <Link 
-                href={{
-                    pathname: "./course/[courses]",
-                    query: { courses: courseData["ID"] }
-                }}
-                as={`course/${courseData["ID"]}`}
-                key={"Link" + courseData["ID"]}
+                href={{ pathname: "./course/[courses]" }}
+                as={`course/${courseDataEach["ID"]}`}
+                key={"Link" + courseDataEach["ID"]}
             >
                 <DisplayCard 
-                    cardId={courseData["ID"]}
+                    cardId={courseDataEach["ID"]}
                     cardGroup={topic}
-                    cardCategory={"BLOCK " + courseData["Block"]}
-                    cardImageLink={courseData["ImageLink"]}
-                    cardTitle={courseData["Title"]}
-                    cardDescription={courseData["Description"]}
-                    key={"Card" + courseData["ID"]}/>
+                    cardCategory={"BLOCK " + courseDataEach["Block"]}
+                    cardImageLink={courseDataEach["ImageLink"]}
+                    cardTitle={courseDataEach["Title"]}
+                    cardDescription={courseDataEach["Description"]}
+                    key={"Card" + courseDataEach["ID"]}/>
             </Link>
         );
     });
 
     // Display grid full screen
-    courseDisplayAllTopicGroups.push(
+    courseElements.push(
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1" key={`group ${topic}`}>
-        {courseDisplaySingleTopicGroup}
+        {courseElementsSingleTopic}
       </div>
     );
   }
 
-  courseDisplayAllElements.push(
-    <section className="flex flex-col items-center" key={"course_display"}>
-        {courseDisplayAllTopicGroups}
-    </section>
+  pageElements.push(
+    <div className="flex flex-col items-center" key={"course_display"}>
+        {courseElements}
+    </div>
   );
 
-  return courseDisplayAllElements;
+  return pageElements;
 }
