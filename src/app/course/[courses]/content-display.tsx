@@ -96,7 +96,7 @@ export default function CourseContentDisplay({
     <section className='z-0' key={"section3"}>
       <div className='sticky flex flex-col z-10'>
         <div className='h-16'></div>
-        <div className='px-4 py-4 bg-white/90 dark:bg-black backdrop-blur-xl'>
+        <div className='px-4 pt-2 bg-white/90 dark:bg-zinc-900/70 backdrop-blur-md'>
           <h1 className='text-4xl'>{courseData["Title"]}</h1>
 
           <div className="flex flex-row z-0 my-4 items-center text-lg md:text-xl rounded-xl">

@@ -47,6 +47,7 @@ export default async function Quizset ({ params }: { params: {contents: string} 
     for (let i = 0; i < questionDataId.length; i++) {
         let _choice_structure = [];
         const questionRow = questionData[questionDataId[i]];
+
         try {
             let _choice_num = 1;
             while (_choice_num > 0) {

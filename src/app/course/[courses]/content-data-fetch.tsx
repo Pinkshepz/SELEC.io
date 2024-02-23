@@ -11,7 +11,7 @@ export async function courseDataFetcher({ course }: { course: string }) {
 
   const courseContentDataRaw: any = await getGoogleSheetProps({
     ref: '[courses]/content',
-    sheetName: "CARDSET",
+    sheetName: "CONTENT",
     rangeName: "A1:G"
   });
 

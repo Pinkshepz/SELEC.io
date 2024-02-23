@@ -29,7 +29,9 @@ function dataProcessing(_data: Array<Array<any>>): {[key: string]: {[key: string
         }
 
         // When every element is processed, push newly created object into new array
-        _new_data[_data[i][0]] = _datarow_obj;
+        if ((_data[i][0] != '') && (_data[i][0] != undefined)) {
+            _new_data[_data[i][0]] = _datarow_obj
+        };
     }
 
     return _new_data;
