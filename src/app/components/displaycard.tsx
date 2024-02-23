@@ -16,7 +16,8 @@ export default function DisplayCard ({
     return (
         <div className="-card-hover">
             <div className="overflow-hidden">
-                <img src={cardImageLink} alt="image" className="h-[25vw] lg:h-[20vw]" height={840} width={840} />
+                {cardImageLink ? <img src={cardImageLink} alt="" className="h-[25vw] lg:h-[20vw]" height={840} width={840} /> :
+                <img src="https://img.freepik.com/free-vector/abstract-coming-soon-halftone-style-background-design_1017-27282.jpg?size=626&ext=jpg&ga=GA1.1.1700460183.1708560000&semt=ais" alt="" className="h-[25vw] lg:h-[20vw]" height={840} width={840} />}
             </div>
             <div className="pl-2">
                 <h4 className="mt-2 text-md font-[600]">{cardTitle}</h4>
