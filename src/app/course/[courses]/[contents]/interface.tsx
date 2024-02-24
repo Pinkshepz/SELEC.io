@@ -190,7 +190,8 @@ export default function QuizInterface ({
                             ...prev[currentQuiz].choices[index],
                             graded: true
                         }
-                    }
+                    },
+                    graded: true
                 },
                 ...prev.slice(currentQuiz + 1, quizStatus.quizNumber)
             ]));
@@ -472,16 +473,23 @@ export default function QuizInterface ({
                     </div>
 
                     {/* 02 - Question */}
-                    <div className='relative lg:h-[40dvh] w-full px-4 py-2 flex flex-col sm:flex-row'>
+                    <div className='relative lg:min-h-[20dvh] lg:max-h-[40dvh] w-full px-4 py-2 flex flex-col md:flex-row'>
                         {/* Question Image */}
                         {activeSelectedQuestions[currentQuiz].QuestionImageUrl ?
-                            <img className='w-full max-h-[45vh] sm:w-[40%] sm:mr-4 object-cover rounded-2xl'
+                            <img className='max-h-[45vh] md:max-w-[40dvw] lg:max-w-[50dvw] md:mr-4 mb-4 md:mb-0 object-cover rounded-2xl'
                                 src={activeSelectedQuestions[currentQuiz].QuestionImageUrl} alt={activeSelectedQuestions[currentQuiz].ID} /> : null}
 
                         {/* Question Text */}
                         <div className='flex flex-col w-full justify-between'>
-                            <div className={'p-4 h-full font-bold text-2xl text-center flex justify-center items-center rounded-xl border' + C_NORMAL}>
-                            {activeSelectedQuestions[currentQuiz].Question}</div>
+                            <div className={'p-4 h-full flex flex-col justify-center items-center rounded-xl border' + C_NORMAL}>
+                            
+                            <div className='font-bold text-2xl text-center'>{activeSelectedQuestions[currentQuiz].Question}</div>
+                            
+                            {activeSelectedQuestions[currentQuiz].graded ? activeSelectedQuestions[currentQuiz].QuestionBackText && 
+                                <div className={'pt-2 text-lg text-center' + C_NORMAL}>
+                                {activeSelectedQuestions[currentQuiz].QuestionBackText}</div> : null}
+                            
+                            </div>
                         </div>
                     </div>
 

@@ -75,7 +75,8 @@ export default async function Quizset ({ params }: { params: {contents: string} 
             // Redesign choices data structure
             questionData[questionDataId[i]] = {
                 ...questionRow,
-                choices: _choice_structure
+                choices: _choice_structure,
+                graded: false
             }
 
             // Collect statistics of topic group
