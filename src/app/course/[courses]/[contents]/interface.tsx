@@ -473,14 +473,14 @@ export default function QuizInterface ({
                     </div>
 
                     {/* 02 - Question */}
-                    <div className='relative lg:min-h-[20dvh] lg:max-h-[40dvh] w-full px-4 py-2 flex flex-col md:flex-row'>
+                    <div className='relative lg:max-h-[40dvh] w-full px-4 py-2 flex flex-col md:flex-row'>
                         {/* Question Image */}
                         {activeSelectedQuestions[currentQuiz].QuestionImageUrl ?
-                            <img className='max-h-[45vh] md:max-w-[40dvw] lg:max-w-[50dvw] md:mr-4 mb-4 md:mb-0 object-cover rounded-2xl'
+                            <img className='max-h-[45vh] md:max-w-[40dvw] lg:max-w-[40dvw] md:mr-4 mb-4 md:mb-0 rounded-2xl'
                                 src={activeSelectedQuestions[currentQuiz].QuestionImageUrl} alt={activeSelectedQuestions[currentQuiz].ID} /> : null}
 
                         {/* Question Text */}
-                        <div className='flex flex-col w-full justify-between'>
+                        <div className='flex flex-col w-full lg:min-h-[20dvh] justify-between'>
                             <div className={'p-4 h-full flex flex-col justify-center items-center rounded-xl border' + C_NORMAL}>
                             
                             <div className='font-bold text-2xl text-center'>{activeSelectedQuestions[currentQuiz].Question}</div>
