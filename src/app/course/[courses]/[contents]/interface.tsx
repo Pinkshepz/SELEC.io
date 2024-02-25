@@ -36,7 +36,7 @@ export default function QuizInterface ({
             shuffleChoice: boolean, 
             quizNumber: number
         }>({
-            shuffleQuiz: true,
+            shuffleQuiz: ((headerData.Category == "Selecard") ? false : true),
             shuffleChoice: ((headerData.Category == "Selecard") ? false : true),
             quizNumber: headerData.QuestionPoolTotal
         });
