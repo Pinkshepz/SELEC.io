@@ -94,7 +94,7 @@ export default function CourseContentDisplay({
 
   pageElements.push(
     <section className='z-0' key={"section3"}>
-      <div className='sticky flex flex-col z-10'>
+      <div className='flex flex-col z-10'>
         <div className='h-16'></div>
         <div className='px-4 pt-2 bg-white/90 dark:bg-zinc-900/70 backdrop-blur-md'>
           <h1 className='text-4xl'>{courseData["Title"]}</h1>
