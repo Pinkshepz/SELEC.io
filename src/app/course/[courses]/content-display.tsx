@@ -74,8 +74,6 @@ export default function CourseContentDisplay({
               key={contentDataEach["ID"]}>
               <DisplayCard 
                   cardId={contentDataEach["ID"]}
-                  cardGroup={contentDataEach["Group"]}
-                  cardCategory={contentDataEach["Category"]}
                   cardImageLink={contentDataEach["ImageLink"]}
                   cardTitle={contentDataEach["Title"]}
                   cardDescription={contentDataEach["Description"]}
