@@ -473,7 +473,7 @@ export default function QuizInterface ({
                     </div>
 
                     {/* 02 - Question */}
-                    <div className='relative lg:max-h-[40dvh] w-full px-4 py-2 flex flex-col md:flex-row'>
+                    <div className='relative lg:max-h-[30dvh] w-full px-4 py-2 flex flex-col md:flex-row'>
                         {/* Question Image */}
                         {activeSelectedQuestions[currentQuiz].QuestionImageUrl ?
                             <img className='max-h-[45vh] md:max-w-[40dvw] lg:max-w-[40dvw] md:mr-4 mb-4 md:mb-0 rounded-2xl'
