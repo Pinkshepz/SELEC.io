@@ -3,7 +3,7 @@ import NotFound from '../../../components/not_found';
 import QuizInterface from './interface';
 
 // CONSTANT VARIABLE
-const CARDSET_RANGE = "A1:G";
+const CARDSET_RANGE = "B1:G";
 const QUIZSET_RANGE = "A1:CZ";
 
 // Dynamic routing <cardsets>
@@ -12,12 +12,13 @@ export default async function Quizset ({ params }: { params: {contents: string} 
     // Fetch cardset data for this dynamic route
     const cardsetDataRaw: {[key: string]: {[key: string]: any}} | undefined = await getGoogleSheetProps({
         ref: '[content]',
-        sheetName: "CONTENT",
+        sheetName: params.contents.split('-')[0] + "-CONTENT",
         rangeName: CARDSET_RANGE
       });
     
     // Verify avaliability of this quizset's course
-    if ((cardsetDataRaw === undefined) || (cardsetDataRaw[params.contents] === undefined)) {
+    if (cardsetDataRaw === undefined) {
+        console.log('Quiz set is not avaliable')
         return <NotFound />}
 
     // Get course data
@@ -32,6 +33,7 @@ export default async function Quizset ({ params }: { params: {contents: string} 
 
     // If no data, return not found
     if ((questionData === undefined) || (Object.keys(questionData)).length == 0) {
+        console.log('There is no question data in the provided quizset code')
         return <NotFound />}
     
     // Construct headerData as main setting for quiz environment
@@ -96,7 +98,7 @@ export default async function Quizset ({ params }: { params: {contents: string} 
     
     return (
         <div className="relative flex flex-col">
-            <img className='-bg-fixed' src={headerData.ImageLink} alt=''></img>
+            <img className='fixed' id='bg-fixed' src={headerData.ImageLink} alt=''></img>
             <QuizInterface
                 headerData={headerData}
                 questionData={Object.values(questionData)}/>

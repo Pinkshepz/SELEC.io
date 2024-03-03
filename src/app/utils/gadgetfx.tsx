@@ -1,5 +1,3 @@
-import { type } from "os";
-
 // Shuffle items in array
 export function shuffle(array: Array<any>) {
     let currentIndex = array.length, randomIndex;
@@ -17,6 +15,28 @@ export function shuffle(array: Array<any>) {
     }
   
     return array;
+}
+
+export function searchObjectFilter(object: {[key: string]: any}, searchKey: string) {
+    let filteredObject: {[key: string]: any} = {};
+
+    for (let objectKey of Object.keys(object) as string[]) {
+        if (JSON.stringify(object[objectKey]).toLocaleLowerCase().includes(
+            searchKey.toLocaleLowerCase()
+        ) === true) {
+            filteredObject[objectKey] = object[objectKey];
+        }
+    }
+
+    return filteredObject;
+}
+
+export function classConcatenate(...strings: any) {
+    let concat_sting = ""
+    // Concat each string with " " between
+    for (let string of strings) concat_sting += (string + " ");
+
+    return concat_sting;
 }
 
 export function arrayOfArrayToObject(arrayOfArray: Array<Array<any>>) {

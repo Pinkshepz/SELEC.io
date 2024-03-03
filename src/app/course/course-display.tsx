@@ -90,7 +90,7 @@ export default function CourseDisplay({
                     cardGroup={topic}
                     cardCategory={"BLOCK " + courseDataEach["Block"]}
                     cardImageLink={courseDataEach["ImageLink"]}
-                    cardTitle={courseDataEach["Title"]}
+                    cardTitle={courseDataEach["ID"] + ' ' + courseDataEach["Title"]}
                     cardDescription={courseDataEach["Description"]}
                     key={"Card" + courseDataEach["ID"]}/>
             </Link>
