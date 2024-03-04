@@ -326,8 +326,8 @@ export default function CourseContentDisplay({
         <aside id="col-scroll-aside" className='-scroll-none' key='interface-aside'>
 
           <section key='interface-aside-section-1'>
-            <h3>{courseData["ID"]}</h3>
-            <h3>{courseData["Title"]}</h3>
+            <span id='chip-lg'>{courseData["ID"]}</span>
+            <h3 className='mt-1'>{courseData["Title"]}</h3>
             <p className='mt-3'>{courseData["Description"]}</p>
           </section>
 
