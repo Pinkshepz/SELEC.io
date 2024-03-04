@@ -336,7 +336,7 @@ export default function QuizInterface ({
                                 <button 
                                     onClick={() => handleShuffleQuestionToggle()}
                                     className={"px-2 py-2.5 mr-2 flex flex-row w-max justify-center items-center group rounded-xl bg-white dark:bg-slate-900/40"}>
-                                    <div className="flex flex-row">
+                                    <div className="flex flex-row items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" /></svg>
                                         <p className="font-bold ml-2 mr-4 after:bg-slate-700 dark:after:bg-slate-200">
@@ -353,7 +353,7 @@ export default function QuizInterface ({
                                 {/* Question Number */}
                                 { quizStatus.shuffleQuiz ?
                                     <div className="px-2 py-2 mr-2 flex flex-col sm:flex-row w-max justify-center items-start group rounded-xl bg-white dark:bg-slate-900/40">
-                                        <div className="flex flex-row">
+                                        <div className="flex flex-row items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" /></svg>
                                             <p className="font-bold ml-2 mr-4 after:bg-slate-700 dark:after:bg-slate-200">
@@ -377,7 +377,7 @@ export default function QuizInterface ({
                                 <button 
                                     onClick={() => handleShuffleChoiceToggle()}
                                     className={"px-2 py-2.5 mr-2 flex flex-row w-max justify-center items-center group rounded-xl bg-white dark:bg-slate-900/40"}>
-                                    <div className="flex flex-row">
+                                    <div className="flex flex-row items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6 text-indigo-600 dark:text-indigo-500">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" /></svg>
                                         <p className="font-bold ml-2 mr-4 after:bg-slate-700 dark:after:bg-slate-200">
