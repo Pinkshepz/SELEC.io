@@ -487,7 +487,7 @@ export default function QuizInterface ({
                             
                             {activeSelectedQuestions[currentQuiz].graded ? activeSelectedQuestions[currentQuiz].QuestionBackText && 
                                 <div className={'pt-2 text-lg text-center' + C_NORMAL}>
-                                {activeSelectedQuestions[currentQuiz].QuestionBackText}</div> : null}
+                                {arrayToChips(activeSelectedQuestions[currentQuiz].QuestionBackText)}</div> : null}
                             
                             </div>
                         </div>
