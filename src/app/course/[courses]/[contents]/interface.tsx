@@ -483,11 +483,14 @@ export default function QuizInterface ({
                         <div className='flex flex-col w-full lg:min-h-[20dvh] justify-between'>
                             <div className={'p-4 h-full flex flex-col justify-center items-center rounded-xl border' + C_NORMAL}>
                             
-                            <div className='font-bold text-2xl text-center'>{activeSelectedQuestions[currentQuiz].Question}</div>
+                            <div className='font-bold text-2xl text-center'>
+                                {arrayToChips(activeSelectedQuestions[currentQuiz].Question)}
+                            </div>
                             
                             {activeSelectedQuestions[currentQuiz].graded ? activeSelectedQuestions[currentQuiz].QuestionBackText && 
                                 <div className={'pt-2 text-lg text-center' + C_NORMAL}>
-                                {arrayToChips(activeSelectedQuestions[currentQuiz].QuestionBackText)}</div> : null}
+                                    {arrayToChips(activeSelectedQuestions[currentQuiz].QuestionBackText)}
+                                </div> : null}
                             
                             </div>
                         </div>
