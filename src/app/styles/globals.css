@@ -5,8 +5,8 @@
 :root {
     --base: rgba(0, 0, 0, 1.0);
     --baseinverse: rgba(255, 255, 255, 1.0);
-    --bg: rgba(247, 247, 247, 0.85);
-    --bgaccent: rgba(255, 255, 255, 0.88);
+    --bg: rgba(250, 250, 250, 0.90);
+    --bgaccent: rgba(255, 255, 255, 0.92);
     --card: rgba(247, 247, 247, 0.4);
     --border: rgba(206, 206, 206, 0.5);
     --pri: rgba(136, 106, 255, 0.9);
@@ -128,6 +128,11 @@ hr {
   border: 1px var(--base);
   border-style: inset;
   border-width: 1px;
+}
+
+nav {
+  background-color: var(--bgaccent);
+  border-bottom: solid 1px var(--border);
 }
 
 .sticky {

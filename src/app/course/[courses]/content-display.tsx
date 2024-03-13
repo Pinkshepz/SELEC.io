@@ -183,7 +183,7 @@ export default function CourseContentDisplay({
         ref={element => elementsRef.current[topicData.refKey] = element}>
         <div className='flex flex-row'>
           <span id='chip-md'>{topicData.ID.split('-')[2]}</span>
-          <h4>{topicData.Topic}</h4>
+          <h4 className='pt-[0.5px]'>{topicData.Topic}</h4>
         </div>
         <p className='mt-3'>{topicData.Description}</p>
         <div className='flex flex-row gap-2 mt-4'>
@@ -284,7 +284,7 @@ export default function CourseContentDisplay({
         <div className='mb-4' id='card-main'>
           {articles}
         </div>
-        <article className='grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4'>
+        <article className='grid md:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 gap-4'>
           {stars}
         </article>
       </section>

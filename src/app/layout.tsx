@@ -5,7 +5,7 @@ import './styles/globals.css'
 import './styles/fontface.css'
 
 export const metadata: Metadata = {
-  title: 'SELESTIAL',
+  title: 'Selestial',
   description: 'Explore. Extract. Exam. Exercise.',
 }
 
