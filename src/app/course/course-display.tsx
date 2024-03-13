@@ -88,7 +88,6 @@ export default function CourseDisplay({
                 <DisplayCard 
                     cardId={courseDataEach["ID"]}
                     cardGroup={topic}
-                    cardCategory={"BLOCK " + courseDataEach["Block"]}
                     cardImageLink={courseDataEach["ImageLink"]}
                     cardTitle={courseDataEach["ID"] + ' ' + courseDataEach["Title"]}
                     cardDescription={courseDataEach["Description"]}
