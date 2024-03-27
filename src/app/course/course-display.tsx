@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import DisplayCard from '../components/displaycard';
+import DisplayCard from './displaycard';
 import { useState } from 'react';
 import sky from '../../../public/images/sky.jpeg'
 
@@ -71,7 +71,7 @@ export default function CourseDisplay({
     const topic = Object.keys(courseDataByTopics)[index];
     // Topic header
     courseElements.push(
-      <h2 className="my-8 px-2 border rounded-xl" key={`heading ${topic}`}>{topic}</h2>
+      <h2 className="my-8" key={`heading ${topic}`}>{topic}</h2>
     );
 
     // Store course with a particular topic group
@@ -87,10 +87,12 @@ export default function CourseDisplay({
             >
                 <DisplayCard 
                     cardId={courseDataEach["ID"]}
-                    cardGroup={topic}
+                    cardLightText={courseDataEach["Section"]}
                     cardImageLink={courseDataEach["ImageLink"]}
                     cardTitle={courseDataEach["ID"] + ' ' + courseDataEach["Title"]}
                     cardDescription={courseDataEach["Description"]}
+                    cardAction={courseDataEach["Action"]}
+                    cardSize={courseDataEach["Size"]}
                     key={"Card" + courseDataEach["ID"]}/>
             </Link>
         );
@@ -98,14 +100,14 @@ export default function CourseDisplay({
 
     // Display grid full screen
     courseElements.push(
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1" key={`group ${topic}`}>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" key={`group ${topic}`}>
         {courseElementsSingleTopic}
       </div>
     );
   }
 
   pageElements.push(
-    <div className="flex flex-col items-center" key={"course_display"}>
+    <div className="flex flex-col px-4" key={"course_display"}>
         {courseElements}
     </div>
   );

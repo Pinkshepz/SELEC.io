@@ -97,7 +97,7 @@ h3 {
 
 h4 {
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 120%;
 }
 
@@ -229,6 +229,40 @@ nav {
   border: solid 1px var(--border);
   border-radius: 12px;
   overflow: hidden;
+}
+
+#pipe-pri {
+  padding: 2px;
+  color: var(--baseinverse);
+  background-color: var(--pri);
+  border-radius: 10px;
+}
+
+#pipe-neu {
+  padding: 2px;
+  color: var(--baseinverse);
+  background-color: var(--ter);
+  border-radius: 10px;
+}
+
+#chip-action-pri {
+  width: max-content;
+  padding: 0 8px 2px 8px;
+  font-size: 1.0rem;
+  font-weight: 700;
+  color: var(--baseinverse);
+  background-color: var(--pri);
+  border-radius: 10px;
+}
+
+#chip-action-neu {
+  width: max-content;
+  padding: 0 8px 2px 8px;
+  font-size: 1.0rem;
+  font-weight: 700;
+  color: var(--baseinverse);
+  background-color: var(--ter);
+  border-radius: 10px;
 }
 
 #chip-lg {

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import DisplayCard from '@/app/components/displaycard';
+import DisplayCard from '@/app/course/displaycard';
 import { searchObjectFilter } from '@/app/utils/gadgetfx';
 
 const ALT_IMAGE = "https://idsb.tmgrup.com.tr/ly/uploads/images/2020/11/11/71386.jpg"

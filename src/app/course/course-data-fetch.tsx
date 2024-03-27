@@ -5,7 +5,7 @@ export async function courseDataFetcher() {
     const courseDisplayDataRaw = await getGoogleSheetProps({
         ref: 'course',
         sheetName: "COURSE",
-        rangeName: "A1:F"
+        rangeName: "A1:H"
       });
     
     return Object.values(courseDisplayDataRaw!);
