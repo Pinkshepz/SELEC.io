@@ -10,7 +10,15 @@ const QUIZSET_RANGE = "A1:CZ";
 export default async function Quizset ({ params }: { params: {contents: string} }) {
    
     // Fetch cardset data for this dynamic route
+    const courseDataRaw: any = await getGoogleSheetProps({
+        id: null,
+        ref: '[courses]',
+        sheetName: "COURSE",
+        rangeName: "A1:Z"
+      });
+
     const cardsetDataRaw: {[key: string]: {[key: string]: any}} | undefined = await getGoogleSheetProps({
+        id: courseDataRaw[params.contents.split('-')[0]].SheetID,
         ref: '[content]',
         sheetName: params.contents.split('-')[0] + "-CONTENT",
         rangeName: CARDSET_RANGE
@@ -26,6 +34,7 @@ export default async function Quizset ({ params }: { params: {contents: string} 
 
     // Fetch quizset data for this dynamic route
     const questionData: {[key: string]: {[key: string]: any}} | undefined = await getGoogleSheetProps({ 
+        id: courseDataRaw[params.contents.split('-')[0]].SheetID,
         ref: "cardsets",
         sheetName: params.contents,
         rangeName: QUIZSET_RANGE

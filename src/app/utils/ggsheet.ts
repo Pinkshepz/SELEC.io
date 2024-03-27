@@ -38,10 +38,12 @@ function dataProcessing(_data: Array<Array<any>>): {[key: string]: {[key: string
 }
 
 async function getServerSideProps({
+    id,
     ref,
     sheetName,
     rangeName
 }: { 
+    id: string | null,
     ref: string,
     sheetName: string,
     rangeName: string
@@ -62,12 +64,14 @@ async function getServerSideProps({
   
     // Query
     const range = `${sheetName}!${rangeName}`;
+
+    if (id === null) {id = process.env.SHEET_ID!}
   
     // Fetch data & error handling
     try {
         // Fetch data from GG Sheet
         const response = await sheets.spreadsheets.values.get({
-            spreadsheetId: process.env.SHEET_ID,
+            spreadsheetId: id,
             range
         });
 
@@ -87,13 +91,15 @@ async function getServerSideProps({
 
 // Export function
 export function getGoogleSheetProps({
+    id,
     ref,
     sheetName,
     rangeName
 }: { 
+    id: string | null,
     ref: string,
     sheetName: string,
     rangeName: string
 }) {
-    return getServerSideProps({sheetName, rangeName, ref});
+    return getServerSideProps({id, sheetName, rangeName, ref});
 }

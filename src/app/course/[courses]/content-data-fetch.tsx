@@ -4,18 +4,21 @@ import { getGoogleSheetProps } from '../../utils/ggsheet';
 export async function courseDataFetcher({ course }: { course: string }) {
   // Get data from GG Sheet api
   const courseDataRaw: any = await getGoogleSheetProps({
+    id: null,
     ref: '[courses]',
     sheetName: "COURSE",
     rangeName: "A1:Z"
   });
 
   const courseTopicDataRaw: any = await getGoogleSheetProps({
+    id: courseDataRaw[course].SheetID,
     ref: '[courses]',
     sheetName: course + "-COURSE",
     rangeName: "A1:Z"
   });
 
   const courseContentDataRaw: any = await getGoogleSheetProps({
+    id: courseDataRaw[course].SheetID,
     ref: '[courses]',
     sheetName: course + "-CONTENT",
     rangeName: "A1:Z"

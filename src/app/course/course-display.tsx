@@ -23,7 +23,7 @@ export default function CourseDisplay({
     // Each course data
     const element: {[key: string]: any} = courseData![index];
     // Create combination of all course information for search target
-    const search_target = element["ID"] + " " + element["Group"] + " " + element["Block"] + " " + element["Title"];
+    const search_target = element["ID"] + " " + element["Size"] + " " + element["Section"] + " " + element["Title"] + " " + element["Action"];
 
     // Check if data matches to searchkey
     if (search_target.toLowerCase().includes(searchKey.toLowerCase())) {
@@ -61,7 +61,7 @@ export default function CourseDisplay({
               type="text" 
               placeholder="Search courses"
               onChange={e => setSearchKey(e.target.value)}
-              className="text-neutral-300 w-40 focus:w-[50vw] transition-all ease-in-out duration-500"/>
+              className="text-neutral-300 w-[50dvw]"/>
           </div>
       </section>
   );

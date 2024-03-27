@@ -244,9 +244,10 @@ export default function CourseContentDisplay({
               className='flex flex-col' id='card-main' key={star.ID}>
               <img src={star.ImageLink} alt="" className='h-48 object-cover' />
               <div className='p-3'>
-                <h4 className='mb-2'>{star.Title}</h4>
-                <p className='mb-3'>{star.Description}</p>
-                <div className='flex flex-wrap items-center gap-2'>
+                <p className="text-neutral-300 dark:text-neutral-500">{star.Category}</p>
+                <h4 className='mt-2'>{star.Title}</h4>
+                <p className='mt-6'>{star.Description}</p>
+                <div className='flex flex-wrap items-center gap-2 mt-4'>
 
                   <div className={((star.Category == 'SUPERSTAR') ? 'chip-sm-sec' : 'chip-sm-pri') + ' px-2 sm:px-0'} id='chip-sm'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-3 h-3 mr-1.5 inline">

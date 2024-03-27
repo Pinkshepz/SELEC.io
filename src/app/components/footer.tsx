@@ -2,6 +2,7 @@ import { getGoogleSheetProps } from "../utils/ggsheet";
 
 export default async function Footer() {
     const footerDataRaw = await getGoogleSheetProps({
+        id: null,
         ref: "homepage",
         sheetName: "PANEL",
         rangeName: "A7:G8"
