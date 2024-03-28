@@ -12,6 +12,7 @@
     --pri: rgba(136, 106, 255, 0.9);
     --sec: rgba(224, 165, 13, 0.9);
     --ter: rgba(79, 79, 79, 0.9);
+    --fade: rgba(163, 163, 163, 1.0);
   }
   
   @media (prefers-color-scheme: dark) {
@@ -25,6 +26,7 @@
       --pri: rgba(151, 125, 255, 0.9);
       --sec: rgba(241, 195, 77, 0.9);
       --ter: rgba(255, 255, 255, 0.9);
+      --fade: rgba(115, 115, 115, 1.0);
   }
 }
 
@@ -107,14 +109,25 @@ h5 {
   line-height: 110%;
 }
 
+h6 {
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 100%;
+}
+
 p {
   font-size: 0.8rem;
   line-height: 120%;
 }
 
 #small-p {
-  font-size: 0.85rem;
-  line-height: 115%;
+  font-size: 0.8rem;
+  color: var(--fade);
+}
+
+#small-p-ter {
+  font-size: 0.8rem;
+  color: var(--ter);
 }
 
 hr {
@@ -128,6 +141,18 @@ hr {
   border: 1px var(--base);
   border-style: inset;
   border-width: 1px;
+}
+
+.color-pri {
+  color: var(--pri);
+}
+
+.color-sec {
+  color: var(--sec);
+}
+
+.color-ter {
+  color: var(--ter);
 }
 
 nav {
@@ -281,6 +306,7 @@ nav {
   align-items: center;
   width: max-content;
   min-height: 24px;
+  height: fit-content;
   padding: 0 6px;
   margin-right: 6px;
   font-size: 0.9rem;
@@ -295,6 +321,7 @@ nav {
   align-items: center;
   width: max-content;
   min-height: 24px;
+  height: fit-content;
   padding-right: 4px;
   margin-right: 4px;
   font-size: 0.9rem;

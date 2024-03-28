@@ -20,20 +20,20 @@ export default function DisplayCard ({
     let size_pipe: React.ReactNode[] = []
     for (let index = 0; index < cardSize; index++) {
         if (cardAction == 'Completed') {
-            size_pipe.push(<span id="pipe-pri" className=""></span>)
+            size_pipe.push(<span id="pipe-pri" className="" key={index}></span>)
         } else {
-            size_pipe.push(<span id="pipe-neu" className=""></span>)
+            size_pipe.push(<span id="pipe-neu" className="" key={index}></span>)
         }
         
     }
     return (
-        <div className="-card-hover" id='card-main'>
+        <div className="-card-hover" id='card-main' key={cardId}>
             <div className="overflow-hidden">
                 {cardImageLink ? <img src={cardImageLink} alt="" className="h-[30vh]" height={1000} width={1000} /> :
                 <img src="https://img.freepik.com/free-vector/abstract-coming-soon-halftone-style-background-design_1017-27282.jpg?size=626&ext=jpg&ga=GA1.1.1700460183.1708560000&semt=ais" alt="" className="h-[25vw] lg:h-[20vw]" height={840} width={840} />}
             </div>
             <div className="p-4">
-                <p className="text-neutral-300 dark:text-neutral-500">{cardLightText}</p>
+                <p id="small-p">{cardLightText}</p>
                 <h4 className="mt-2 text-md font-[600]">{cardTitle}</h4>
                 <p className="mt-6 text-sm font-light">{cardDescription}</p>
                 
@@ -46,7 +46,6 @@ export default function DisplayCard ({
                         {size_pipe}
                     </span>
                 </div>
-                
             </div>
         </div>
     )

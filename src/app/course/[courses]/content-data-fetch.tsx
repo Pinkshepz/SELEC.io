@@ -76,16 +76,16 @@ export async function courseDataFetcher({ course }: { course: string }) {
     const content_topic_id = content["ID"].split("-").slice(0, 3).join("-");
     if (courseContentData[content_section_id] === undefined) {
       courseContentData[content_section_id] = {
-        RECALL: {},
-        PRACTICE: {},
-        SUPERSTAR: {},
+        Chip: {},
+        Card: {},
+        Banner: {},
       };
     }
     
-    if (courseContentData[content_section_id][content["Category"]][content_topic_id] === undefined) {
-      courseContentData[content_section_id][content["Category"]][content_topic_id] = {[content["ID"]]: content};
+    if (courseContentData[content_section_id][content.Appearance][content_topic_id] === undefined) {
+      courseContentData[content_section_id][content.Appearance][content_topic_id] = {[content["ID"]]: content};
     } else {
-      courseContentData[content_section_id][content["Category"]][content_topic_id][content["ID"]] = content;
+      courseContentData[content_section_id][content.Appearance][content_topic_id][content["ID"]] = content;
     }
   }
 
