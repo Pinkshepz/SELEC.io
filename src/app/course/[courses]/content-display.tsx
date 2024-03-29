@@ -217,8 +217,8 @@ export default function CourseContentDisplay({
             <span id='chip-md'>{topicData.ID.split('-')[2]}</span>
             <h4 className='pt-[0.5px]'>{topicData.Topic}</h4>
           </div>
-          {(resources.length > 0) && <div className='flex flex-wrap gap-2 mt-1 px-3'>{resources}</div>}
-          {(outcomes.length >0) && <div id='fadebg' className={outcomes_columns + 'gap-6 mt-4 px-3 py-4'}>{outcomes}</div>}
+          {(resources.length > 0) && <div className='flex flex-wrap gap-2 mt-1 mb-4 px-3'>{resources}</div>}
+          {(outcomes.length >0) && <div id='fadebg' className={outcomes_columns + 'gap-6 px-3 py-3'}>{outcomes}</div>}
         </div>
       </article>
     );
@@ -262,7 +262,7 @@ export default function CourseContentDisplay({
     }
     );
 
-    // Map cards
+    // Map banners
     if (contentData !== undefined) {
       for (const banners_items of Object.values(contentData.Banner)) {
 
@@ -271,12 +271,12 @@ export default function CourseContentDisplay({
             <Link 
               href={{ pathname: "./course/[courses]/[contents]" }}
               as={`/course/${courseData["ID"]}/${star["Ref"]}`}
-              className='-card-hover relative flex flex-col text-white h-fit' id='card-main' key={star.ID}>
+              className='-card-hover relative flex flex-col text-white' id='card-main' key={star.ID}>
               <div className='relative overflow-hidden'>
                 <img src={star.ImageLink} alt="" className='h-48 w-full object-cover' />
                 <div className='absolute top-0 h-48 w-full bg-neutral-900/65'></div>
               </div>
-              <div className='absolute bottom-0 p-3'>
+              <div className='absolute bottom-0 w-full p-3'>
                 <p className='font-semibold'>Topic Overall Practice</p>
                 <h3 className='mt-2'>{star.Title}</h3>
                 <p className='mt-6 font-semibold'>{star.Description}</p>
@@ -308,9 +308,9 @@ export default function CourseContentDisplay({
             <Link 
               href={{ pathname: "./course/[courses]/[contents]" }}
               as={`/course/${courseData["ID"]}/${star["Ref"]}`}
-              className='-card-hover flex flex-col h-fit' id='card-main' key={star.ID}>
+              className='-card-hover flex flex-col' id='card-main' key={star.ID}>
               <div className='overflow-hidden'>
-                <img src={star.ImageLink} alt="" className='h-fit w-full object-cover' />
+                <img src={star.ImageLink} alt="" className='h-48 w-full object-cover' />
               </div>
               <div className='p-3'>
                 <p id='small-p'>Special Practice</p>
@@ -335,7 +335,7 @@ export default function CourseContentDisplay({
     }
   
     return (
-      <section className='mb-2' key={topicData.metadata.sectionName.data}>
+      <section className='mb-8' key={topicData.metadata.sectionName.data}>
         <div className='flex flex-row mb-4 items-start sm:items-center'>
           <span id='chip-lg'>{topicData.metadata.sectionAbb.data}</span>
           <h3 className='sm:whitespace-nowrap mr-4'>{topicData.metadata.sectionName.data}</h3>
