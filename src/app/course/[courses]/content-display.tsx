@@ -80,7 +80,7 @@ export default function CourseContentDisplay({
               <path strokeLinecap="round" strokeLinejoin="round" d="m21 7.5-2.25-1.313M21 7.5v2.25m0-2.25-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3 2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75 2.25-1.313M12 21.75V19.5m0 2.25-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25" />
             </svg>
           </span>
-          <span>
+          <span className='font-semibold'>
             {topic.Topic}
           </span>
         </li>);
@@ -184,14 +184,12 @@ export default function CourseContentDisplay({
       // Check avaliability of resource
       if (((topicData["Outcome" + ref_num] !== '') && (topicData["OutcomeDescription" + ref_num] !== undefined)) === true) {
         outcomes.push(
-          <div className='flex flex-col p-1 min-w-max h-fit' key={topicData["Outcome" + ref_num]}>
+          <div className='flex flex-col content-center h-fit' key={topicData["Outcome" + ref_num]}>
             <div className='flex flex-row items-center'>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-              </svg>
-              <h6>{topicData["Outcome" + ref_num]}</h6>
+              <h6 id='chip-action-fade' className='min-w-6 text-center'>Goal {ref_num}</h6>
+              <h6 className='ml-2'>{topicData["Outcome" + ref_num]}</h6>
             </div>
-            <p id='small-p' className='mt-0.5'>{topicData["OutcomeDescription" + ref_num]}</p>
+            <p id='small-p' className='mt-1'>{topicData["OutcomeDescription" + ref_num]}</p>
           </div>
         );
       } else break;
@@ -208,8 +206,8 @@ export default function CourseContentDisplay({
             <span id='chip-md'>{topicData.ID.split('-')[2]}</span>
             <h4 className='pt-[0.5px]'>{topicData.Topic}</h4>
           </div>
-          {[] && <div className='flex flex-wrap gap-2 mt-2'>{outcomes}</div>}
-          {[] && <div className='flex flex-wrap gap-2 mt-2'>{resources}</div>}
+          {(outcomes.length >0) && <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 mt-4 mb-2'>{outcomes}</div>}
+          {(resources.length > 0) && <div className='flex flex-wrap gap-2 mt-4'>{resources}</div>}
         </div>
       </article>
     );
@@ -291,7 +289,7 @@ export default function CourseContentDisplay({
     }
   
     return (
-      <section className='mb-8' key={topicData.metadata.sectionName.data}>
+      <section className='mb-2' key={topicData.metadata.sectionName.data}>
         <div className='flex flex-row mb-4 items-start sm:items-center'>
           <span id='chip-lg'>{topicData.metadata.sectionAbb.data}</span>
           <h3 className='sm:whitespace-nowrap mr-4'>{topicData.metadata.sectionName.data}</h3>
@@ -376,7 +374,7 @@ export default function CourseContentDisplay({
                   type="text" 
                   placeholder="Search courses"
                   onChange={e => setSearchKey(e.target.value)} 
-                  className='w-full'/>
+                  id='input-search-bar' className='w-full'/>
               </div>
           </section>
 

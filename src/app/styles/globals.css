@@ -5,8 +5,8 @@
 :root {
     --base: rgba(0, 0, 0, 1.0);
     --baseinverse: rgba(255, 255, 255, 1.0);
-    --bg: rgba(250, 250, 250, 0.90);
-    --bgaccent: rgba(255, 255, 255, 0.92);
+    --bg: rgba(250, 250, 250, 0.94);
+    --bgaccent: rgba(255, 255, 255, 0.95);
     --card: rgba(247, 247, 247, 0.4);
     --border: rgba(206, 206, 206, 0.5);
     --pri: rgba(136, 106, 255, 0.9);
@@ -19,14 +19,14 @@
     :root {
       --base: rgba(255, 255, 255, 1);
       --baseinverse: rgba(0, 0, 0, 1.0);
-      --bg: rgba(0, 0, 0, 0.8);
+      --bg: rgba(0, 0, 0, 0.75);
       --bgaccent: rgba(0, 0, 0, 0.85);
       --card: rgba(0, 0, 0, 0.4);
       --border: rgba(156, 156, 156, 0.3);
       --pri: rgba(151, 125, 255, 0.9);
       --sec: rgba(241, 195, 77, 0.9);
       --ter: rgba(255, 255, 255, 0.9);
-      --fade: rgba(115, 115, 115, 1.0);
+      --fade: rgba(195, 195, 195, 1.0);
   }
 }
 
@@ -272,7 +272,7 @@ nav {
 
 #chip-action-pri {
   width: max-content;
-  padding: 0 8px 2px 8px;
+  padding: 1px 8px 2px 8px;
   font-size: 1.0rem;
   font-weight: 700;
   color: var(--baseinverse);
@@ -280,14 +280,34 @@ nav {
   border-radius: 10px;
 }
 
+#chip-action-sec {
+  width: max-content;
+  padding: 1px 8px 2px 8px;
+  font-size: 1.0rem;
+  font-weight: 700;
+  color: var(--baseinverse);
+  background-color: var(--sec);
+  border-radius: 10px;
+}
+
 #chip-action-neu {
   width: max-content;
-  padding: 0 8px 2px 8px;
+  padding: 1px 8px 2px 8px;
   font-size: 1.0rem;
   font-weight: 700;
   color: var(--baseinverse);
   background-color: var(--ter);
   border-radius: 10px;
+}
+
+#chip-action-fade {
+  width: max-content;
+  padding: 1px 4px 2px 4px;
+  font-size: 1.0rem;
+  font-weight: 700;
+  color: var(--baseinverse);
+  background-color: var(--fade);
+  border-radius: 6px;
 }
 
 #chip-lg {
@@ -383,6 +403,21 @@ nav {
   font-weight: 800;
   color: var(--base);
   background-color: var(--sec);
+  border: solid 1px var(--base);
+  border-radius: 8px;
+}
+
+#chip-ter {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  min-height: 24px;
+  padding: 0 8px;
+  margin-right: 4px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--base);
+  background-color: var(--ter);
   border: solid 1px var(--base);
   border-radius: 8px;
 }
