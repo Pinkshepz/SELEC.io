@@ -182,7 +182,7 @@ export default function CourseContentDisplay({
     // Map outcomes
     for (let ref_num = 1; true; ref_num++) {
       // Check avaliability of resource
-      if (((topicData["Outcome" + ref_num] !== '') && (topicData["OutcomeDescription" + ref_num] !== undefined)) === true) {
+      if ((topicData["Outcome" + ref_num] !== undefined) && (topicData["Outcome" + ref_num] !== '') == true) {
         outcomes.push(
           <div className='flex flex-col content-center h-fit' key={topicData["Outcome" + ref_num]}>
             <h6 className='mt-0.5'>{topicData["Outcome" + ref_num]}</h6>
@@ -272,11 +272,7 @@ export default function CourseContentDisplay({
               href={{ pathname: "./course/[courses]/[contents]" }}
               as={`/course/${courseData["ID"]}/${star["Ref"]}`}
               className='-card-hover relative flex flex-col text-white' id='card-main' key={star.ID}>
-              <div className='relative overflow-hidden'>
-                <img src={star.ImageLink} alt="" className='h-64 w-full object-cover' />
-                <div className='absolute top-0 h-64 w-full bg-neutral-900/65'></div>
-              </div>
-              <div className='absolute bottom-0 w-full p-3'>
+              <div className='w-full p-3 z-10'>
                 <p className='font-semibold'>Topic Overall Practice</p>
                 <h3 className='mt-2'>{star.Title}</h3>
                 <p className='mt-6 font-semibold'>{star.Description}</p>
@@ -291,7 +287,10 @@ export default function CourseContentDisplay({
                     {star.Members} Questions
                   </h6>
                 </div>
-
+              </div>
+              <div className='absolute top-0 w-full overflow-hidden z-0'>
+                <img src={star.ImageLink} alt="" className='h-64 w-full object-cover' />
+                <div className='absolute top-0 h-64 w-full bg-neutral-900/65'></div>
               </div>
             </Link>
           )
@@ -309,9 +308,9 @@ export default function CourseContentDisplay({
               href={{ pathname: "./course/[courses]/[contents]" }}
               as={`/course/${courseData["ID"]}/${star["Ref"]}`}
               className='-card-hover flex flex-col' id='card-main' key={star.ID}>
-              <div className='overflow-hidden'>
+              {star.ImageLink && <div className='overflow-hidden'>
                 <img src={star.ImageLink} alt="" className='h-48 w-full object-cover' />
-              </div>
+              </div>}
               <div className='p-3'>
                 <p id='small-p'>Special Practice</p>
                 <h4 className='mt-2'>{star.Title}</h4>
