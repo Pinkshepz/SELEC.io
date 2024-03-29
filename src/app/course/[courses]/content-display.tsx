@@ -340,7 +340,7 @@ export default function CourseContentDisplay({
           <h3 className='sm:whitespace-nowrap mr-4'>{topicData.metadata.sectionName.data}</h3>
           <div className='hidden sm:inline' id='divider'></div>
         </div>
-        {(banners.length > 0) && <article className='flex flex-col mb-4'>{banners}</article>}
+        {(banners.length > 0) && <article className='flex flex-col mb-4 gap-4'>{banners}</article>}
         {(articles.length > 0) && <article className='mb-4'>{articles}</article>}
         {(cards.length > 0) && <article className='grid md:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 gap-4'>{cards}</article>}
       </section>
