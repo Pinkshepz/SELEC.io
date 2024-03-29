@@ -273,8 +273,8 @@ export default function CourseContentDisplay({
               as={`/course/${courseData["ID"]}/${star["Ref"]}`}
               className='-card-hover relative flex flex-col text-white' id='card-main' key={star.ID}>
               <div className='relative overflow-hidden'>
-                <img src={star.ImageLink} alt="" className='h-48 w-full object-cover' />
-                <div className='absolute top-0 h-48 w-full bg-neutral-900/65'></div>
+                <img src={star.ImageLink} alt="" className='h-56 w-full object-cover' />
+                <div className='absolute top-0 h-56 w-full bg-neutral-900/65'></div>
               </div>
               <div className='absolute bottom-0 w-full p-3'>
                 <p className='font-semibold'>Topic Overall Practice</p>
