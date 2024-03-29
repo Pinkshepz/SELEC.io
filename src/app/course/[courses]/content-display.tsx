@@ -185,29 +185,40 @@ export default function CourseContentDisplay({
       if (((topicData["Outcome" + ref_num] !== '') && (topicData["OutcomeDescription" + ref_num] !== undefined)) === true) {
         outcomes.push(
           <div className='flex flex-col content-center h-fit' key={topicData["Outcome" + ref_num]}>
-            <div className='flex flex-row items-center'>
-              <h6 id='chip-action-fade' className='min-w-6 text-center'>Goal {ref_num}</h6>
-              <h6 className='ml-2'>{topicData["Outcome" + ref_num]}</h6>
-            </div>
-            <p id='small-p' className='mt-1'>{topicData["OutcomeDescription" + ref_num]}</p>
+            <h6 className='mt-0.5'>{topicData["Outcome" + ref_num]}</h6>
+            <p id='small-p' className='mt-2'>{topicData["OutcomeDescription" + ref_num]}</p>
           </div>
         );
       } else break;
     }
 
+    
+    // Configure outcome format
+    let outcomes_columns
+    if (outcomes.length == 1) {
+      outcomes_columns = 'grid grid-cols-1 ';
+    }
+    else if (outcomes.length == 2) {
+      outcomes_columns = 'grid grid-cols-1 sm:grid-cols-2 ';
+    }
+    else if (outcomes.length == 3) {
+      outcomes_columns = 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 ';
+    }
+    else {
+      outcomes_columns = 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 ';
+    }
+
     return (
       <article 
-        className='p-3'
-        id={topicData.refKey}
-        key={topicData.Topic}
+        id='card-main' className='mb-4' key={topicData.refKey}
         ref={element => elementsRef.current[topicData.refKey] = element}>
         <div className='flex flex-col'>
-          <div className='flex flex-row'>
+          <div className='flex flex-row p-3'>
             <span id='chip-md'>{topicData.ID.split('-')[2]}</span>
             <h4 className='pt-[0.5px]'>{topicData.Topic}</h4>
           </div>
-          {(outcomes.length >0) && <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 mt-4 mb-2'>{outcomes}</div>}
-          {(resources.length > 0) && <div className='flex flex-wrap gap-2 mt-4'>{resources}</div>}
+          {(resources.length > 0) && <div className='flex flex-wrap gap-2 mt-1 px-3'>{resources}</div>}
+          {(outcomes.length >0) && <div id='fadebg' className={outcomes_columns + 'gap-6 mt-4 px-3 py-4'}>{outcomes}</div>}
         </div>
       </article>
     );
@@ -236,11 +247,12 @@ export default function CourseContentDisplay({
   }) => {
     // Structure
     let articles: React.ReactNode[] = [];
-    let stars: React.ReactNode[] = [];
+    let cards: React.ReactNode[] = [];
+    let banners: React.ReactNode[] = [];
 
     // Map articles
     Object.keys(topicData.sectionTopics).map((topic, index) => {
-      (index > 0) ? articles.push(<div id='divider-inside' key={topic + index}></div>) : null;
+      // (index > 0) ? articles.push(<div id='divider-inside' key={topic + index}></div>) : null;
       articles.push(
         <MainSectionArticle 
           topicData={topicData.sectionTopics[topic]}
@@ -250,25 +262,24 @@ export default function CourseContentDisplay({
     }
     );
 
-    // Map stars
+    // Map cards
     if (contentData !== undefined) {
-      for (const stargroup of [
-        ...Object.values(contentData.Card), 
-        ...Object.values(contentData.Banner)]) {
+      for (const banners_items of Object.values(contentData.Banner)) {
 
-        Object.values(stargroup).map((star) => 
-          stars.push(
+        Object.values(banners_items).map((star) => 
+          banners.push(
             <Link 
               href={{ pathname: "./course/[courses]/[contents]" }}
               as={`/course/${courseData["ID"]}/${star["Ref"]}`}
-              className='-card-hover flex flex-col' id='card-main' key={star.ID}>
-              <div className='overflow-hidden'>
+              className='-card-hover relative flex flex-col text-white h-fit' id='card-main' key={star.ID}>
+              <div className='relative overflow-hidden'>
                 <img src={star.ImageLink} alt="" className='h-48 w-full object-cover' />
+                <div className='absolute top-0 h-48 w-full bg-neutral-900/65'></div>
               </div>
-              <div className='p-3'>
-                <p id='small-p'>Special Practice</p>
-                <h4 className='mt-2'>{star.Title}</h4>
-                <p className='mt-6'>{star.Description}</p>
+              <div className='absolute bottom-0 p-3'>
+                <p className='font-semibold'>Topic Overall Practice</p>
+                <h3 className='mt-2'>{star.Title}</h3>
+                <p className='mt-6 font-semibold'>{star.Description}</p>
                 <div className="flex flex-row justify-between items-center w-full mt-4">
                   <div className='flex flex-row items-center'>
                     {star.Mode == 'FLASHCARD'
@@ -287,6 +298,41 @@ export default function CourseContentDisplay({
         );
       }
     }
+
+    // Map cards
+    if (contentData !== undefined) {
+      for (const cards_items of Object.values(contentData.Card)) {
+
+        Object.values(cards_items).map((star) => 
+          cards.push(
+            <Link 
+              href={{ pathname: "./course/[courses]/[contents]" }}
+              as={`/course/${courseData["ID"]}/${star["Ref"]}`}
+              className='-card-hover flex flex-col h-fit' id='card-main' key={star.ID}>
+              <div className='overflow-hidden'>
+                <img src={star.ImageLink} alt="" className='h-fit w-full object-cover' />
+              </div>
+              <div className='p-3'>
+                <p id='small-p'>Special Practice</p>
+                <h4 className='mt-2'>{star.Title}</h4>
+                <p className='mt-6'>{star.Description}</p>
+                <div className="flex flex-row justify-between items-center w-full mt-4">
+                  <div className='flex flex-row items-center'>
+                    {star.Mode == 'FLASHCARD'
+                        ? <span id="chip-action-neu">{star.Mode}</span>
+                        : <span id="chip-action-pri">{star.Mode}</span>}
+                    <h6 className="flex flex-row gap-1 ml-2">{star.Ref}</h6>
+                  </div>
+                  <h6 className='ml-1'>
+                    {star.Members} Questions
+                  </h6>
+                </div>
+              </div>
+            </Link>
+          )
+        );
+      }
+    }
   
     return (
       <section className='mb-2' key={topicData.metadata.sectionName.data}>
@@ -295,12 +341,9 @@ export default function CourseContentDisplay({
           <h3 className='sm:whitespace-nowrap mr-4'>{topicData.metadata.sectionName.data}</h3>
           <div className='hidden sm:inline' id='divider'></div>
         </div>
-        <div className='mb-4' id='card-main'>
-          {articles}
-        </div>
-        <article className='grid md:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 gap-4'>
-          {stars}
-        </article>
+        {(banners.length > 0) && <article className='flex flex-col mb-4'>{banners}</article>}
+        {(articles.length > 0) && <article className='mb-4'>{articles}</article>}
+        {(cards.length > 0) && <article className='grid md:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 gap-4'>{cards}</article>}
       </section>
     );
   }
