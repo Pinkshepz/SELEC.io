@@ -34,9 +34,10 @@ export default function QuizInterface ({
     // ==================================
 
     // Random question
-    if (interfaceParams.shuffleQuestion === true) {
-        useEffect(() => setQuestionArray((prev) => shuffle(prev)), []);
-    }
+    useEffect(() => (interfaceParams.shuffleQuestion === true) 
+        ? setQuestionArray((prev) => shuffle(prev)) 
+        : setQuestionArray((prev) => prev), []);
+    
     
     // Random choice
     // if (interfaceParams.shuffleChoice === true) {
