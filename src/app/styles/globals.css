@@ -21,14 +21,14 @@
       --base: rgba(255, 255, 255, 1);
       --baseinverse: rgba(0, 0, 0, 1.0);
       --bg: rgba(0, 0, 0, 0.75);
-      --bgaccent: rgba(0, 0, 0, 0.75);
+      --bgaccent: rgba(0, 0, 0, 0.6);
       --card: rgba(0, 0, 0, 0.4);
       --border: rgba(156, 156, 156, 0.3);
       --pri: rgba(151, 125, 255, 0.9);
       --sec: rgba(241, 195, 77, 0.9);
       --ter: rgba(255, 255, 255, 0.9);
       --fade: rgba(100, 100, 100, 1.0);
-      --fadebg: rgba(50, 50, 50, 0.4);
+      --fadebg: rgba(20, 20, 20, 0.8);
   }
 }
 
@@ -83,14 +83,16 @@ textarea:focus {
 } */
 
 h1 {
-  font-weight: 800;
+  font-weight: 900;
   font-size: 3rem;
   margin: 1rem 0;
+  line-height: 120%;
 }
 
 h2 {
-  font-weight: 700;
+  font-weight: 900;
   font-size: 2rem;
+  line-height: 120%;
 }
 
 h3 {
@@ -159,7 +161,7 @@ hr {
 }
 
 nav {
-  background-color: var(--bgaccent);
+  background-color: var(--card);
   border-bottom: solid 1px var(--border);
 }
 
@@ -255,6 +257,18 @@ nav {
   background-color: var(--bgaccent);
 }
 
+#panel {
+  height: max-content;
+  background-color: var(--fadebg);
+  border: solid 1px var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#panel-color {
+  background-color: var(--fadebg);
+}
+
 #card-main {
   height: max-content;
   background-color: var(--card);
@@ -275,6 +289,24 @@ nav {
   color: var(--baseinverse);
   background-color: var(--ter);
   border-radius: 10px;
+}
+
+#chip-toggle.true {
+  height: max-content;
+  background-color: var(--bgaccent);
+  border: solid 1px var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#chip-toggle {
+  height: max-content;
+  background-color: var(--card);
+  border: solid 1px var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
 }
 
 #chip-action-pri {

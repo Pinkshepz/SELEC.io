@@ -43,7 +43,7 @@ export default function CourseDisplay({
   let courseElements: Array<React.ReactNode> = [];
 
   pageElements.push(
-      <section className="relative h-96 md:h-[50vw] flex flex-col items-center justify-center overflow-hidden" key={"sky"}>
+      <section className="relative h-[444px] md:h-[100dvh] flex flex-col items-center justify-center overflow-hidden" key={"sky"}>
         <Image src={sky} alt="" priority={true}
           className="absolute z-[-10] h-full w-full object-cover" width={7000} height={4000} />
         <div className="absolute top-0 h-full w-full bg-black/25"></div>

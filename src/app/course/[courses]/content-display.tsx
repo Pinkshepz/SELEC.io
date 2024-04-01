@@ -319,7 +319,9 @@ export default function CourseContentDisplay({
                   <div className='flex flex-row items-center'>
                     {star.Mode == 'FLASHCARD'
                         ? <span id="chip-action-neu">{star.Mode}</span>
-                        : <span id="chip-action-pri">{star.Mode}</span>}
+                        : star.Mode == 'MCQ' 
+                          ? <span id="chip-action-pri">{star.Mode}</span>
+                          : <span id="chip-action-sec">{star.Mode}</span>}
                     <h6 className="flex flex-row gap-1 ml-2">{star.Ref}</h6>
                   </div>
                   <h6 className='ml-1'>

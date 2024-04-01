@@ -1,20 +1,23 @@
 // Shuffle items in array
 export function shuffle(array: Array<any>) {
-    let currentIndex = array.length, randomIndex;
+    // Copy new array
+    let c_array = [...array];
+
+    let currentIndex = c_array.length, randomIndex;
   
     // While there remain elements to shuffle
     while (currentIndex > 0) {
   
       // Pick a remaining element
-      randomIndex = Math.floor(((1000 * Math.random()) * (1000 * Math.random())) % array.length);
+      randomIndex = Math.floor(((1000 * Math.random()) * (1000 * Math.random())) % c_array.length);
       currentIndex--;
   
       // And swap it with the current element
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+      [c_array[currentIndex], c_array[randomIndex]] = [
+        c_array[randomIndex], c_array[currentIndex]];
     }
   
-    return array;
+    return c_array;
 }
 
 export function searchObjectFilter(object: {[key: string]: any}, searchKey: string) {

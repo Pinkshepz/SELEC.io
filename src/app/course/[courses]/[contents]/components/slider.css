@@ -9,41 +9,41 @@ input[type=range] {
   }
   input[type=range]::-webkit-slider-runnable-track {
     width: 100%;
-    height: 4px;
+    height: 12px;
     cursor: pointer;
     animate: 0.2s;
-    box-shadow: 0px 0px 0px #cbd5e1;
-    background: #cbd5e1;
+    box-shadow: 0px 0px 0px var(--card);
+    background: var(--card);
     border-radius: 50px;
-    border: 0px solid #000000;
+    border: 1px solid var(--border);
   }
   input[type=range]::-webkit-slider-thumb {
-    box-shadow: 0px 0px 0px #000000;
-    border: 0px solid #000000;
-    height: 14px;
-    width: 24px;
+    box-shadow: 0px 0px 0px var(--border);
+    border: 0px solid var(--border);
+    height: 18px;
+    width: 32px;
     border-radius: 50px;
-    background: #6366f1;
+    background: var(--pri);
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -5px;
+    margin-top: -4px;
   }
   input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #cbd5e1;
+    background: var(--card);
   }
   input[type=range]::-moz-range-track {
     width: 100%;
     height: 4px;
     cursor: pointer;
     animate: 0.2s;
-    box-shadow: 0px 0px 0px #cbd5e1;
-    background: #cbd5e1;
+    box-shadow: 0px 0px 0px var(--card);
+    background: var(--card);
     border-radius: 50px;
-    border: 0px solid #000000;
+    border: 0px solid var(--border);
   }
   input[type=range]::-moz-range-thumb {
-    box-shadow: 0px 0px 0px #000000;
-    border: 0px solid #000000;
+    box-shadow: 0px 0px 0px var(--border);
+    border: 0px solid var(--border);
     height: 24px;
     width: 40px;
     border-radius: 50px;
@@ -60,21 +60,21 @@ input[type=range] {
     color: transparent;
   }
   input[type=range]::-ms-fill-lower {
-    background: #cbd5e1;
-    border: 0px solid #000000;
+    background: var(--card);
+    border: 0px solid var(--border);
     border-radius: 100px;
-    box-shadow: 0px 0px 0px #cbd5e1;
+    box-shadow: 0px 0px 0px var(--card);
   }
   input[type=range]::-ms-fill-upper {
-    background: #cbd5e1;
-    border: 0px solid #000000;
+    background: var(--card);
+    border: 0px solid var(--border);
     border-radius: 100px;
-    box-shadow: 0px 0px 0px #cbd5e1;
+    box-shadow: 0px 0px 0px var(--card);
   }
   input[type=range]::-ms-thumb {
     margin-top: 1px;
-    box-shadow: 0px 0px 0px #000000;
-    border: 0px solid #000000;
+    box-shadow: 0px 0px 0px var(--border);
+    border: 0px solid var(--border);
     height: 24px;
     width: 40px;
     border-radius: 50px;
@@ -82,9 +82,9 @@ input[type=range] {
     cursor: pointer;
   }
   input[type=range]:focus::-ms-fill-lower {
-    background: #cbd5e1;
+    background: var(--card);
   }
   input[type=range]:focus::-ms-fill-upper {
-    background: #cbd5e1;
+    background: var(--card);
   }
   
