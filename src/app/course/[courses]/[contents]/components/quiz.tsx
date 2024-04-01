@@ -12,10 +12,8 @@ const C_TER_RED = " bg-rose-50/90 dark:bg-rose-900/60 border-rose-500/80 dark:bo
 const C_TER_YELLOW = " bg-amber-50/90 dark:bg-amber-900/60 border-amber-500/80 dark:border-amber-400/80 text-amber-600 dark:text-amber-400 ";
 
 export default function QuizInterface ({
-    headerData,
     questionData
 }: {
-    headerData: {[key: string]: any},
     questionData: {[key: string]: any}[]
 }) {
 
@@ -28,13 +26,13 @@ export default function QuizInterface ({
     // Create question pool
     const [questionArray, setQuestionArray] = useState(questionData);
 
-    if (questionArray === undefined) {return undefined}
-
     // ===== SECTION II: RANDOM Qs ======
     // ==================================
 
     // Random question
-    useEffect(() => setQuestionArray((prev) => shuffle(prev)), []);
+    useEffect(() => {
+        if (interfaceParams.shuffleQuestion === true) {
+            setQuestionArray((prev) => shuffle(prev))}}, []);
     
     // // Random choice
     // if (interfaceParams.shuffleChoice === true) {

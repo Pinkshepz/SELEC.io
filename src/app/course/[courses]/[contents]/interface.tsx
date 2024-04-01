@@ -32,7 +32,6 @@ export default function Interface ({
 
             {(interfaceParams.pageSwitch == true) && 
             <QuizInterface
-                headerData={headerData}
                 questionData={questionData}/>}
         </div>
     );
