@@ -336,7 +336,7 @@ export default function CourseContentDisplay({
     }
   
     return (
-      <section className='mb-8' key={topicData.metadata.sectionName.data}>
+      <section className='mt-8' key={topicData.metadata.sectionName.data}>
         <div className='flex flex-row mb-4 items-start sm:items-center'>
           <span id='chip-lg'>{topicData.metadata.sectionAbb.data}</span>
           <h3 className='sm:whitespace-nowrap mr-4'>{topicData.metadata.sectionName.data}</h3>

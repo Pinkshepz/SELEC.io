@@ -52,14 +52,14 @@ export default function SettingInterface ({
                 {headerData.Description && <p className='mt-6'>{headerData.Description}</p>}
 
                 {/* Content data */}
-                <div className='flex flex-row items-center mt-4'>
+                <div className='flex flex-wrap gap-4 items-center mt-4'>
                     {headerData.Mode == 'FLASHCARD'
                         ? <span id="chip-action-neu">{headerData.Mode}</span>
                         : headerData.Mode == 'MCQ' 
                         ? <span id="chip-action-pri">{headerData.Mode}</span>
                         : <span id="chip-action-sec">{headerData.Mode}</span>}
-                    <span id='chip-action-neu' className="flex flex-row gap-1 ml-4">{headerData.Ref}</span>
-                    <h6 className="flex flex-row gap-1 ml-4">{headerData.Members} Questions</h6>
+                    <span id='chip-action-neu' className="flex flex-row gap-1 whitespace-nowrap">{headerData.Ref}</span>
+                    <h6 className="flex flex-row gap-1 whitespace-nowrap">Total {headerData.Members} Questions</h6>
                 </div>
 
                 {/* Settings */}

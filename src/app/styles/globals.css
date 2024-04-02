@@ -28,7 +28,7 @@
       --sec: rgba(241, 195, 77, 0.9);
       --ter: rgba(255, 255, 255, 0.9);
       --fade: rgba(100, 100, 100, 1.0);
-      --fadebg: rgba(20, 20, 20, 0.8);
+      --fadebg: rgba(25, 25, 25, 0.7);
   }
 }
 
@@ -235,24 +235,23 @@ nav {
   display: flex;
   flex-direction: row;
   height: calc(100dvh);
-  padding-top: 64px;
   overflow: hidden;
 }
 
 #col-scroll-aside {
+  padding: 80px 16px 16px 16px;
   display: var(--aside-visibility);
   flex-direction: column;
   width: var(--aside-width);
-  padding: 16px;
   overflow-y: scroll;
   background-color: var(--bg);
 }
 
 #col-scroll-main {
+  padding: 48px 16px 16px 16px;
   display: flex;
   flex-direction: column;
   width: var(--main-width);
-  padding: 16px;
   overflow-y: scroll;
   background-color: var(--bgaccent);
 }

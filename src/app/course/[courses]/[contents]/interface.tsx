@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect } from "react";
 import { useInterfaceContext } from "./provider-interface";
 import SettingInterface from './components/setting';
 import QuizInterface from "./components/quiz";
