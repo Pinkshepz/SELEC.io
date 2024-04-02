@@ -6,7 +6,7 @@
     --base: rgba(0, 0, 0, 1.0);
     --baseinverse: rgba(255, 255, 255, 1.0);
     --bg: rgba(250, 250, 250, 0.90);
-    --bgaccent: rgba(250, 250, 250, 0.90);
+    --bgaccent: rgba(255, 255, 255, 0.90);
     --card: rgba(247, 247, 247, 0.4);
     --border: rgba(206, 206, 206, 0.5);
     --pri: rgba(136, 106, 255, 0.9);
@@ -25,14 +25,14 @@
       --base: rgba(255, 255, 255, 1);
       --baseinverse: rgba(0, 0, 0, 1.0);
       --bg: rgba(0, 0, 0, 0.75);
-      --bgaccent: rgba(0, 0, 0, 0.6);
+      --bgaccent: rgba(0, 0, 0, 0.8);
       --card: rgba(0, 0, 0, 0.4);
       --border: rgba(156, 156, 156, 0.3);
       --pri: rgba(151, 125, 255, 0.9);
       --sec: rgba(241, 195, 77, 0.9);
       --ter: rgba(255, 255, 255, 0.9);
       --fade: rgba(100, 100, 100, 1.0);
-      --fadebg: rgba(25, 25, 25, 0.7);
+      --fadebg: rgba(20, 20, 20, 0.85);
       --green: rgba(13, 148, 136, 0.8);
       --red: rgba(225, 29, 72, 0.8);
       --amber: rgba(234, 179, 8, 0.8);
