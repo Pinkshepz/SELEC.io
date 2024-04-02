@@ -14,6 +14,10 @@
     --ter: rgba(133, 133, 133, 0.9);
     --fade: rgba(156, 156, 156, 1.0);
     --fadebg: rgba(240, 240, 240, 0.8);
+    --green: rgba(15, 118, 110, 0.8);
+    --red: rgba(190, 18, 60, 0.8);
+    --amber: rgba(202, 138, 4, 0.8);
+    --shadow-radius: 2px;
   }
   
   @media (prefers-color-scheme: dark) {
@@ -29,6 +33,10 @@
       --ter: rgba(255, 255, 255, 0.9);
       --fade: rgba(100, 100, 100, 1.0);
       --fadebg: rgba(25, 25, 25, 0.7);
+      --green: rgba(13, 148, 136, 0.8);
+      --red: rgba(225, 29, 72, 0.8);
+      --amber: rgba(234, 179, 8, 0.8);
+      --shadow-radius: 4px;
   }
 }
 
@@ -173,13 +181,13 @@ nav {
 
 @media screen and (min-width: 1024px) {
   .-full-screen {
-    height: calc(100dvh - 60px);
+    height: calc(100dvh - 80px);
   }
 }
 
 @media screen and (min-width: 0px) and (max-width: 1024px) {
   .-full-screen {
-    height: calc(100dvh - 60px);
+    height: calc(100dvh - 80px);
     overflow-y: scroll;
   }
 }
@@ -266,6 +274,50 @@ nav {
 
 #panel-color {
   background-color: var(--fadebg);
+}
+
+#card-quiz {
+  background-color: var(--card);
+  border: solid 2px var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-quiz-pri {
+  background-color: var(--card);
+  border: solid 2px var(--pri);
+  border-radius: 12px;
+  box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--pri);
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-quiz-green {
+  background-color: var(--card);
+  border: solid 2px var(--green);
+  box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--green);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-quiz-red {
+  background-color: var(--card);
+  border: solid 2px var(--red);
+  border-radius: 12px;
+  box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--red);
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-quiz-amber {
+  background-color: var(--card);
+  border: solid 2px var(--amber);
+  border-radius: 12px;
+  box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--amber);
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
 }
 
 #card-main {
