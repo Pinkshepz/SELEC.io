@@ -40,7 +40,7 @@ export default function SettingInterface ({
         <div className='min-h-[100lvh] relative pt-16 flex items-center justify-center backdrop-blur-md'>
         
             {/* Start page static information */}
-            <div id='panel' className="relative md:w-[80dvw] h-full p-4 m-6 backdrop-blur-2xl">
+            <div id='panel' className="relative md:w-[75dvw] h-full p-6 m-6 backdrop-blur-2xl">
 
                 {/* Course data */}
                 <p id='small-p-ter'>{courseData.ID} - {courseData.Title}</p>

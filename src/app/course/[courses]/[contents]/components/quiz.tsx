@@ -294,7 +294,7 @@ export default function QuizInterface ({
                         </div>
                         
                         {questionArray[interfaceParams.currentQuestion].graded ? questionArray[interfaceParams.currentQuestion].QuestionBackText && 
-                            <div id='card-quiz' className='pt-2 text-lg text-center'>
+                            <div id='card-quiz' className='mt-3 px-2 text-lg text-center'>
                                 {arrayToChips(questionArray[interfaceParams.currentQuestion].QuestionBackText)}
                             </div> : null}
                         
