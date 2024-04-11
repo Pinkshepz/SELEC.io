@@ -169,8 +169,13 @@ hr {
 }
 
 nav {
-  background-color: var(--card);
+  background-color: var(--bgaccent);
   border-bottom: solid 1px var(--border);
+}
+
+footer {
+  background-color: var(--bgaccent);
+  border-top: solid 1px var(--border);
 }
 
 .sticky {
