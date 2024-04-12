@@ -129,20 +129,27 @@ export default function CourseContentDisplay({
   // Define unit element forweb content
   const MainSectionArticle = ({
     topicData, 
-    contentData
+    contentDataChip,
+    contentDataCard
   }: {
     topicData: {
       [key: string]: string // description
     },
-    contentData?: {
+    contentDataChip?: {
       [key: string]: { // SIID256-MB-MB1-R1
         [key: string] : string // Content data
       } 
-    }
+    },
+    contentDataCard?: {
+      [key: string]: { // SIID256-MB-MB1-R1
+        [key: string] : string // Content data
+      } 
+    },
   }) => {
     // Structure
     let resources: React.ReactNode[] = [];
     let outcomes: React.ReactNode[] = [];
+    let cards: React.ReactNode[] = [];
 
     // Map practice chip
     topicData.PracticeRef && resources.push(
@@ -192,6 +199,39 @@ export default function CourseContentDisplay({
       } else break;
     }
 
+    // Map cards
+    if (contentDataCard !== undefined) {
+      for (const cards_items of Object.values(contentDataCard)) {
+        cards.push(
+          <Link 
+            href={{ pathname: "./course/[courses]/[contents]" }}
+            as={`/course/${courseData["ID"]}/${cards_items["Ref"]}`}
+            className='-card-hover flex flex-col' id='card-main' key={cards_items.ID}>
+            {cards_items.ImageLink && <div className='overflow-hidden'>
+              <img src={cards_items.ImageLink} alt="" className='h-48 w-full object-cover' />
+            </div>}
+            <div className='p-3'>
+              <p id='small-p'>Special Practice</p>
+              <h4 className='mt-2'>{cards_items.Title}</h4>
+              <p className='mt-6'>{cards_items.Description}</p>
+              <div className="flex flex-row justify-between items-center w-full mt-4">
+                <div className='flex flex-row items-center'>
+                  {cards_items.Mode == 'FLASHCARD'
+                      ? <span id="chip-action-neu">{cards_items.Mode}</span>
+                      : cards_items.Mode == 'MCQ' 
+                        ? <span id="chip-action-pri">{cards_items.Mode}</span>
+                        : <span id="chip-action-sec">{cards_items.Mode}</span>}
+                  <h6 className="flex flex-row gap-1 ml-2">{cards_items.Ref}</h6>
+                </div>
+                <h6 className='ml-1'>
+                  {cards_items.Members} Questions
+                </h6>
+              </div>
+            </div>
+          </Link>
+        );
+      }
+    }
     
     // Configure outcome format
     let outcomes_columns
@@ -209,18 +249,24 @@ export default function CourseContentDisplay({
     }
 
     return (
-      <article 
-        id='card-main' className='mb-4' key={topicData.refKey}
-        ref={element => elementsRef.current[topicData.refKey] = element}>
-        <div className='flex flex-col'>
-          <div className='flex flex-row p-3'>
-            <span id='chip-md'>{topicData.ID.split('-')[2]}</span>
-            <h4 className='pt-[0.5px]'>{topicData.Topic}</h4>
+      <>
+        <article 
+          id='card-main' className='mb-4' key={topicData.refKey}
+          ref={element => elementsRef.current[topicData.refKey] = element}>
+          <div className='flex flex-col'>
+            <div className='flex flex-row p-3'>
+              <span id='chip-md'>{topicData.ID.split('-')[2]}</span>
+              <h4 className='pt-[0.5px]'>{topicData.Topic}</h4>
+            </div>
+            {(resources.length > 0) && <div className='flex flex-wrap gap-2 mt-1 mb-4 px-3'>{resources}</div>}
+            {(outcomes.length >0) && <div id='fadebg' className={outcomes_columns + 'gap-6 px-3 py-3'}>{outcomes}</div>}
           </div>
-          {(resources.length > 0) && <div className='flex flex-wrap gap-2 mt-1 mb-4 px-3'>{resources}</div>}
-          {(outcomes.length >0) && <div id='fadebg' className={outcomes_columns + 'gap-6 px-3 py-3'}>{outcomes}</div>}
-        </div>
-      </article>
+        </article>
+        {(cards.length > 0) && <article 
+          className='grid md:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 gap-4 mb-4'
+          key={topicData.refKey + "cards"}>{cards}
+        </article>}
+      </>
     );
   }
 
@@ -247,7 +293,6 @@ export default function CourseContentDisplay({
   }) => {
     // Structure
     let articles: React.ReactNode[] = [];
-    let cards: React.ReactNode[] = [];
     let banners: React.ReactNode[] = [];
 
     // Map articles
@@ -256,7 +301,8 @@ export default function CourseContentDisplay({
       articles.push(
         <MainSectionArticle 
           topicData={topicData.sectionTopics[topic]}
-          contentData={contentData && contentData.Chip[topic]}
+          contentDataChip={contentData && contentData.Chip[topic]}
+          contentDataCard={contentData && contentData.Card[topic]}
           key={topic}/>
       )
     }
@@ -297,43 +343,6 @@ export default function CourseContentDisplay({
         );
       }
     }
-
-    // Map cards
-    if (contentData !== undefined) {
-      for (const cards_items of Object.values(contentData.Card)) {
-
-        Object.values(cards_items).map((star) => 
-          cards.push(
-            <Link 
-              href={{ pathname: "./course/[courses]/[contents]" }}
-              as={`/course/${courseData["ID"]}/${star["Ref"]}`}
-              className='-card-hover flex flex-col' id='card-main' key={star.ID}>
-              {star.ImageLink && <div className='overflow-hidden'>
-                <img src={star.ImageLink} alt="" className='h-48 w-full object-cover' />
-              </div>}
-              <div className='p-3'>
-                <p id='small-p'>Special Practice</p>
-                <h4 className='mt-2'>{star.Title}</h4>
-                <p className='mt-6'>{star.Description}</p>
-                <div className="flex flex-row justify-between items-center w-full mt-4">
-                  <div className='flex flex-row items-center'>
-                    {star.Mode == 'FLASHCARD'
-                        ? <span id="chip-action-neu">{star.Mode}</span>
-                        : star.Mode == 'MCQ' 
-                          ? <span id="chip-action-pri">{star.Mode}</span>
-                          : <span id="chip-action-sec">{star.Mode}</span>}
-                    <h6 className="flex flex-row gap-1 ml-2">{star.Ref}</h6>
-                  </div>
-                  <h6 className='ml-1'>
-                    {star.Members} Questions
-                  </h6>
-                </div>
-              </div>
-            </Link>
-          )
-        );
-      }
-    }
   
     return (
       <section className='mt-8' key={topicData.metadata.sectionName.data}>
@@ -344,7 +353,6 @@ export default function CourseContentDisplay({
         </div>
         {(banners.length > 0) && <article className='flex flex-col mb-4 gap-4'>{banners}</article>}
         {(articles.length > 0) && <article className='mb-4'>{articles}</article>}
-        {(cards.length > 0) && <article className='grid md:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 gap-4'>{cards}</article>}
       </section>
     );
   }
@@ -409,16 +417,16 @@ export default function CourseContentDisplay({
 
           <section className='mt-6' key='interface-aside-section-2'>
             <div className="flex flex-row items-center w-full">
-                <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 mr-2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                  </svg>
-                </span>
-                <input
-                  type="text" 
-                  placeholder="Search courses"
-                  onChange={e => setSearchKey(e.target.value)} 
-                  id='input-search-bar' className='w-full'/>
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 mr-2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+              </span>
+              <input
+                type="text" 
+                placeholder="Search content"
+                onChange={e => setSearchKey(e.target.value)} 
+                id='input-search-bar' className='w-full'/>
               </div>
           </section>
 
