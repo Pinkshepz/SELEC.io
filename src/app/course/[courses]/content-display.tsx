@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import Link from 'next/link';
+import "./styles.css"
 import { searchObjectFilter } from '@/app/utils/gadgetfx';
 
 const ALT_IMAGE = "https://idsb.tmgrup.com.tr/ly/uploads/images/2020/11/11/71386.jpg"
@@ -345,11 +346,10 @@ export default function CourseContentDisplay({
     }
   
     return (
-      <section className='mt-8' key={topicData.metadata.sectionName.data}>
-        <div className='flex flex-row mb-4 items-start sm:items-center'>
+      <section className='my-4 pb-4' key={topicData.metadata.sectionName.data}>
+        <div className='flex flex-row mb-4 items-start'>
           <span id='chip-lg'>{topicData.metadata.sectionAbb.data}</span>
-          <h3 className='sm:whitespace-nowrap mr-4'>{topicData.metadata.sectionName.data}</h3>
-          <div className='hidden sm:inline' id='divider'></div>
+          <h3 className='mr-4'>{topicData.metadata.sectionName.data}</h3>
         </div>
         {(banners.length > 0) && <article className='flex flex-col mb-4 gap-4'>{banners}</article>}
         {(articles.length > 0) && <article className='mb-4'>{articles}</article>}
@@ -402,20 +402,20 @@ export default function CourseContentDisplay({
   }
 
   return (<>
-      <div className="fixed" key={courseData["ImageLink"]}>
+      <div className="fixed overflow-hidden" key={courseData["ImageLink"]}>
           <img src={courseData["ImageLink"]} alt={ALT_IMAGE} id='bg-fixed'/>
       </div>
       <div id='two-cols-fixed' key='interface'>
 
         <aside id="col-scroll-aside" className='-scroll-none' key='interface-aside'>
 
-          <section key='interface-aside-section-1'>
+          <section className='mt-4' key='interface-aside-section-1'>
             <span id='chip-lg'>{courseData["ID"]}</span>
             <h3 className='mt-2'>{courseData["Title"]}</h3>
             <p className='mt-6'>{courseData["Description"]}</p>
           </section>
 
-          <section className='mt-6' key='interface-aside-section-2'>
+          <section className='mt-4' key='interface-aside-section-2'>
             <div className="flex flex-row items-center w-full">
               <span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 mr-2">

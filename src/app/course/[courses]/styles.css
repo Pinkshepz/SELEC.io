@@ -1,0 +1,27 @@
+#two-cols-fixed {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    height: calc(100dvh);
+    overflow: hidden;
+  }
+  
+  #col-scroll-aside {
+    padding: 0px 16px 16px 16px;
+    margin-top: 64px;
+    display: var(--aside-visibility);
+    flex-direction: column;
+    width: var(--aside-width);
+    overflow-y: scroll;
+    background-color: var(--bg);
+  }
+  
+  #col-scroll-main {
+    padding: 0px 16px 16px 16px;
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    width: var(--main-width);
+    overflow-y: scroll;
+    background-color: var(--bgaccent);
+  }
