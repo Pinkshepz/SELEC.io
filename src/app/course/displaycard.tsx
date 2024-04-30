@@ -38,9 +38,11 @@ export default function DisplayCard ({
                 <p className="mt-6 text-sm font-light">{cardDescription}</p>
                 
                 <div className="flex flex-row justify-between w-full mt-4">
-                    {cardAction == 'Completed' 
+                    {(cardAction == 'Completed')
                         ? <div id="chip-action-pri">{cardAction}</div>
-                        : <div id="chip-action-neu">{cardAction}</div>}
+                        : (cardAction == 'Pending')
+                            ? <div id="chip-action-neu">{cardAction}</div>
+                            : <div id="chip-action-sec">{cardAction}</div>}
                     <span className="flex flex-row gap-1 ml-2">
                         <span className="px-1 font-bold">{cardSize}X</span>
                         {size_pipe}
