@@ -13,7 +13,7 @@ export default async function Footer() {
     return (
         <footer className='flex flex-col w-auto p-4 mt-8 items-center justify-center'>
             <div className="flex flex-row w-full justify-between pixelify">
-                <h5>{footerData.Name} #24-15D</h5>
+                <h5>{footerData.Name} #24-15W</h5>
                 <h5>{footerData.Version} ({footerData.Date})</h5>
             </div>
         </footer>

@@ -1,5 +1,3 @@
-import { Span } from "next/dist/trace";
-
 export default function DisplayCard ({
     cardId,
     cardLightText,
