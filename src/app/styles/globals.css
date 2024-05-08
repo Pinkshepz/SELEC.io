@@ -264,33 +264,6 @@ footer {
   transition: all 200ms ease-in-out;
 }
 
-#card-question-pri {
-  background-color: var(--card);
-  border-top: solid 2px var(--border);
-  border-bottom: solid 2px var(--pri);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 200ms ease-in-out;
-}
-
-#card-question-sec {
-  background-color: var(--card);
-  border-top: solid 2px var(--border);
-  border-bottom: solid 2px var(--sec);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 200ms ease-in-out;
-}
-
-#card-question-ter {
-  background-color: var(--card);
-  border-top: solid 2px var(--border);
-  border-bottom: solid 2px var(--ter);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 200ms ease-in-out;
-}
-
 #card-quiz-pri {
   background-color: var(--card);
   border: solid 2px var(--pri);

@@ -294,12 +294,7 @@ export default function QuizInterface ({
 
                     {/* Question Text */}
                     <div className='flex flex-col w-full lg:min-h-[20dvh] justify-between'>
-                        <div id={questionArray[interfaceParams.currentQuestion].Mode == 'Flashcard'
-                            ? 'card-question-ter'
-                            : questionArray[interfaceParams.currentQuestion].Mode == 'MCQ' 
-                            ? 'card-question-pri'
-                            : 'card-question-sec'}
-                            className='relative p-4 h-full flex flex-col justify-center items-center rounded-xl'>
+                        <div className='relative p-4 h-full flex flex-col justify-center items-center rounded-xl'>
 
                             <div className='font-bold text-2xl text-center'>
                                 {arrayToChips(questionArray[interfaceParams.currentQuestion].Question)}
