@@ -2,7 +2,6 @@
 
 import React, { useRef, useState } from 'react';
 import Link from 'next/link';
-import "./styles.css"
 import { searchObjectFilter } from '@/app/utils/gadgetfx';
 
 const ALT_IMAGE = "https://idsb.tmgrup.com.tr/ly/uploads/images/2020/11/11/71386.jpg"
@@ -73,13 +72,11 @@ export default function CourseContentDisplay({
       sectionTree.push(
         <li
           className='cursor-pointer flex flex-row items-start px-2 py-1.5 transition-all ease-in-out duration-500 hover:bg-black/10 dark:hover:bg-white/10'
-          id='small-p-ter'
+          id='small-p-nav'
           key={topic.refKey}
           onClick={e => scrollToRef(topic.refKey)}>
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="m21 7.5-2.25-1.313M21 7.5v2.25m0-2.25-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3 2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75 2.25-1.313M12 21.75V19.5m0 2.25-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25" />
-            </svg>
+          <span className='font-bold mr-2'>
+            {topic.ID.split("-")[2]}
           </span>
           <span className='font-semibold'>
             {topic.Topic}
@@ -209,7 +206,7 @@ export default function CourseContentDisplay({
             as={`/course/${courseData["ID"]}/${cards_items["Ref"]}`}
             className='-card-hover flex flex-col' id='card-main' key={cards_items.ID}>
             {cards_items.ImageLink && <div className='overflow-hidden'>
-              <img src={cards_items.ImageLink} alt="" className='h-48 w-full object-cover' />
+              <img src={cards_items.ImageLink} alt="" className='h-56 w-full object-cover' />
             </div>}
             <div className='p-3'>
               <p id='small-p'>Special Practice</p>
@@ -433,6 +430,7 @@ export default function CourseContentDisplay({
           <section className='mt-2 overflow-y-scroll -scroll-none' key='interface-aside-section-3'>
             <SectionTopicEnumerator courseSectionData={courseTopicData} />
           </section>
+
         </aside>
 
         <main id="col-scroll-main" className='-scroll-none' key='interface-main'>

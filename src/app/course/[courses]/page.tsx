@@ -1,6 +1,7 @@
 import { courseDataFetcher } from './content-data-fetch';
 import CourseContentDisplay from './content-display';
 import NotFound from '../../components/not_found';
+import './interface.css';
 
 // Dynamic routing <courses>
 export default async function Course({ params }: { params: {courses: string} }) {

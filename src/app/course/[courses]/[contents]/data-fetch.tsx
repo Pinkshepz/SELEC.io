@@ -57,12 +57,13 @@ export async function quizDataFetcher({ content }: { content: string }) {
 
     for (let i = 0; i < questionDataId.length; i++) {
         let _choice_structure = [];
+        let _count_answer_true = 0;
         const questionRow = questionData[questionDataId[i]];
 
         try {
             let _choice_num = 1;
             while (_choice_num > 0) {
-                (questionRow["Choice" + (_choice_num)] || (questionRow["ChoiceImageUrl" + (_choice_num)])) ? 
+                if (questionRow["Choice" + (_choice_num)] || (questionRow["ChoiceImageUrl" + (_choice_num)])) {
                     _choice_structure.push({
                         choice: questionRow["Choice" + (_choice_num)],
                         choiceImageUrl: questionRow["ChoiceImageUrl" + (_choice_num)],
@@ -70,8 +71,12 @@ export async function quizDataFetcher({ content }: { content: string }) {
                         backText: questionRow["BackText" + (_choice_num)],
                         description: questionRow["Description" + (_choice_num)],
                         selected: false,
-                        graded: false}) : 
-                    _choice_num = -1;
+                        graded: false,
+                        score: 0})
+                    if (questionRow["Answer" + (_choice_num)] === "TRUE") {
+                        _count_answer_true += 1;
+                    }
+                } else _choice_num = -1
 
                 // Delete old choice data
                 delete questionData[questionDataId[i]]["Choice" + (_choice_num)];
@@ -84,10 +89,30 @@ export async function quizDataFetcher({ content }: { content: string }) {
             }
 
             // Redesign choices data structure
-            questionData[questionDataId[i]] = {
-                ...questionRow,
-                choices: _choice_structure,
-                graded: false
+            if (questionData[questionDataId[i]].Mode == "One Answer") {
+                questionData[questionDataId[i]] = {
+                    ...questionRow,
+                    choices: _choice_structure,
+                    graded: false,
+                    score_max: _count_answer_true,
+                    score: 0
+                }
+            } else if (questionData[questionDataId[i]].Mode == "Multiple Answer") {
+                questionData[questionDataId[i]] = {
+                    ...questionRow,
+                    choices: _choice_structure,
+                    graded: false,
+                    score_max: _choice_structure.length,
+                    score: 0
+                }
+            } else {
+                questionData[questionDataId[i]] = {
+                    ...questionRow,
+                    choices: _choice_structure,
+                    graded: false,
+                    score_max: 0,
+                    score: 0
+                }
             }
 
             // Collect statistics of topic group

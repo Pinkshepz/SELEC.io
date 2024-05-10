@@ -20,10 +20,6 @@ export default function Interface ({
 
     return (
         <div className="relative flex flex-col">
-            <img className='fixed w-full h-full object-cover' src={(headerData.ImageLink !== '') 
-                ? headerData.ImageLink 
-                : DEFAULT_BG} alt=''></img>
-
             {(interfaceParams.pageSwitch == false) && 
             <SettingInterface
                 courseData={courseData}
@@ -31,7 +27,12 @@ export default function Interface ({
 
             {(interfaceParams.pageSwitch == true) && 
             <QuizInterface
+                courseData={courseData}
+                headerData={headerData}
                 questionData={questionData}/>}
+            <img className='fixed z-[-100] w-full h-full object-cover' src={(headerData.ImageLink !== '') 
+                ? headerData.ImageLink 
+                : DEFAULT_BG} alt=''></img>
         </div>
     );
 }

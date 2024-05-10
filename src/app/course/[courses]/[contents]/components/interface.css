@@ -1,0 +1,177 @@
+#quiz-two-cols-fixed {
+  display: flex;
+  flex-direction: row;
+  height: calc(100dvh - 64px);
+  overflow: hidden;
+}
+
+#quiz-col-scroll-aside {
+  margin-top: 64px;
+  display: var(--aside-visibility);
+  flex-direction: column;
+  width: var(--aside-width);
+  overflow-y: scroll;
+  background-color: var(--bgaccent);
+}
+
+#quiz-col-scroll-main {
+  padding: 0px 16px 16px 16px;
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  width: calc(var(--main-width));
+  overflow-y: scroll;
+  border-left: solid 1px var(--border);
+  background-color: var(--bgaccent);
+}
+
+#separate-top {
+  border-top: solid 1px var(--border);
+}
+#separate-left {
+  border-left: solid 1px var(--border);
+}
+#separate-left {
+  border-left: solid 1px var(--border);
+}
+
+#separate-right {
+  border-right: solid 1px var(--border);
+}
+
+#card-nav-neu {
+  width: calc((var--aside-width)/ 6.2);
+  height: 36px;
+  font-weight: 700;
+  background-color: var(--card);
+  border: solid 1px var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-nav-accent {
+  width: calc((var--aside-width)/ 6.2);
+  height: 36px;
+  color: var(--baseinverse);
+  font-weight: 700;
+  background-color: var(--ter);
+  border: solid 1px var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-nav-ter {
+  width: calc((var--aside-width)/ 6.2);
+  height: 36px;
+  font-weight: 700;
+  color: var(--baseinverse);
+  background-color: var(--ter);
+  border: solid 1px var(--ter);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-nav-green {
+  width: calc((var--aside-width)/ 6.2);
+  height: 36px;
+  font-weight: 700;
+  color: white;
+  background-color: var(--green);
+  border: solid 1px var(--green);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-nav-red {
+  width: calc((var--aside-width)/ 6.2);
+  height: 36px;
+  font-weight: 700;
+  color: white;
+  background-color: var(--red);
+  border: solid 1px var(--red);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-nav-amber {
+  width: calc((var--aside-width)/ 6.2);
+  height: 36px;
+  font-weight: 700;
+  color: white;
+  background-color: var(--amber);
+  border: solid 1px var(--amber);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-quiz-container {
+  transition: all 200ms ease-in-out;
+}
+
+#card-quiz {
+  background-color: var(--card-fade);
+  border: solid 1px var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-quiz-pri {
+  background-color: var(--card-fade);
+  border: solid 1px var(--pri);
+  border-radius: 12px;
+  box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--pri);
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-quiz-sec {
+  background-color: var(--card-fade);
+  border: solid 1px var(--sec);
+  border-radius: 12px;
+  box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--sec);
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-quiz-ter {
+  background-color: var(--card-fade);
+  border: solid 1px var(--ter);
+  border-radius: 12px;
+  box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--ter);
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-quiz-green {
+  background-color: var(--card-fade);
+  border: solid 1px var(--green);
+  box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--green);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-quiz-red {
+  background-color: var(--card-fade);
+  border: solid 1px var(--red);
+  border-radius: 12px;
+  box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--red);
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
+
+#card-quiz-amber {
+  background-color: var(--card-fade);
+  border: solid 1px var(--amber);
+  border-radius: 12px;
+  box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--amber);
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+}
