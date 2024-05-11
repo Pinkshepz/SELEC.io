@@ -204,14 +204,11 @@ export default function CourseContentDisplay({
           <Link 
             href={{ pathname: "./course/[courses]/[contents]" }}
             as={`/course/${courseData["ID"]}/${cards_items["Ref"]}`}
-            className='-card-hover flex flex-col' id='card-main' key={cards_items.ID}>
-            {/* {cards_items.ImageLink && <div className='overflow-hidden'>
-              <img src={cards_items.ImageLink} alt="" className='h-56 w-full object-cover' />
-            </div>} */}
-            <div className='p-3'>
-              <p id='small-p'>Special Practice</p>
+            className='-card-hover relative flex flex-col' id='card-main' key={cards_items.ID}>
+            <div className='w-full p-3 z-10'>
+              <p id='font-semibold'>Special Practice</p>
               <h4 className='mt-2'>{cards_items.Title}</h4>
-              <p className='mt-6'>{cards_items.Description}</p>
+              <p id='font-semibold' className='mt-6'>{cards_items.Description}</p>
               <div className="flex flex-row justify-between items-center w-full mt-4">
                 <div className='flex flex-row items-center'>
                   {cards_items.Mode == 'FLASHCARD'
@@ -226,6 +223,12 @@ export default function CourseContentDisplay({
                 </h6>
               </div>
             </div>
+            {cards_items.ImageLink 
+              && <div className='absolute top-0 w-full overflow-hidden z-0'>
+                <img src={cards_items.ImageLink} alt="" className='h-64 w-full object-cover'/>
+                <div className='absolute top-0 h-64 w-full bg-neutral-900/65'></div>
+              </div>
+            }
           </Link>
         );
       }
@@ -260,10 +263,16 @@ export default function CourseContentDisplay({
             {(outcomes.length >0) && <div id='fadebg' className={outcomes_columns + 'gap-6 px-3 py-3'}>{outcomes}</div>}
           </div>
         </article>
-        {(cards.length > 0) && <article 
-          className='grid md:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 gap-4 mb-4'
-          key={topicData.refKey + "cards"}>{cards}
-        </article>}
+        {(cards.length > 0)
+          ? (cards.length == 1)
+            ? <article className='grid grid-cols-1 mb-4'
+              key={topicData.refKey + "cards"}>{cards}
+            </article>
+            : <article className='grid md:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 gap-4 mb-4'
+              key={topicData.refKey + "cards"}>{cards}
+            </article>
+          : null
+        }
       </>
     );
   }
