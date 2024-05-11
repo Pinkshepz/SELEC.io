@@ -204,7 +204,10 @@ export default function CourseContentDisplay({
           <Link 
             href={{ pathname: "./course/[courses]/[contents]" }}
             as={`/course/${courseData["ID"]}/${cards_items["Ref"]}`}
-            className='-card-hover relative flex flex-col text-white' id='card-main' key={cards_items.ID}>
+            className={'-card-hover relative flex flex-col ' + (cards_items.ImageLink 
+              ? 'text-white' : ''
+            )}
+            id='card-main' key={cards_items.ID}>
             <div className='w-full p-3 z-10'>
               <p id='font-semibold'>Special Practice</p>
               <h4 className='mt-2'>{cards_items.Title}</h4>
