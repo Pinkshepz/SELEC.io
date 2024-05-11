@@ -4,7 +4,7 @@ import { useInterfaceContext } from "./provider-interface";
 import SettingInterface from './components/setting';
 import QuizInterface from "./components/quiz";
 
-const DEFAULT_BG = 'https://www.hsph.harvard.edu/epidemiology/wp-content/uploads/sites/61/2022/03/3.png';
+const DEFAULT_BG = 'https://images.newscientist.com/wp-content/uploads/2022/08/08121245/SEI_117967799.jpg';
 
 export default function Interface ({
     courseData,
