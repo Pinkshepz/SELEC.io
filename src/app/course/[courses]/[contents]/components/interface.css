@@ -111,12 +111,18 @@
 }
 
 #card-quiz-container {
+  position: relative;
   transition: all 200ms ease-in-out;
+}
+
+#card-quiz-container > button {
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 #card-quiz {
   background-color: var(--card-fade);
-  border: solid 1px var(--border);
+  border: solid 2px var(--border);
   border-radius: 12px;
   overflow: hidden;
   transition: all 200ms ease-in-out;
@@ -124,54 +130,136 @@
 
 #card-quiz-pri {
   background-color: var(--card-fade);
-  border: solid 1px var(--pri);
+  border: solid 2px var(--pri);
   border-radius: 12px;
   box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--pri);
   overflow: hidden;
   transition: all 200ms ease-in-out;
 }
 
+#card-quiz-pri > #answer-type {
+  color: var(--pri);
+}
+
 #card-quiz-sec {
   background-color: var(--card-fade);
-  border: solid 1px var(--sec);
+  border: solid 2px var(--sec);
   border-radius: 12px;
   box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--sec);
   overflow: hidden;
   transition: all 200ms ease-in-out;
 }
 
+#card-quiz-sec > #answer-type {
+  color: var(--sec);
+}
+
 #card-quiz-ter {
   background-color: var(--card-fade);
-  border: solid 1px var(--ter);
+  background-color: var(--card-inverse);
+  border: solid 2px var(--ter);
   border-radius: 12px;
   box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--ter);
   overflow: hidden;
   transition: all 200ms ease-in-out;
 }
 
+#card-quiz-ter > #answer-type {
+  color: var(--ter);
+}
+
 #card-quiz-green {
   background-color: var(--card-fade);
-  border: solid 1px var(--green);
+  border: solid 2px var(--green);
   box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--green);
   border-radius: 12px;
   overflow: hidden;
   transition: all 200ms ease-in-out;
 }
 
+#card-quiz-green > #answer-report {
+  color: var(--green);
+}
+
 #card-quiz-red {
   background-color: var(--card-fade);
-  border: solid 1px var(--red);
+  border: solid 2px var(--red);
   border-radius: 12px;
   box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--red);
   overflow: hidden;
   transition: all 200ms ease-in-out;
 }
 
+#card-quiz-red > #answer-report {
+  color: var(--red);
+}
+
 #card-quiz-amber {
   background-color: var(--card-fade);
-  border: solid 1px var(--amber);
+  border: solid 2px var(--amber);
   border-radius: 12px;
   box-shadow: 0 0 var(--shadow-radius) calc(var(--shadow-radius)/2) var(--amber);
   overflow: hidden;
   transition: all 200ms ease-in-out;
+}
+
+#card-quiz-amber > #answer-report {
+  color: var(--amber);
+}
+
+#answer-type {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  height: 28px;
+  width: 28px;
+  padding: 2px 2px 2.5px 2px;
+  margin: 8px 0 0 8px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+#answer-report {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  height: 28px;
+  width: 28px;
+  padding: 2px 2px 2.5px 2px;
+  margin: 8px 0 0 8px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+#choice-front-text {
+  display: flex;
+  margin-left: 36px;
+  margin-right: 36px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding-left: 8px;
+  padding-right: 8px;
+  gap: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
+#choice-back-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding-left: 8px;
+  padding-right: 8px;
+  gap: 8px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 18px;
 }
