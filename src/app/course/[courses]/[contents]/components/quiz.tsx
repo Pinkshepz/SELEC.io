@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import './interface.css';
-import { shuffle, arrayToChips } from '@/app/utils/gadgetfx';
+import { shuffle, formatQuizText } from '@/app/utils/gadgetfx';
 import { useInterfaceContext } from '../provider-interface';
 
 export default function QuizInterface ({
@@ -208,7 +208,7 @@ export default function QuizInterface ({
                         {/* Front text */}
 
                         <div id='choice-front-text' className={"flex flex-wrap items-center justify-center px-2 gap-2 text-center " + (_choice["choice"] ? "py-1" : "")}>
-                            {arrayToChips(_choice["choice"])}
+                            {formatQuizText(_choice["choice"])}
                         </div>
 
 
@@ -270,7 +270,7 @@ export default function QuizInterface ({
 
                             {(questionArray[interfaceParams.currentQuestion].Mode != "Flashcard")
                                 && <div id='choice-front-text' className={(_choice["choice"] ? "py-1" : "")}>
-                                {arrayToChips(_choice["choice"])}
+                                {formatQuizText(_choice["choice"])}
                             </div>}
 
 
@@ -278,7 +278,7 @@ export default function QuizInterface ({
 
                             {_choice["backText"] 
                                 && <div id='choice-back-text' className={(_choice["choice"] ? "py-1" : "")}>
-                                    {arrayToChips(_choice["backText"])}
+                                    {formatQuizText(_choice["backText"])}
                                 </div>
                             }
 
@@ -432,7 +432,7 @@ export default function QuizInterface ({
                     </div>
 
                     {/* 02 - Question */}
-                    <div className='relative lg:max-h-[30dvh] w-full py-4 flex flex-col md:flex-row'>
+                    <div className='relative w-full py-4 flex flex-col md:flex-row'>
                         {/* Question Image */}
                         {questionArray[interfaceParams.currentQuestion].QuestionImageUrl ?
                             <img className='max-h-[45vh] md:max-w-[40dvw] lg:max-w-[40dvw] md:mr-4 mb-4 md:mb-0 rounded-2xl'
@@ -442,14 +442,14 @@ export default function QuizInterface ({
                         <div className='flex flex-col w-full lg:min-h-[10dvh] justify-between'>
                             <div className='relative p-4 h-full flex flex-col justify-center items-center rounded-xl'>
 
-                                <div className='font-bold text-2xl text-center'>
-                                    {arrayToChips(questionArray[interfaceParams.currentQuestion].Question)}
+                                <div className='font-semibold text-xl text-start'>
+                                    {formatQuizText(questionArray[interfaceParams.currentQuestion].Question)}
                                 </div>
                                 
                                 {questionArray[interfaceParams.currentQuestion].graded 
                                     ? questionArray[interfaceParams.currentQuestion].QuestionBackText && 
-                                        <div className='mt-3 px-2 text-lg text-center'>
-                                            {arrayToChips(questionArray[interfaceParams.currentQuestion].QuestionBackText)}
+                                        <div className='mt-3 px-2 text-lg text-start'>
+                                            {formatQuizText(questionArray[interfaceParams.currentQuestion].QuestionBackText)}
                                         </div>
                                     : null
                                 }

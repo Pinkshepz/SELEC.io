@@ -60,7 +60,25 @@ export function arrayOfArrayToObject(arrayOfArray: Array<Array<any>>) {
     return object;
 }
 
-export function arrayToChips(text: any) {
+function paragraph(text: any) {
+    if (typeof text === "string") {
+        const parsed_text = text.split('\\n');
+        console.log(parsed_text)
+        let paragraphs: React.ReactNode[] = [];
+
+        paragraphs.push(<div>{parsed_text.shift()}</div>);
+
+        parsed_text.map(fragment => {
+            paragraphs.push(<div className="pt-4">{fragment}</div>);
+        });
+
+        return (<>{paragraphs}</>)
+    } else {
+        return text
+    }
+}
+
+export function formatQuizText(text: any) {
     if (typeof text === "string") {
         if ((text[0] == "[") && (text[text.length - 1] == "]")) {
             const parsed_text = text.slice(1, -1).split(", ");
@@ -74,9 +92,9 @@ export function arrayToChips(text: any) {
             })
             return chips;
         } else {
-            return text;
+            return paragraph(text);
         }
     } else {
-        return text;
+        return paragraph(text);
     }
 }
