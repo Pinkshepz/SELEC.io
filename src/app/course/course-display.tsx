@@ -27,11 +27,14 @@ export default function CourseDisplay({
 
     // Check if data matches to searchkey
     if (search_target.toLowerCase().includes(searchKey.toLowerCase())) {
-      // Sort courseDisplayData cards by its topics
-      if (courseDataByTopics[element["Group"]] == undefined) {
-          courseDataByTopics[element["Group"]] = [element];
-      } else {
-          courseDataByTopics[element["Group"]].push(element);
+      // Exclude black market topic out 
+      if (!search_target.includes('PUNK07')) {
+        // Sort courseDisplayData cards by its topics
+        if (courseDataByTopics[element["Group"]] == undefined) {
+            courseDataByTopics[element["Group"]] = [element];
+        } else {
+            courseDataByTopics[element["Group"]].push(element);
+        }
       }
     }
   }
