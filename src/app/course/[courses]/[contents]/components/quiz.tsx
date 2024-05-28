@@ -277,7 +277,7 @@ export default function QuizInterface ({
                             {/* Choice back text */}
 
                             {_choice["backText"] 
-                                && <div id='choice-back-text' className={(_choice["choice"] ? "py-1" : "")}>
+                                && <div id='choice-back-text' className={"flex flex-col text-start " + (_choice["choice"] ? "py-1" : "")}>
                                     {formatQuizText(_choice["backText"])}
                                 </div>
                             }
